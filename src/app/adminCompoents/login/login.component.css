@@ -1,0 +1,333 @@
+:host {
+  display: block;
+}
+
+.login-page {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: min(760px, calc(100svh - 150px));
+  padding: clamp(2.5rem, 7vw, 6rem) clamp(1.25rem, 5vw, 4rem);
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(4, 37, 65, 0.82) 0%, rgba(4, 55, 91, 0.64) 46%, rgba(4, 55, 91, 0.28) 100%),
+    linear-gradient(0deg, rgba(4, 37, 65, 0.4), rgba(4, 55, 91, 0.08)),
+    url('/assets/images/grand-egyptian-museum.jpg') center 48% / cover no-repeat;
+}
+
+.login-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 430px);
+  align-items: center;
+  gap: clamp(2.5rem, 8vw, 7rem);
+  width: min(1120px, 100%);
+  margin: auto;
+}
+
+.login-intro {
+  max-width: 550px;
+  color: #fff;
+}
+
+.intro-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+  color: #a9dcff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.intro-label i {
+  font-size: 1rem;
+}
+
+.login-intro h1 {
+  margin: 0 0 1rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(3rem, 6vw, 5.25rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.login-intro > p {
+  max-width: 440px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.8;
+}
+
+.intro-location {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+.location-line {
+  width: 35px;
+  height: 1px;
+  background: #62b9ee;
+}
+
+.login-card {
+  width: 100%;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 24px 70px rgba(4, 17, 22, 0.3);
+}
+
+.card-heading {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.brand-logo {
+  display: block;
+  width: 132px;
+  height: 64px;
+  margin: 0 auto 0.75rem;
+  object-fit: contain;
+}
+
+.portal-label {
+  margin: 0 0 0.65rem;
+  color: #28668e;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.portal-label span {
+  padding: 0 0.15rem;
+  color: #0879b8;
+}
+
+.card-heading h2 {
+  margin: 0;
+  color: #1e2d31;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.6rem, 3vw, 1.9rem);
+  font-weight: 600;
+}
+
+.card-subtitle {
+  margin: 0.5rem 0 0;
+  color: #788184;
+  font-size: 0.9rem;
+}
+
+.form-field {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: #374548;
+  font-size: 0.84rem;
+  font-weight: 650;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 1rem;
+  color: #8d999a;
+  font-size: 0.92rem;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.form-control {
+  min-height: 52px;
+  padding: 0.75rem 1rem 0.75rem 2.85rem;
+  border: 1px solid #dce2e1;
+  border-radius: 10px;
+  background: #fbfcfb;
+  color: #263638;
+  font-size: 0.92rem;
+  box-shadow: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.form-control::placeholder {
+  color: #a4aeae;
+}
+
+.form-control:focus {
+  border-color: #0879b8;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(8, 121, 184, 0.14);
+}
+
+.form-control.is-invalid {
+  border-color: #c95c57;
+  background-image: none;
+}
+
+.password-input {
+  padding-right: 3.2rem;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.65rem;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #758182;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.password-toggle:hover {
+  background: #f0f3f1;
+  color: #34484a;
+}
+
+.password-toggle:focus-visible,
+.submit-button:focus-visible {
+  outline: 3px solid rgba(8, 121, 184, 0.4);
+  outline-offset: 3px;
+}
+
+.field-error {
+  margin-top: 0.45rem;
+  color: #b74642;
+  font-size: 0.77rem;
+}
+
+.submit-button {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(110deg, #015ba3, #0879b8);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 650;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(1, 91, 163, 0.2);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.submit-button:hover {
+  background: linear-gradient(110deg, #0879b8, #1596cf);
+  box-shadow: 0 11px 22px rgba(1, 91, 163, 0.26);
+  transform: translateY(-1px);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.success-message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border: 1px solid #b9ddc9;
+  border-radius: 8px;
+  background: #edf8f1;
+  color: #236340;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid #edf0ed;
+  color: #899393;
+  font-size: 0.73rem;
+}
+
+.card-footer i {
+  color: #0879b8;
+}
+
+@media (max-width: 760px) {
+  .login-page {
+    min-height: auto;
+    padding: 3.5rem 1.25rem;
+    background:
+      linear-gradient(90deg, rgba(4, 37, 65, 0.8), rgba(4, 55, 91, 0.62)),
+      url('/assets/images/grand-egyptian-museum.jpg') center / cover no-repeat;
+  }
+
+  .login-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    max-width: 460px;
+  }
+
+  .login-intro {
+    text-align: center;
+  }
+
+  .intro-label {
+    margin-bottom: 0.8rem;
+  }
+
+  .login-intro h1 {
+    margin-bottom: 0.65rem;
+    font-size: clamp(2.5rem, 11vw, 3.5rem);
+  }
+
+  .login-intro > p {
+    margin: 0 auto;
+    font-size: 0.95rem;
+  }
+
+  .intro-location {
+    justify-content: center;
+    margin-top: 1rem;
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .login-page {
+    padding: 2.5rem 1rem;
+  }
+
+  .login-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

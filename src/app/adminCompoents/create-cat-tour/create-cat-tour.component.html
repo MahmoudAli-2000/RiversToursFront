@@ -1,0 +1,112 @@
+<div class="form-wrapper">
+  <form [formGroup]="catTourForm" (ngSubmit)="onSubmit()" class="create-transfer-form">
+    <h2 class="mb-4 text-center">Create Category Tour</h2>
+
+    <!-- Reference Name -->
+    <div class="form-group mb-3">
+      <label class="form-label">
+        <i class="fas fa-tag"></i> Reference Name
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="referenceName"
+        placeholder="Enter reference name"
+        [ngClass]="{
+          'is-invalid': catTourForm.get('referenceName')?.invalid && (catTourForm.get('referenceName')?.touched || catTourForm.get('referenceName')?.dirty),
+          'is-valid': catTourForm.get('referenceName')?.valid && (catTourForm.get('referenceName')?.touched || catTourForm.get('referenceName')?.dirty)
+        }"
+      />
+      <div
+        class="text-danger small mt-1"
+        *ngIf="catTourForm.get('referenceName')?.invalid && (catTourForm.get('referenceName')?.touched || catTourForm.get('referenceName')?.dirty)">
+        Reference Name is required.
+      </div>
+    </div>
+
+    <!-- Active -->
+    <div class="form-group mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <input type="checkbox" formControlName="isActive" class="form-check-input"/>
+        <span><i class="fas fa-check-circle"></i> Active</span>
+      </label>
+    </div>
+
+    <!-- Upload Image -->
+    <div class="form-group mb-3">
+      <label class="form-label">
+        <i class="fas fa-image"></i> Upload Image
+      </label>
+      <div class="image-upload-wrapper d-flex align-items-center gap-3">
+        <input type="file" class="form-control" #fileInput (change)="onFileSelected($event)"/>
+        <div class="image-preview" *ngIf="imagePreview">
+          <img [src]="imagePreview" alt="Preview"/>
+          <button type="button" class="remove-image-btn" (click)="removeImage()">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Language Tabs (Angular Controlled) -->
+    <!-- ========================= -->
+    <ul class="nav nav-tabs mb-3">
+      <li class="nav-item" *ngFor="let lang of languages">
+        <button
+          type="button"
+          class="nav-link"
+          [class.active]="selectedLang === lang"
+          (click)="selectedLang = lang">
+          {{ lang.toUpperCase() }}
+        </button>
+      </li>
+    </ul>
+
+    <!-- ========================= -->
+    <!-- Translation Content -->
+    <!-- ========================= -->
+    <div *ngFor="let lang of languages">
+      <div *ngIf="selectedLang === lang">
+        <div [formGroup]="getTranslationGroup(lang)" class="mb-3">
+          <h6>Translation ({{ lang.toUpperCase() }})</h6>
+
+          <div class="form-group mb-2">
+            <label>Title</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="title"
+              placeholder="Enter title"
+            />
+          </div>
+
+          <div class="form-group mb-2">
+            <label>Description</label>
+            <textarea
+              class="form-control"
+              rows="3"
+              formControlName="description"
+              placeholder="Enter description">
+            </textarea>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-primary w-100 mt-3">
+      Create Category Tour
+    </button>
+  </form>
+
+  <!-- Error Summary -->
+  <div *ngIf="formErrors.length" class="alert alert-danger mt-3">
+    <ul>
+      <li *ngFor="let e of formErrors">
+        {{ e.label }} <span *ngIf="e.lang">({{ e.lang }})</span> is required.
+      </li>
+    </ul>
+  </div>
+</div>

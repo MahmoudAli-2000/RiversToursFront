@@ -1,0 +1,59 @@
+<!-- ========== DESTINATION HERO SECTION ========== -->
+<section class="destination-hero ">
+    <div class="hero-background">
+      <img [src]="DetailedCategoryTour()?.imageCover" [alt]="DetailedCategoryTour()?.names" />
+      <div class="hero-gradient"></div>
+    </div>
+  
+    <div class="hero-content container">
+      <span class="top-badge">Top Destination</span>
+      <h1 class="hero-title">{{ DetailedCategoryTour()?.names }}</h1>
+      <p class="hero-text">{{ DetailedCategoryTour()?.descriptions }}</p>
+    </div>
+  </section>
+  
+  <!-- ========== TOURS GRID SECTION ========== -->
+  <section class="tours-section container my-5">
+    <h2 class="section-title">
+      <i class="fas fa-map-signs me-2"></i> Available Tours
+    </h2>
+  
+    <div class="row g-4 mt-3">
+      @for (tour of DetailedCategoryTour()?.tours; track tour.id) {
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+          <div class="tour-card">
+            
+            <!-- Tour Image -->
+            <div class="tour-img">
+              <img [src]="tour.imageCover" [alt]="tour.titles" />
+  
+              <!-- Gradient -->
+              <div class="img-gradient"></div>
+  
+              <!-- Price Badge -->
+              <span class="price-badge">${{tour.priceDollar}}</span>
+  
+              <!-- Duration -->
+              <span class="duration-badge">
+                <i class="fas fa-clock"></i> {{tour.duration}} hrs
+              </span>
+            </div>
+  
+            <!-- Tour Info -->
+            <div class="tour-content">
+              <h5 class="tour-title">{{tour.titles}}</h5>
+              <p class="tour-desc">
+                {{ tour.descriptions.length > 90 ? (tour.descriptions ) + '...' : tour.descriptions }}
+              </p>
+  
+              <button class="btn-view">s
+                View Details <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+  
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+  

@@ -1,0 +1,336 @@
+<nav class="main-nav" 
+[class.scrolled]="isScrolled" 
+[class.light]="!isScrolled"
+[class.hide-on-mobile]="isOffcanvasOpen">
+    <div class="container nav-container">
+      <!-- الشعار -->
+      <a class="logo" routerLink="/">
+        <img src="../../../assets/images/rriver.png" alt="Logo" />
+      </a>
+  
+      <!-- القائمة في الوسط -->
+      <ul class="nav-links">
+        <li><a routerLink="/"routerLinkActive="active-link">{{ 'NAV.HOME' | t }}</a></li>
+        <!-- <li><a routerLink="tour"routerLinkActive="active-link">Tours</a></li> -->
+        <li class="nav-item dropdown"
+            [class.is-dismissed]="isDestinationDropdownDismissed"
+            (mouseenter)="reopenDestinationDropdowns()"
+            (mouseleave)="reopenDestinationDropdowns()">
+          <a class="nav-link dropdown-toggle">{{ 'NAV.HURGHADA_TOURS' | t }}</a>
+        
+          <ul class="dropdown-menu" (click)="dismissDestinationDropdown()">
+            <li><a [routerLink]="['/categrytourDetail', 'cairo-tours-hurghada']">{{ 'NAV.CAIRO_TOURS' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'luxor-tours-hurghada']"> {{ 'NAV.LUXOR_TOURS' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'safari-tours-hurghada']">{{ 'NAV.SAFARI_TOURS' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'sea-tours-hurghada']">{{ 'NAV.SEA_TOURS' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'diving-tours-hurgada']">Diving</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'thing-to-do-hurghada']"> {{ 'NAV.THINGS_TO_DO_HURGHADA' | t }}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown"
+            [class.is-dismissed]="isDestinationDropdownDismissed"
+            (mouseenter)="reopenDestinationDropdowns()"
+            (mouseleave)="reopenDestinationDropdowns()">
+          <a class="nav-link dropdown-toggle">{{ 'NAV.MARSA_ALAM' | t }}</a>
+          <ul class="dropdown-menu" (click)="dismissDestinationDropdown()">
+            <li><a [routerLink]="['/categrytourDetail', 'cairo-tours-marsa-alam']">{{ 'NAV.CAIRO_TOURS_MARSA_ALAM' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'luxor-tours-marsa-alam']">{{ 'NAV.LUXOR_TOURS_MARSA_ALAM' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'safari-tours-marsa-alam']">{{ 'NAV.SAFARI_TOURS_MARSA_ALAM' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'sea-tours-marsa-alam']">{{ 'NAV.SEA_TOURS_MARSA_ALAM' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'diving-tours-marsa-alam']">{{ 'NAV.DIVING_TOURS_MARSA_ALAM' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'things-to-do-marsa-alam']">{{ 'NAV.THINGS_TO_DO_MARSA_ALAM' | t }}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown"
+            [class.is-dismissed]="isDestinationDropdownDismissed"
+            (mouseenter)="reopenDestinationDropdowns()"
+            (mouseleave)="reopenDestinationDropdowns()">
+          <a class="nav-link dropdown-toggle">{{ 'NAV.ASWAN' | t }}</a>
+          <ul class="dropdown-menu" (click)="dismissDestinationDropdown()">
+            <li><a [routerLink]="['/categrytourDetail', 'private-customized-packages-aswan']">{{ 'NAV.PRIVATE_CUSTOMIZED_PACKAGES_ASWAN' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'cultural-heritage-tours-aswan']">{{ 'NAV.CULTURAL_HERITAGE_TOURS_ASWAN' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'aswan-day-trips-sightseeing']">{{ 'NAV.ASWAN_DAY_TRIPS_SIGHTSEEING' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'nile-cruises-aswan']">{{ 'NAV.NILE_CRUISES_ASWAN' | t }}</a></li>
+          </ul>
+        </li>
+
+      
+
+   
+        <li><a routerLink="transfer" routerLinkActive="active-link"> {{ 'NAV.TRANSFERS' | t }}</a></li>
+        <li class="nav-vacation-home"><a routerLink="/vacationhome" routerLinkActive="active-link">{{ 'NAV.VACATION_HOME' | t }}</a></li>
+        <li
+          class="nav-item dropdown nav-more"
+          [class.is-dismissed]="isMoreDropdownDismissed"
+          (mouseenter)="isMoreDropdownDismissed = false"
+          (mouseleave)="isMoreDropdownDismissed = false">
+          <button
+            type="button"
+            class="nav-link dropdown-toggle nav-more__toggle"
+            (click)="toggleDropdown($event, 'more')"
+            [attr.aria-expanded]="activeDropdown === 'more'"
+            aria-controls="nav-more-menu">
+            {{ 'NAV.MORE' | t }}
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul id="nav-more-menu" class="dropdown-menu" [class.is-open]="activeDropdown === 'more'">
+            <li><a routerLink="/blogs" routerLinkActive="active-link" (click)="closeMoreDropdown($event)">{{ 'NAV.BLOGS' | t }}</a></li>
+            <li><a routerLink="/reviews" routerLinkActive="active-link" (click)="closeMoreDropdown($event)">{{ 'NAV.REVIEWS' | t }}</a></li>
+            <li><a routerLink="/about" routerLinkActive="active-link" (click)="closeMoreDropdown($event)">{{ 'NAV.ABOUT' | t }}</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="language-switcher">
+       
+       
+        <button type="button" class="lang-btn" aria-label="Polski" (click)="changeLang('pl')">
+          <img src="assets/images/pliamge.png" alt="Polski">
+        </button>
+         <button type="button" class="lang-btn" aria-label="Français" (click)="changeLang('fr')">
+          <img src="assets/images/french2.jpg" alt="Français">
+         </button>
+        <button type="button" class="lang-btn" aria-label="Deutsch" (click)="changeLang('de')">
+          <img src="assets/images/german.jpg" alt="Deutsch">
+        </button>
+        <button type="button" class="lang-btn" aria-label="English" (click)="changeLang('en')">
+          <img src="assets/images/brith.png" alt="English">
+        </button>
+      </div>
+      
+      <!-- Social Icons على اليمين s-->
+      <div class="social-icons">
+        <a href="https://www.facebook.com/share/1DJ8gwbPEo/?mibextid=wwXIfr" class="social-icon" data-name="facebook" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+   
+        <a href="https://www.tiktok.com/@riverstours?_r=1&_t=ZS-9BENmHxKIoq" class="social-icon" data-name="tiktok" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+
+        <a href="https://www.instagram.com/riverstours0?xtok=MWowNWcza2s4djV6dQ%3D%3D&utm_source=qr" class="social-icon" data-name="instagram" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <button
+        type="button"
+        class="hamburger-btn"
+        (click)="toggleOffcanvas()"
+        [class.active]="isOffcanvasOpen"
+        [attr.aria-expanded]="isOffcanvasOpen"
+        aria-controls="mobile-navigation"
+        aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    
+    </div>
+  </nav>
+
+  <div
+    class="oc-overlay"
+    [class.is-open]="isOffcanvasOpen"
+    (click)="closeOffcanvas()"
+    aria-hidden="true">
+  </div>
+
+  <aside
+    #offcanvasPanel
+    id="mobile-navigation"
+    class="oc-panel"
+    [class.is-open]="isOffcanvasOpen"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-hidden]="!isOffcanvasOpen"
+    [attr.inert]="isOffcanvasOpen ? null : ''"
+    aria-label="Menu">
+    <div class="oc-header">
+      <a class="oc-brand" routerLink="/" (click)="closeOffcanvas()">
+         <img src="../../../assets/images/rriver.png" alt="RiversTours" />
+      </a>
+
+      <button
+        #offcanvasCloseBtn
+        type="button"
+        class="oc-close"
+        (click)="closeOffcanvas()"
+        [attr.aria-label]="'Close menu'">
+        <span class="oc-close-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div class="oc-user">
+      <div class="oc-user-avatar">
+        <img src="assets/images/user.png" alt="User Avatar" />
+      </div>
+      <div class="oc-user-meta">
+        <div class="oc-user-title">Guest</div>
+        <div class="oc-user-subtitle">Welcome back</div>
+      </div>
+    </div>
+
+    <div class="oc-divider" role="separator" aria-hidden="true"></div>
+
+    <nav class="oc-nav" aria-label="Primary">
+      <a class="oc-item" routerLink="/" routerLinkActive="is-active" (click)="closeOffcanvas()">
+        <span class="oc-item-left">
+          <i class="fa-solid fa-house oc-icn" aria-hidden="true"></i>
+          <span class="oc-label">{{ 'NAV.HOME' | t }}</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        class="oc-item oc-item-btn"
+        (click)="toggleDropdown($event, 'hurghada')"
+        [attr.aria-expanded]="activeDropdown === 'hurghada'"
+        aria-controls="oc-hurghada-menu">
+        <span class="oc-item-left">
+          <i class="fa-solid fa-map-location-dot oc-icn" aria-hidden="true"></i>
+          <span class="oc-label">{{ 'NAV.HURGHADA_TOURS' | t }}</span>
+        </span>
+        <i class="fa-solid fa-chevron-down oc-chevron" aria-hidden="true"></i>
+      </button>
+
+      <div id="oc-hurghada-menu" class="oc-sub" [class.is-open]="activeDropdown === 'hurghada'">
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'cairo-tours-hurghada']" (click)="closeOffcanvas()">
+          {{ 'NAV.CAIRO_TOURS' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'luxor-tours-hurghada']" (click)="closeOffcanvas()">
+          {{ 'NAV.LUXOR_TOURS' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'safari-tours-hurghada']" (click)="closeOffcanvas()">
+          {{ 'NAV.SAFARI_TOURS' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'sea-tours-hurghada']" (click)="closeOffcanvas()">
+          {{ 'NAV.SEA_TOURS' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'diving-tours-hurgada']" (click)="closeOffcanvas()">
+          Diving
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'thing-to-do-hurghada']" (click)="closeOffcanvas()">
+          {{ 'NAV.THINGS_TO_DO_HURGHADA' | t }}
+        </a>
+      </div>
+
+
+      <button
+        type="button"
+        class="oc-item oc-item-btn"
+        (click)="toggleDropdown($event, 'marsa-alam')"
+        [attr.aria-expanded]="activeDropdown === 'marsa-alam'"
+        aria-controls="oc-marsa-alam-menu">
+        <span class="oc-item-left">
+          <i class="fa-solid fa-map-location-dot oc-icn" aria-hidden="true"></i>
+          <span class="oc-label">{{ 'NAV.MARSA_ALAM' | t }}</span>
+        </span>
+        <i class="fa-solid fa-chevron-down oc-chevron" aria-hidden="true"></i>
+      </button>
+
+      <div id="oc-marsa-alam-menu" class="oc-sub" [class.is-open]="activeDropdown === 'marsa-alam'">
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'cairo-tours-marsa-alam']" (click)="closeOffcanvas()">
+          {{ 'NAV.CAIRO_TOURS_MARSA_ALAM' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'luxor-tours-marsa-alam']" (click)="closeOffcanvas()">
+          {{ 'NAV.LUXOR_TOURS_MARSA_ALAM' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'safari-tours-marsa-alam']" (click)="closeOffcanvas()">
+          {{ 'NAV.SAFARI_TOURS_MARSA_ALAM' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'sea-tours-marsa-alam']" (click)="closeOffcanvas()">
+          {{ 'NAV.SEA_TOURS_MARSA_ALAM' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'diving-tours-marsa-alam']" (click)="closeOffcanvas()">
+          {{ 'NAV.DIVING_TOURS_MARSA_ALAM' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'things-to-do-marsa-alam']" (click)="closeOffcanvas()">
+          {{ 'NAV.THINGS_TO_DO_MARSA_ALAM' | t }}
+        </a>
+      </div>
+
+
+      <button
+        type="button"
+        class="oc-item oc-item-btn"
+        (click)="toggleDropdown($event, 'aswan')"
+        [attr.aria-expanded]="activeDropdown === 'aswan'"
+        aria-controls="oc-aswan-menu">
+        <span class="oc-item-left">
+          <i class="fa-solid fa-map-location-dot oc-icn" aria-hidden="true"></i>
+          <span class="oc-label">{{ 'NAV.ASWAN' | t }}</span>
+        </span>
+        <i class="fa-solid fa-chevron-down oc-chevron" aria-hidden="true"></i>
+      </button>
+
+      <div id="oc-aswan-menu" class="oc-sub" [class.is-open]="activeDropdown === 'aswan'">
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'private-customized-packages-aswan']" (click)="closeOffcanvas()">
+          {{ 'NAV.PRIVATE_CUSTOMIZED_PACKAGES_ASWAN' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'cultural-heritage-tours-aswan']" (click)="closeOffcanvas()">
+          {{ 'NAV.CULTURAL_HERITAGE_TOURS_ASWAN' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'aswan-day-trips-sightseeing']" (click)="closeOffcanvas()">
+          {{ 'NAV.ASWAN_DAY_TRIPS_SIGHTSEEING' | t }}
+        </a>
+        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'nile-cruises-aswan']" (click)="closeOffcanvas()">
+          {{ 'NAV.NILE_CRUISES_ASWAN' | t }}
+        </a>
+      </div>
+
+      <a class="oc-item" routerLink="transfer" routerLinkActive="is-active" (click)="closeOffcanvas()">
+        <span class="oc-item-left">
+          <i class="fa-solid fa-van-shuttle oc-icn" aria-hidden="true"></i>
+          <span class="oc-label">{{ 'NAV.TRANSFERS' | t }}</span>
+        </span>
+      </a>
+
+      <a class="oc-item" routerLink="/vacationhome" routerLinkActive="is-active" (click)="closeOffcanvas()">
+        <span class="oc-item-left">
+          <i class="fa-solid fa-house-chimney oc-icn" aria-hidden="true"></i>
+          <span class="oc-label">{{ 'NAV.VACATION_HOME' | t }}</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        class="oc-item oc-item-btn"
+        (click)="toggleDropdown($event, 'more')"
+        [attr.aria-expanded]="activeDropdown === 'more'"
+        aria-controls="oc-more-menu">
+        <span class="oc-item-left">
+          <i class="fa-solid fa-ellipsis oc-icn" aria-hidden="true"></i>
+          <span class="oc-label">{{ 'NAV.MORE' | t }}</span>
+        </span>
+        <i class="fa-solid fa-chevron-down oc-chevron" aria-hidden="true"></i>
+      </button>
+
+      <div id="oc-more-menu" class="oc-sub" [class.is-open]="activeDropdown === 'more'">
+        <a class="oc-sub-item" routerLink="/blogs" routerLinkActive="is-active" (click)="closeOffcanvas()">
+          <i class="fa-regular fa-newspaper oc-icn" aria-hidden="true"></i>
+          {{ 'NAV.BLOGS' | t }}
+        </a>
+        <a class="oc-sub-item" routerLink="/reviews" routerLinkActive="is-active" (click)="closeOffcanvas()">
+          <i class="fa-regular fa-star oc-icn" aria-hidden="true"></i>
+          {{ 'NAV.REVIEWS' | t }}
+        </a>
+        <a class="oc-sub-item" routerLink="/about" routerLinkActive="is-active" (click)="closeOffcanvas()">
+          <i class="fa-regular fa-circle-question oc-icn" aria-hidden="true"></i>
+          {{ 'NAV.ABOUT' | t }}
+        </a>
+      </div>
+    </nav>
+
+    <div class="oc-divider" role="separator" aria-hidden="true"></div>
+
+    <div class="oc-social" aria-label="Social">
+      <a href="https://www.facebook.com/share/1DJ8gwbPEo/?mibextid=wwXIfr" class="oc-social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+      </a>
+      <a href="https://www.tiktok.com/@riverstours?_r=1&_t=ZS-9BENmHxKIoq" class="oc-social-btn" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-tiktok" aria-hidden="true"></i>
+      </a>
+      <a href="https://www.instagram.com/riverstours0?xtok=MWowNWcza2s4djV6dQ%3D%3D&utm_source=qr" class="oc-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-instagram" aria-hidden="true"></i>
+      </a>
+    </div>
+  </aside>

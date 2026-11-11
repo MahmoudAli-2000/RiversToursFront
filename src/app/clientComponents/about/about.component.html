@@ -1,0 +1,56 @@
+<div class="about-container">
+
+    <!-- Hero Image -->
+    <div class="about-hero">
+      <img src="../../../assets/images/img1.jpg" loading="lazy" alt="About Us Image" />
+      <div class="hero-overlay">
+      </div>
+    </div>
+  
+    <!-- About Content -->
+<!-- About Content -->
+<div class="about-content">
+  <h2 class="section-title">{{ 'ABOUT_.TITLE' | t }}</h2>
+
+  <p class="about-text">
+    {{ 'ABOUT_.DESCRIPTION_1' | t }}
+  </p>
+
+  <p class="about-text">
+    {{ 'ABOUT_.DESCRIPTION_2' | t }}
+  </p>
+</div>
+
+<!-- Icons Section -->
+<div class="about-icons">
+
+  <div class="icon-box">
+    <i class="fas fa-award"></i>
+    <h3>{{ 'ABOUT_.FEATURES.QUALITY.TITLE' | t }}</h3>
+    <p>{{ 'ABOUT_.FEATURES.QUALITY.TEXT' | t }}</p>
+  </div>
+
+  <div class="icon-box">
+    <i class="fas fa-people-group"></i>
+    <h3>{{ 'ABOUT_.FEATURES.TEAM.TITLE' | t }}</h3>
+    <p>{{ 'ABOUT_.FEATURES.TEAM.TEXT' | t }}</p>
+  </div>
+
+  <div class="icon-box">
+    <i class="fas fa-handshake-angle"></i>
+    <h3>{{ 'ABOUT_.FEATURES.TRUST.TITLE' | t }}</h3>
+    <p>{{ 'ABOUT_.FEATURES.TRUST.TEXT' | t }}</p>
+  </div>
+
+</div>
+
+<section #statsSection class="stats-section">
+  <div class="stats-container">
+    <div class="stat-box" *ngFor="let stat of stats">
+      <i [ngClass]="stat.icon"></i>
+      <h3>{{ stat.value$ | async }}</h3>
+      <p>{{ stat.text | t }}</p>
+    </div>
+  </div>
+</section>
+    </div>

@@ -1,0 +1,110 @@
+<section class="dashboard-section container">
+    <h2 class="section-title">All Tours</h2>
+   
+    <div class="add-tour-wrapper">
+        <button class="btn add-tour-btn" [routerLink]="['/admin/tourCreate']"
+        >
+          <i class="fa-solid fa-plus"></i>
+          Add New Tour
+        </button>
+      </div>
+      <div class="search-wrapper">
+        <input 
+          type="text" 
+          placeholder="Search tour..."
+          [(ngModel)]="searchTerm" />
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      </div>
+    <div class="tour-list">
+  
+      <!-- Table Header -->
+      <div class="tour-row header">
+        <div class="tour-col id">ID</div>
+        <div class="tour-col title">Name</div>
+        <div class="tour-col title category">Category</div>
+        <div class="tour-col title destination">Destination</div>
+        <div class="tour-col date">Time</div>
+        <div class="tour-col status">Status</div>
+        <div class="tour-col actions">Actions</div>
+      </div>
+  
+      @for (tour of AllToursList()| search : searchTerm ; track tour.id) {
+      <!-- Loop through tours -->
+      <div class="tour-row">
+        
+        <!-- Tour ID -->
+        <div class="tour-col id">
+          <span># {{ tour.id }}</span>
+        </div>
+  
+        <!-- Tour Title -->
+        <div class="tour-col title">
+          <h3>{{ tour.referneceName }}</h3>
+        </div>
+  
+        <!-- Tour Category -->
+        <div class="tour-col title category">
+          <h3>{{ tour.categoryName }}</h3>
+        </div>
+  
+        <!-- Tour Destination -->
+        <div class="tour-col title destination">
+          <h3>{{ tour.destinationName }}</h3>
+        </div>
+  
+        <!-- Created Date -->
+        <div class="tour-col date">
+          <i class="fa-regular fa-clock"></i>
+          <span>{{ tour.createdAt | date:'mediumDate' }}</span>
+        </div>
+  
+        <!-- Status -->
+        <div class="tour-col status">
+          <span class="tour-status" [class.active]="tour.isActive" [class.inactive]="!tour.isActive">
+            {{ tour.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </div>
+  
+        <!-- Actions -->
+        <div class="tour-col actions">
+          <button class="btn edit-btn" title="Edit" [routerLink]="['/admin/tourUpdate',tour.id]">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+          <button class="btn delete-btn" title="Delete" (click)="deleteTour(tour.id)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+  
+      </div>
+        }
+    </div>
+<!-- Pagination -->
+<div class="pagination-wrapper">
+  <!-- Prev -->
+  <button 
+      class="pagination-btn" 
+      [disabled]="pageIndex === 1"
+      (click)="changePage(pageIndex - 1)">
+      <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <!-- Numbers -->
+  <button 
+      class="pagination-number"
+      *ngFor="let p of totalPages"
+      [class.active-page]="pageIndex === p"
+      (click)="changePage(p)">
+          {{ p }}
+  </button>
+
+  <!-- Next -->
+  <button 
+      class="pagination-btn"
+      [disabled]="pageIndex === totalPages.length"
+      (click)="changePage(pageIndex + 1)">
+      <i class="fa-solid fa-chevron-right"></i>
+  </button>
+</div>
+
+  </section>
+  

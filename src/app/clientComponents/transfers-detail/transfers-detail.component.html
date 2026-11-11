@@ -1,0 +1,178 @@
+@if(DetailedTransfer()){
+    <!-- Transfer Hero Section -->
+<section class="transfer-hero" >
+    <div class="hero-background">
+      <img [src]="DetailedTransfer()?.imageCover" [alt]="DetailedTransfer()?.names" class="hero-image" loading="lazy" />
+      <div class="overlay-gradient"></div>
+    </div>
+    
+    <div class="container">
+      <div class="hero-content">
+  
+  
+        <!-- Transfer Header -->
+        <div class="transfer-header">
+          
+          <h1 class="transfer-title">{{DetailedTransfer()?.names}}</h1>
+          
+          <div class="transfer-meta">
+            <div class="meta-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>{{DetailedTransfer()?.destinationName}}</span>
+            </div>
+         
+           
+          </div>
+
+  
+          <!-- Quick Actions -->
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/201111214147" target="_blank" rel="noopener noreferrer">
+              <i class="fas fa-calendar-check"></i>
+              {{ 'BUTTON.BOOK_NOW' | t }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pricing Section -->
+  <section class="pricing-section py-5" >
+
+    <div class="container">
+      <div class="section-header enhanced-header text-center mb-5">
+        <h2 class="section-title">{{ 'TRANSFER.DESCRIPTION' | t }}</h2>
+      
+        <p class="section-subtitle">
+          {{ DetailedTransfer()?.descriptions }}
+        </p>
+      </div>
+      
+
+      <div class="prices-section">
+     
+     
+        <section class="details-section">
+          <h3 class="section-title">{{ 'TRANSFER.HIGHLIGHTS' | t }}</h3>
+        
+          <ul class="details-list">
+            @for (item of DetailedTransfer()?.highlights; track item.id) {
+              <li class="details-item highlight">
+                <i class="fas fa-star icon"></i>
+                <span>{{ item.text }}</span>
+              </li>
+            }
+          </ul>
+        </section>
+        <h2 class="section-title">
+          <i class="fas fa-tags"></i> {{ 'TRANSFER.PRICES' | t }}
+        </h2>
+        <div class="table-wrapper">
+          <table class="modern-price-table">
+            <thead>
+              <tr>
+                <th>{{ 'TRANSFER.TABLE.TITLE' | t }}</th>
+                <th>{{ 'TRANSFER.TABLE.PRIVATE' | t }}</th>
+                <th>{{ 'TRANSFER.TABLE.SHARED' | t }}</th>
+              </tr>
+            </thead>
+      
+            <tbody>
+              @for (price of DetailedTransfer()?.pricesList; track price.title) {
+                <tr>
+                  <td class="title-cell">
+                    <i class="fa-solid fa-taxi icon"></i>
+                    <span>{{ price.title }}</span>
+                  </td>
+      
+                  <td class="price private">{{ price.privtePrice  }}</td>
+                  <td class="price shared">{{ price.sharedPrice  }}</td>
+    
+                </tr>
+              }
+              @empty {
+                <tr>
+                  <td class="loading-state" colspan="3">
+                    <span class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </span>
+                    <p class="mb-0 mt-2">{{ 'TRANSFER.LOADING' | t }}</p>
+                  </td>
+                </tr>
+              }
+              
+            </tbody>
+          </table>
+        </div>
+        <section class="details-section">
+          <h3 class="section-title">{{ 'TRANSFER.INCLUDED' | t }}</h3>
+        
+          <ul class="details-list">
+            @for (item of DetailedTransfer()?.includeds; track item.id) {
+              <li class="details-item included">
+                <i class="fas fa-check-circle icon"></i>
+                <span>{{ item.text }}</span>
+              </li>
+            }
+          </ul>
+        </section>
+        
+        <section class="details-section">
+          <h3 class="section-title">{{ 'TRANSFER.NOT_INCLUDED' | t }}</h3>
+        
+          <ul class="details-list">
+            @for (item of DetailedTransfer()?.notIncludeds; track item.id) {
+              <li class="details-item not-included">
+                <i class="fas fa-times-circle icon"></i>
+                <span>{{ item.text }}</span>
+              </li>
+            }
+          </ul>
+        </section>
+   
+        
+
+
+
+
+     
+      </div>
+      
+   
+      <!-- Additional Information -->
+      <div class="additional-info mt-5 info-section">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="info-card">
+              <h4><i class="fas fa-info-circle"></i> What's Included</h4>
+              <ul class="feature-list">
+                <li><i class="fas fa-check"></i> Professional driver</li>
+                <li><i class="fas fa-check"></i> Air-conditioned vehicle</li>
+                <li><i class="fas fa-check"></i> Meet & greet service</li>
+                <li><i class="fas fa-check"></i> Bottled water</li>
+                <li><i class="fas fa-check"></i> Free waiting time</li>
+                <li><i class="fas fa-check"></i> All taxes and fees</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="info-card">
+              <h4><i class="fas fa-exclamation-circle"></i> Important Notes</h4>
+              <ul class="feature-list">
+                <li><i class="fas fa-clock"></i> Free waiting: 60 minutes at airport</li>
+                <li><i class="fas fa-suitcase"></i> Standard luggage allowance applies</li>
+                <li><i class="fas fa-ban"></i> No hidden charges</li>
+                <li><i class="fas fa-undo"></i> Free cancellation 24 hours before</li>
+                <li><i class="fas fa-credit-card"></i> Multiple payment methods</li>
+                <li><i class="fas fa-headset"></i> 24/7 customer support</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+}

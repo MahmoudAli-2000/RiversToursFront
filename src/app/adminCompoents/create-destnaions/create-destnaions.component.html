@@ -1,0 +1,146 @@
+<div class="form-wrapper">
+    <form [formGroup]="destForm" (ngSubmit)="onSubmit()" class="create-dest-form">
+    <h2 class="mb-4 text-center">Create Destination Tour</h2>
+    <!-- Reference Name -->
+    <div class="form-group mb-3">
+      <label class="form-label">
+        <i class="fas fa-tag"></i> Reference Name
+      </label>
+  
+      <input
+        type="text"
+        class="form-control"
+        formControlName="referenceName"
+        [ngClass]="{
+          'is-invalid': destForm.get('referenceName')?.invalid && (destForm.get('referenceName')?.touched || destForm.get('referenceName')?.dirty),
+          'is-valid': destForm.get('referenceName')?.valid && (destForm.get('referenceName')?.touched || destForm.get('referenceName')?.dirty)
+        }"
+        placeholder="Enter reference name"
+      />
+  
+      @if(destForm.get('referenceName')?.invalid && (destForm.get('referenceName')?.touched || destForm.get('referenceName')?.dirty)){
+        <div class="text-danger small mt-1">Reference Name is required.</div>
+      }
+    </div>
+  
+    <!-- Title -->
+    <div class="form-group mb-3">
+      <label class="form-label">
+        <i class="fas fa-heading"></i> Title
+      </label>
+  
+      <input
+        type="text"
+        class="form-control"
+        formControlName="title"
+        [ngClass]="{
+          'is-invalid': destForm.get('title')?.invalid && (destForm.get('title')?.touched || destForm.get('title')?.dirty),
+          'is-valid': destForm.get('title')?.valid && (destForm.get('title')?.touched || destForm.get('title')?.dirty)
+        }"
+        placeholder="Enter title"
+      />
+  
+      @if(destForm.get('title')?.invalid && (destForm.get('title')?.touched || destForm.get('title')?.dirty)){
+        <div class="text-danger small mt-1">Title is required.</div>
+      }
+    </div>
+  
+    <!-- Description -->
+    <div class="form-group mb-3">
+      <label class="form-label">
+        <i class="fas fa-align-left"></i> Description
+      </label>
+  
+      <textarea
+        class="form-control"
+        formControlName="description"
+        [ngClass]="{
+          'is-invalid': destForm.get('description')?.invalid && (destForm.get('description')?.touched || destForm.get('description')?.dirty),
+          'is-valid': destForm.get('description')?.valid && (destForm.get('description')?.touched || destForm.get('description')?.dirty)
+        }"
+        rows="3"
+        placeholder="Enter description"
+      ></textarea>
+  
+      @if(destForm.get('description')?.invalid && (destForm.get('description')?.touched || destForm.get('description')?.dirty)){
+        <div class="text-danger small mt-1">Description is required.</div>
+      }
+    </div>
+  
+    <!-- Meta Description -->
+    <div class="form-group mb-3">
+      <label class="form-label">
+        <i class="fas fa-pen-nib"></i> Meta Description
+      </label>
+  
+      <input
+        type="text"
+        class="form-control"
+        formControlName="metaDescription"
+        [ngClass]="{
+          'is-invalid': destForm.get('metaDescription')?.invalid && (destForm.get('metaDescription')?.touched || destForm.get('metaDescription')?.dirty),
+          'is-valid': destForm.get('metaDescription')?.valid && (destForm.get('metaDescription')?.touched || destForm.get('metaDescription')?.dirty)
+        }"
+        placeholder="Enter meta description"
+      />
+  
+      @if(destForm.get('metaDescription')?.invalid && (destForm.get('metaDescription')?.touched || destForm.get('metaDescription')?.dirty)){
+        <div class="text-danger small mt-1">Meta Description is required.</div>
+      }
+    </div>
+  
+    <!-- Meta Keywords -->
+    <div class="form-group mb-3">
+      <label class="form-label">
+        <i class="fas fa-key"></i> Meta Keywords
+      </label>
+  
+      <input
+        type="text"
+        class="form-control"
+        formControlName="metaKeyWords"
+        [ngClass]="{
+          'is-invalid': destForm.get('metaKeyWords')?.invalid && (destForm.get('metaKeyWords')?.touched || destForm.get('metaKeyWords')?.dirty),
+          'is-valid': destForm.get('metaKeyWords')?.valid && (destForm.get('metaKeyWords')?.touched || destForm.get('metaKeyWords')?.dirty)
+        }"
+        placeholder="Enter meta keywords"
+      />
+  
+      @if(destForm.get('metaKeyWords')?.invalid && (destForm.get('metaKeyWords')?.touched || destForm.get('metaKeyWords')?.dirty)){
+        <div class="text-danger small mt-1">Meta Keywords are required.</div>
+      }
+    </div>
+  
+  
+  
+    <!-- Active Checkbox -->
+    <div class="form-group mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <input type="checkbox" formControlName="isActive" class="form-check-input">
+        <span><i class="fas fa-check-circle"></i> Active</span>
+      </label>
+    </div>
+  
+    <!-- Upload Image -->
+    <div class="form-group mb-3">
+      <label class="form-label"><i class="fas fa-image"></i> Upload Image</label>
+  
+      <div class="image-upload-wrapper d-flex align-items-center gap-3">
+  
+        <input type="file" class="form-control" #fileInput (change)="onFileSelected($event)" />
+  
+        <div class="image-preview" [hidden]="!imagePreview">
+          <img [src]="imagePreview" alt="Preview" />
+          <button type="button" class="remove-image-btn" (click)="removeImage()"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Submit -->
+    <button type="submit" class="btn btn-primary w-100 mt-3">
+      Create Destination
+    </button>
+  
+  </form>
+</div>
+  

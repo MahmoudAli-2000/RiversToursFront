@@ -1,0 +1,111 @@
+<section class="category-hero-section-new">
+  <div class="hero-img-wrapper-new">
+    <img
+      src="assets/images/plane1.jpg" 
+      alt="Hotel Image"
+      class="hero-img-new" loading="lazy"
+    />
+  </div>
+
+  <div class="hero-info-new container">
+    <h1 class="hero-title-new">
+      <ng-container *ngFor="let word of ( 'HERO.TITLE' | t ).split(' ')">
+        <span class="word">
+          <ng-container *ngFor="let ch of word.split(''); let i = index">
+            <span 
+              class="letter"
+              [style.animationDelay]="((i) * 0.05)+'s'"
+            >
+              {{ ch }}
+            </span>
+          </ng-container>
+        </span>
+        <span class="space">&nbsp;</span>
+      </ng-container>
+    </h1>
+    
+    
+    <p class="hero-desc-new">
+      <ng-container *ngFor="let word of ( 'HERO.DESC' | t ).split(' ')">
+        <span class="word">
+          <ng-container *ngFor="let ch of word.split(''); let i = index">
+            <span 
+              class="letter"
+              [style.animationDelay]="((i) * 0.02)+'s'"
+            >
+              {{ ch }}
+            </span>
+          </ng-container>
+        </span>
+        <span class="space">&nbsp;</span>
+      </ng-container>
+    </p>
+  </div>
+</section>
+
+  @if(AllTrasnferList()){
+    <section class="transfers-cards-section py-5">
+      <div class="container">
+    
+        <h2 class="section-title text-center mb-5">
+          <i class="fas fa-shuttle-van me-2"></i>
+          {{ 'SECTION.TRANSFER_SERVICES' | t }}        </h2>
+    
+        <div class="row g-4">
+          @for (transfer of AllTrasnferList(); track transfer.id) {
+            <div class="col-md-6 col-lg-4">
+              <div class="transfer-card">
+    
+                <!-- Image -->
+                <div class="card-img-box pointer" [routerLink]="['/transferDetail', transfer.slug]">
+                  <img [src]="transfer.imageCover"
+                       [alt]="transfer.names"
+                       class="card-img"loading="lazy" />
+                  <div class="img-overlay"></div>
+    
+                  <!-- Destination Badge -->
+                  <div class="destination-badge">
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{ transfer.destinationName }}
+                  </div>
+                </div>
+    
+                <!-- Content Section -->
+                <div class="card-content">
+                  <h3 class="card-title">{{ transfer.names }}</h3>
+                  <p class="card-desc">
+                    {{ transfer.descriptions | termtext  }}...
+                  </p>
+    
+                  <div class="card-actions" [routerLink]="['/transferDetail', transfer.slug]">
+                    <button class="btn btn-dark btn-sm">
+                      <i class="fas fa-eye"></i> {{ 'BUTTON.VIEW' | t }}
+                    </button>
+
+                    <a href="https://wa.me/201111214147" target="_blank" rel="noopener noreferrer">
+                      <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-car"></i> {{ 'BUTTON.BOOK_NOW' | t }}
+                      </button>
+                      </a>
+                  </div>
+                </div>
+    
+              </div>
+            </div>
+          }
+          @empty { 
+            <div class="col-12 text-center py-5">
+        <div class="empty-state">
+          <i class="fas fa-map-marked-alt fa-3x mb-3 text-muted"></i>
+          <h4 class="text-muted">  {{ 'TRANSFER.NO_TRANSFERS_TITLE' | t }}</h4>
+          <p class="text-muted">{{ 'TRANSFER.NO_TRANSFERS_DESC' | t }}</p>
+        </div>
+    
+            </div>
+        }
+        </div>
+    
+      </div>
+    </section>
+    
+  }

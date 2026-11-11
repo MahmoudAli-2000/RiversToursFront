@@ -1,0 +1,154 @@
+<main class="stay-page">
+  <section class="stay-hero">
+    <div class="stay-hero__image" role="img" [attr.aria-label]="'STAY.HERO_EYEBROW' | t"></div>
+    <div class="stay-hero__shade"></div>
+
+    <div class="stay-container stay-hero__content">
+      <span class="stay-eyebrow"><i class="fas fa-sun" aria-hidden="true"></i> {{ 'STAY.HERO_EYEBROW' | t }}</span>
+      <h1>{{ 'STAY.HERO_TITLE' | t }}<br><span>{{ 'STAY.HERO_TITLE_ACCENT' | t }}</span></h1>
+      <p>{{ 'STAY.HERO_DESCRIPTION' | t }}</p>
+      <div class="stay-hero__actions">
+        <a class="stay-button stay-button--light" href="#stays">
+          {{ 'STAY.EXPLORE' | t }} <i class="fas fa-arrow-down" aria-hidden="true"></i>
+        </a>
+        <a class="stay-hero__link" href="https://wa.me/201111214147" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> {{ 'STAY.ASK_STAY' | t }}
+        </a>
+      </div>
+      <div class="stay-hero__note">
+        <span class="stay-hero__avatars" aria-hidden="true">
+          <i class="fas fa-user"></i><i class="fas fa-user"></i><i class="fas fa-user"></i>
+        </span>
+        <span>{{ 'STAY.SUPPORT_NOTE' | t }}</span>
+      </div>
+    </div>
+
+    <a class="stay-scroll" href="#intro" [attr.aria-label]="'STAY.SCROLL_DISCOVER' | t">
+      <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </a>
+  </section>
+
+  <section class="stay-intro" id="intro">
+    <div class="stay-container stay-intro__grid">
+      <div>
+        <span class="stay-kicker">{{ 'STAY.INTRO_EYEBROW' | t }}</span>
+        <h2>{{ 'STAY.INTRO_TITLE' | t }} <em>{{ 'STAY.INTRO_TITLE_ACCENT' | t }}</em></h2>
+      </div>
+      <div class="stay-intro__copy">
+        <p>{{ 'STAY.INTRO_DESCRIPTION' | t }}</p>
+        <a class="stay-text-link" href="#stays">
+          {{ 'STAY.FIND_PLACE' | t }} <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stay-options" id="stays">
+    <div class="stay-container">
+      <div class="stay-section-heading">
+        <div>
+          <span class="stay-kicker">{{ 'STAY.OPTIONS_EYEBROW' | t }}</span>
+          <h2>{{ 'STAY.OPTIONS_TITLE' | t }}</h2>
+        </div>
+        <p>{{ 'STAY.OPTIONS_DESCRIPTION' | t }}</p>
+      </div>
+
+      @if (loading()) {
+        <div class="stay-state" role="status"><span class="stay-spinner"></span> {{ 'STAY.LOADING_LIST' | t }}</div>
+      } @else if (error()) {
+        <div class="stay-state stay-state--error" role="alert">
+          <p>{{ 'STAY.LOAD_ERROR' | t }}</p>
+          <button class="stay-button stay-button--dark" type="button" (click)="loadHomes()">{{ 'STAY.RETRY' | t }}</button>
+        </div>
+      } @else if (homes().length) {
+        <div class="stay-cards">
+          @for (home of homes(); track home.id) {
+            <article class="stay-card">
+              <a class="stay-card__image" [routerLink]="['/vacationhome', homeLink(home)]" [attr.aria-label]="('STAY.VIEW_HOME' | t) + ' ' + homeName(home)">
+                <img [src]="home.imageCover" [alt]="homeName(home)" loading="lazy" />
+                <span class="stay-card__label">{{ home.propertyType || ('STAY.PROPERTY_FALLBACK' | t) }}</span>
+              </a>
+              <div class="stay-card__body">
+                <div class="stay-card__meta">
+                  <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                  {{ home.city }}@if (home.area) {, {{ home.area }}}
+                </div>
+                <h3>{{ homeName(home) }}</h3>
+                <p>{{ homeDescription(home) }}</p>
+                <div class="stay-card__price">
+                  <strong>${{ home.priceDollar | number:'1.0-0' }}</strong><span> {{ 'STAY.USD' | t }}</span>
+                </div>
+                <a [routerLink]="['/vacationhome', homeLink(home)]" class="stay-card__link">
+                  {{ 'STAY.VIEW_STAY' | t }} <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </article>
+          }
+        </div>
+        @if (totalPages.length > 1) {
+          <nav class="stay-pagination" [attr.aria-label]="'STAY.PAGE_LABEL' | t">
+            <button type="button" [disabled]="pageIndex === 1" (click)="changePage(pageIndex - 1)" [attr.aria-label]="'STAY.PREVIOUS_PAGE' | t">
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            @for (page of totalPages; track page) {
+              <button type="button" [class.active]="pageIndex === page" [attr.aria-current]="pageIndex === page ? 'page' : null" (click)="changePage(page)">
+                {{ page }}
+              </button>
+            }
+            <button type="button" [disabled]="pageIndex === totalPages.length" (click)="changePage(pageIndex + 1)" [attr.aria-label]="'STAY.NEXT_PAGE' | t">
+              <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </nav>
+        }
+      } @else {
+        <div class="stay-state">{{ 'STAY.EMPTY_LIST' | t }}</div>
+      }
+    </div>
+  </section>
+
+  <section class="stay-gallery">
+    <div class="stay-container stay-gallery__grid">
+      <div class="stay-gallery__copy">
+        <span class="stay-kicker">{{ 'STAY.GALLERY_EYEBROW' | t }}</span>
+        <h2>{{ 'STAY.GALLERY_TITLE' | t }}<br><em>{{ 'STAY.GALLERY_TITLE_ACCENT' | t }}</em></h2>
+        <p>{{ 'STAY.GALLERY_DESCRIPTION' | t }}</p>
+        <a class="stay-button stay-button--dark" href="https://wa.me/201111214147" target="_blank" rel="noopener noreferrer">
+          {{ 'STAY.FIND_STAY' | t }} <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div class="stay-gallery__photos">
+        <figure class="stay-gallery__photo stay-gallery__photo--large">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85" [alt]="'STAY.LIVING_ALT' | t" loading="lazy" />
+        </figure>
+        <figure class="stay-gallery__photo stay-gallery__photo--small">
+          <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85" [alt]="'STAY.BEDROOM_ALT' | t" loading="lazy" />
+        </figure>
+        <figure class="stay-gallery__photo stay-gallery__photo--small">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85" [alt]="'STAY.INTERIOR_ALT' | t" loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="stay-benefits">
+    <div class="stay-container stay-benefits__grid">
+      <div>
+        <span class="stay-kicker">{{ 'STAY.HELP_EYEBROW' | t }}</span>
+        <h2>{{ 'STAY.HELP_TITLE' | t }}</h2>
+      </div>
+      <div class="stay-benefit">
+        <span class="stay-benefit__icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span>
+        <div><h3>{{ 'STAY.LOCAL_TITLE' | t }}</h3><p>{{ 'STAY.LOCAL_DESCRIPTION' | t }}</p></div>
+      </div>
+      <div class="stay-benefit">
+        <span class="stay-benefit__icon"><i class="fas fa-comments" aria-hidden="true"></i></span>
+        <div><h3>{{ 'STAY.COMMUNICATION_TITLE' | t }}</h3><p>{{ 'STAY.COMMUNICATION_DESCRIPTION' | t }}</p></div>
+      </div>
+      <div class="stay-benefit">
+        <span class="stay-benefit__icon"><i class="fas fa-heart" aria-hidden="true"></i></span>
+        <div><h3>{{ 'STAY.TRIP_TITLE' | t }}</h3><p>{{ 'STAY.TRIP_DESCRIPTION' | t }}</p></div>
+      </div>
+    </div>
+  </section>
+</main>

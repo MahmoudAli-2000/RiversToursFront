@@ -1,0 +1,110 @@
+.register-container {
+  width: 100%;
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center vertically */
+  padding: 20px;
+  background: linear-gradient(135deg, #f0f4ff, #d9e8ff); /* subtle gradient background */
+}
+
+.register-card {
+  width: 420px;
+  max-width: 100%;
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0d8bff;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input {
+  padding: 14px 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  border-color: #0d8bff;
+  box-shadow: 0 0 8px rgba(13, 139, 255, 0.2);
+}
+
+input.invalid {
+  border-color: #ff4d4f;
+}
+
+.error {
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.btn-register {
+  width: 100%;
+  padding: 14px;
+  background: #0d8bff;
+  color: white;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s, transform 0.2s;
+}
+
+.btn-register:hover {
+  background: #006fe0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Small animation for input labels (optional enhancement) */
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  font-size: 12px;
+  color: #0d8bff;
+  transform: translateY(-20px);
+  transition: 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

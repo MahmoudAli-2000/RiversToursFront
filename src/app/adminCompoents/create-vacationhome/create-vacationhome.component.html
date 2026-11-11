@@ -1,0 +1,139 @@
+<div class="form-wrapper">
+  <form [formGroup]="homeForm" (ngSubmit)="onSubmit()" class="create-tour-form">
+    <h2 class="mb-4 text-center">Create Vacation Home</h2>
+
+    <div class="form-group mb-3">
+      <label class="form-label">Reference Name <span class="text-danger">*</span></label>
+      <input class="form-control" formControlName="referenceName" placeholder="Enter reference name"
+        [ngClass]="{'is-invalid': homeForm.controls.referenceName.invalid && homeForm.controls.referenceName.touched}" />
+      <div class="invalid-feedback" *ngIf="homeForm.controls.referenceName.invalid && homeForm.controls.referenceName.touched">Reference name is required.</div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Slug</label>
+        <input class="form-control" formControlName="slug" placeholder="Optional URL slug" />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label>Property Type <span class="text-danger">*</span></label>
+        <select
+          class="form-select"
+          formControlName="propertyType"
+          [ngClass]="{'is-invalid': homeForm.controls.propertyType.invalid && homeForm.controls.propertyType.touched}"
+        >
+          <option [ngValue]="null">-- Select Property Type --</option>
+          <option *ngFor="let type of propertyTypes" [ngValue]="type.value">{{ type.label }}</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="homeForm.controls.propertyType.invalid && homeForm.controls.propertyType.touched">
+          Property type is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>City <span class="text-danger">*</span></label>
+        <input class="form-control" formControlName="city" [ngClass]="{'is-invalid': homeForm.controls.city.invalid && homeForm.controls.city.touched}" />
+        <div class="invalid-feedback" *ngIf="homeForm.controls.city.invalid && homeForm.controls.city.touched">City is required.</div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label>Area</label>
+        <input class="form-control" formControlName="area" />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Address <span class="text-danger">*</span></label>
+      <input class="form-control" formControlName="address" [ngClass]="{'is-invalid': homeForm.controls.address.invalid && homeForm.controls.address.touched}" />
+      <div class="invalid-feedback" *ngIf="homeForm.controls.address.invalid && homeForm.controls.address.touched">Address is required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label>Google Maps URL or embed code</label>
+      <textarea class="form-control" rows="3" formControlName="googleMapsUrl" placeholder="Paste the Google Maps link or complete iframe embed code"></textarea>
+      <small class="form-text text-muted">You can paste the complete iframe code from Google Maps.</small>
+      <div class="invalid-feedback d-block" *ngIf="homeForm.controls.googleMapsUrl.invalid && homeForm.controls.googleMapsUrl.touched">Enter a valid URL or Google Maps iframe embed code.</div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3"><label>Latitude</label><input type="number" step="any" class="form-control" formControlName="latitude" /></div>
+      <div class="col-md-6 mb-3"><label>Longitude</label><input type="number" step="any" class="form-control" formControlName="longitude" /></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label>Price (USD) <span class="text-danger">*</span></label>
+        <input type="number" min="0" step="0.01" class="form-control" formControlName="priceDollar" />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Price (EUR) <span class="text-danger">*</span></label>
+        <input type="number" min="0" step="0.01" class="form-control" formControlName="priceEuro" />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Destination</label>
+        <select class="form-select" formControlName="destinationId">
+          <option value="">-- Select Destination --</option>
+          <option *ngFor="let destination of destinations" [value]="destination.id">
+            {{ destination.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" formControlName="isActive" id="home-active" />
+      <label class="form-check-label" for="home-active">Active</label>
+    </div>
+
+    <div class="mb-4">
+      <label>Cover Image <span class="text-danger">*</span></label>
+      <input #mainImageInput type="file" class="form-control" (change)="onMainImageSelected($event)" accept="image/*" />
+      <div class="image-preview mt-2" *ngIf="mainImagePreview">
+        <img [src]="mainImagePreview" class="img-thumbnail" style="max-height: 220px;" alt="Cover preview" />
+        <button type="button" class="btn btn-sm btn-danger mt-2" (click)="removeMainImage(mainImageInput)">Remove</button>
+      </div>
+    </div>
+
+    <ul class="nav nav-tabs mb-3">
+      <li class="nav-item" *ngFor="let language of languages">
+        <button type="button" class="nav-link" [class.active]="selectedLang === language" (click)="selectedLang = language">
+          {{ language.toUpperCase() }}
+        </button>
+      </li>
+    </ul>
+
+    <div [formGroup]="translationGroup(selectedLang)" class="mb-4">
+      <h5>{{ selectedLang.toUpperCase() }} Translation</h5>
+      <label class="form-label">Name <span class="text-danger">*</span></label>
+      <input class="form-control mb-2" formControlName="name" placeholder="Property name"
+        [ngClass]="{'is-invalid': translationGroup(selectedLang).controls['name'].invalid && translationGroup(selectedLang).controls['name'].touched}" />
+      <div class="invalid-feedback mb-2" *ngIf="translationGroup(selectedLang).controls['name'].invalid && translationGroup(selectedLang).controls['name'].touched">Name is required.</div>
+      <label class="form-label">Description <span class="text-danger">*</span></label>
+      <textarea class="form-control" rows="5" formControlName="description" placeholder="Property description"
+        [ngClass]="{'is-invalid': translationGroup(selectedLang).controls['description'].invalid && translationGroup(selectedLang).controls['description'].touched}"></textarea>
+      <div class="invalid-feedback" *ngIf="translationGroup(selectedLang).controls['description'].invalid && translationGroup(selectedLang).controls['description'].touched">Description is required.</div>
+    </div>
+
+    <div class="mb-4">
+      <h5>Gallery Images</h5>
+      <div *ngFor="let image of galleryImages; let index = index" class="border p-3 mb-3 rounded">
+        <label class="form-label">Image {{ index + 1 }}</label>
+        <input type="file" class="form-control" accept="image/*" (change)="onGalleryImageSelected($event, index)" />
+        <div class="image-preview mt-2" *ngIf="image.preview">
+          <img [src]="image.preview" class="img-thumbnail" style="max-height: 150px;" [alt]="'Gallery image ' + (index + 1)" />
+        </div>
+        <div class="form-check mt-2">
+          <input type="checkbox" class="form-check-input" [(ngModel)]="image.isActive" [ngModelOptions]="{standalone: true}" [id]="'gallery-active-' + index" />
+          <label class="form-check-label" [for]="'gallery-active-' + index">Active</label>
+        </div>
+        <button type="button" class="btn btn-danger btn-sm mt-2" (click)="removeGalleryImage(index)">Remove Image</button>
+      </div>
+      <button type="button" class="btn btn-outline-primary" (click)="addGalleryImage()">+ Add Gallery Image</button>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 py-2" [disabled]="isSubmitting">
+      <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+      {{ isSubmitting ? 'Creating...' : 'Create Vacation Home' }}
+    </button>
+  </form>
+</div>

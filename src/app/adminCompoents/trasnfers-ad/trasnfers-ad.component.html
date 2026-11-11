@@ -1,0 +1,63 @@
+<div class="tour-listt">
+    <h2 class="section-title">All Transfers</h2>
+<!-- Search Box -->
+
+  
+    <div class="tour-list">
+        
+    <!-- Add Button -->
+    <div class="add-tour-wrapper">
+      <button class="btn add-tour-btn" [routerLink]="['/admin/transferCreate']"
+      >
+        <i class="fa-solid fa-plus"></i>
+        Add New Transfers
+      </button>
+    </div>
+
+    <div class="tour-row header">
+      <div>ID</div>
+      <div>reference Name</div>
+      <div>Destination</div>
+      <div>Status</div>
+      <div>Actions</div>
+    </div>
+
+    @for (transfer of AllTrasnferList(); track transfer.id) {
+    <div class="tour-row">
+  
+      <div class="tour-col id">
+        <span># {{ transfer.id }}</span>
+      </div>
+  
+      <div class="tour-col title">
+        <h3>{{ transfer.names }}</h3>
+      </div>
+  
+      <div class="tour-col destination">
+        <h3>{{ transfer.destinationName }}</h3>
+      </div>
+  
+      <div class="tour-col status">
+        <span
+          class="tour-status"
+          [class.active]="transfer.isActive"
+          [class.inactive]="!transfer.isActive"
+        >
+          {{ transfer.isActive ? 'Active' : 'Inactive' }}
+        </span>
+      </div>
+  
+      <div class="tour-col actions">
+        <button class="btn edit-btn" title="Edit" [routerLink]="['/admin/transferUpdate',transfer.id]">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button class="btn delete-btn" title="Delete" (click)="deleteTransfer(transfer.id)">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+  
+    </div>
+    }
+</div>
+  </div>
+  

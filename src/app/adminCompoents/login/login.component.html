@@ -1,0 +1,94 @@
+<section class="login-page">
+  <div class="login-content">
+    <div class="login-intro">
+      <span class="intro-label">
+        <i class="fa-solid fa-landmark" aria-hidden="true"></i>
+        YOUR JOURNEY STARTS HERE
+      </span>
+      <h1>Welcome back.</h1>
+      <p>Sign in to manage your tours and share the wonders of Egypt with the world.</p>
+      <div class="intro-location">
+        <span class="location-line"></span>
+        <span>Grand Egyptian Museum · Giza, Egypt</span>
+      </div>
+    </div>
+
+    <div class="login-card">
+      <div class="card-heading">
+        <img src="assets/images/jwLogo.png" alt="Rivers Tours" class="brand-logo">
+        <p class="portal-label">RIVERS TOURS <span>·</span> ADMIN PORTAL</p>
+        <h2>Sign in to your account</h2>
+        <p class="card-subtitle">Enter your details to continue.</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-field">
+          <label for="email" class="form-label">Email address</label>
+          <div class="input-wrap">
+            <i class="fa-regular fa-envelope input-icon" aria-hidden="true"></i>
+            <input
+              id="email"
+              type="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="name@example.com"
+              autocomplete="username"
+              inputmode="email"
+              [ngClass]="{
+                'is-invalid': loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)
+              }"
+              [attr.aria-invalid]="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)"
+              aria-describedby="email-error">
+          </div>
+          @if (loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)) {
+            <div id="email-error" class="field-error" aria-live="polite">Please enter a valid email address.</div>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-lock input-icon" aria-hidden="true"></i>
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control password-input"
+              formControlName="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              [ngClass]="{
+                'is-invalid': loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)
+              }"
+              [attr.aria-invalid]="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)"
+              aria-describedby="password-error">
+            <button
+              class="password-toggle"
+              type="button"
+              (click)="showPassword = !showPassword"
+              [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+              [attr.aria-pressed]="showPassword">
+              <i [class]="showPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'" aria-hidden="true"></i>
+            </button>
+          </div>
+          @if (loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)) {
+            <div id="password-error" class="field-error" aria-live="polite">Please enter your password.</div>
+          }
+        </div>
+
+        <button class="submit-button" type="submit">
+          <span>Sign in</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+
+        @if (IsSccuess) {
+          <div class="success-message" role="status">Login successful. Redirecting…</div>
+        }
+      </form>
+
+      <div class="card-footer">
+        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+        Secure access to your admin dashboard
+      </div>
+    </div>
+  </div>
+</section>

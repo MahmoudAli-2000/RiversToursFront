@@ -1,0 +1,157 @@
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10000;
+}
+
+.whatsapp-float a {
+  position: relative;
+  display: flex;
+  width: 64px;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  overflow: visible;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  box-shadow: 0 8px 22px rgba(18, 140, 126, 0.32);
+  text-decoration: none;
+  transition:
+    width 0.35s ease,
+    gap 0.35s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.whatsapp-float a::before,
+.whatsapp-float a::after {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(37, 211, 102, 0.65);
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+  animation: whatsapp-ring 2.4s ease-out infinite;
+}
+
+.whatsapp-float a::after {
+  animation-delay: 1.2s;
+}
+
+.whatsapp-icon {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.whatsapp-label {
+  position: relative;
+  z-index: 1;
+  max-width: 0;
+  overflow: hidden;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    max-width 0.35s ease,
+    opacity 0.2s ease;
+}
+
+.whatsapp-float a:hover,
+.whatsapp-float a:focus-visible {
+  width: 158px;
+  gap: 10px;
+  background: linear-gradient(135deg, #20c967, #075e54);
+  box-shadow: 0 12px 28px rgba(7, 94, 84, 0.4);
+  animation: none;
+  transform: translateY(-3px) scale(1.03);
+}
+
+.whatsapp-float a:hover::before,
+.whatsapp-float a:hover::after,
+.whatsapp-float a:focus-visible::before,
+.whatsapp-float a:focus-visible::after {
+  animation: none;
+  opacity: 0;
+}
+
+.whatsapp-float a:hover .whatsapp-icon,
+.whatsapp-float a:focus-visible .whatsapp-icon {
+  transform: rotate(-12deg) scale(1.08);
+}
+
+.whatsapp-float a:hover .whatsapp-label,
+.whatsapp-float a:focus-visible .whatsapp-label {
+  max-width: 90px;
+  opacity: 1;
+}
+
+.whatsapp-float a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+.whatsapp-float a:active {
+  transform: scale(0.97);
+}
+
+@keyframes whatsapp-ring {
+  0% {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  12% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 16px;
+    left: 16px;
+  }
+
+  .whatsapp-float a {
+    width: 58px;
+    height: 58px;
+  }
+
+  .whatsapp-icon {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .whatsapp-float a:hover,
+  .whatsapp-float a:focus-visible {
+    width: 148px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float a,
+  .whatsapp-float a::before,
+  .whatsapp-float a::after {
+    animation: none;
+  }
+
+  .whatsapp-float a,
+  .whatsapp-icon,
+  .whatsapp-label {
+    transition-duration: 0.01ms;
+  }
+}

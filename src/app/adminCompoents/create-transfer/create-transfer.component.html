@@ -1,0 +1,185 @@
+<div class="form-wrapper">
+  <form [formGroup]="transferForm" (ngSubmit)="onSubmit()" class="create-transfer-form">
+    <h2 class="mb-4 text-center">Create Transfer</h2>
+
+    <!-- Reference Name -->
+    <div class="form-group mb-3">
+      <label class="form-label"><i class="fas fa-tag"></i> Reference Name</label>
+      <input type="text" class="form-control" formControlName="referenceName" placeholder="Enter reference name"
+        [ngClass]="{
+          'is-invalid': transferForm.get('referenceName')?.invalid && (transferForm.get('referenceName')?.touched || transferForm.get('referenceName')?.dirty),
+          'is-valid': transferForm.get('referenceName')?.valid && (transferForm.get('referenceName')?.touched || transferForm.get('referenceName')?.dirty)
+        }"/>
+      <div class="text-danger small mt-1" *ngIf="transferForm.get('referenceName')?.invalid && (transferForm.get('referenceName')?.touched || transferForm.get('referenceName')?.dirty)">
+        Reference Name is required.
+      </div>
+    </div>
+
+    <!-- Destination -->
+    <div class="col-md-6 mb-3">
+      <label class="form-label">Destination <span class="text-danger">*</span></label>
+      <select
+        class="form-select"
+        formControlName="fkDestinationId"
+        [ngClass]="{
+          'is-invalid': transferForm.get('fkDestinationId')?.invalid && transferForm.get('fkDestinationId')?.touched
+        }"
+      >
+        <option value="">-- Select Destination --</option>
+        <option *ngFor="let destination of destinations" [value]="destination.id">
+          {{ destination.name }}
+        </option>
+      </select>
+      <div class="invalid-feedback" *ngIf="transferForm.get('fkDestinationId')?.invalid && transferForm.get('fkDestinationId')?.touched">
+        Destination is required
+      </div>
+    </div>
+
+    <!-- Active Checkbox -->
+    <div class="form-group mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <input type="checkbox" formControlName="isActive" class="form-check-input"/>
+        <span><i class="fas fa-check-circle"></i> Active</span>
+      </label>
+    </div>
+
+    <!-- Upload Image -->
+    <div class="form-group mb-3">
+      <label class="form-label"><i class="fas fa-image"></i> Upload Image</label>
+      <div class="image-upload-wrapper d-flex align-items-center gap-3">
+        <input type="file" class="form-control" #fileInput (change)="onFileSelected($event)"/>
+        <div class="image-preview" *ngIf="imagePreview">
+          <img [src]="imagePreview" alt="Preview"/>
+          <button type="button" class="remove-image-btn" (click)="removeImage()"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Translations -->
+    <!-- ========================= -->
+   <!-- ========================= -->
+<!-- Language Tabs -->
+<!-- ========================= -->
+<ul class="nav nav-tabs mb-3" role="tablist">
+  <li class="nav-item" *ngFor="let lang of languages; let i = index">
+    <a
+      class="nav-link"
+      [class.active]="i === 0"
+      data-bs-toggle="tab"
+      [attr.href]="'#tab-' + lang"
+      role="tab"
+    >
+      {{ lang.toUpperCase() }}
+    </a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div
+    class="tab-pane fade"
+    [class.show]="i === 0"
+    [class.active]="i === 0"
+    *ngFor="let lang of languages; let i = index"
+    [attr.id]="'tab-' + lang"
+    role="tabpanel"
+  >
+    <!-- ========================= -->
+    <!-- Translations -->
+    <!-- ========================= -->
+    <div [formGroup]="getTranslationGroup(lang)" class="mb-3">
+      <h6>Translations</h6>
+      <div class="form-group mb-2">
+        <label>Title</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Enter title"/>
+      </div>
+      <div class="form-group mb-2">
+        <label>Description</label>
+        <textarea class="form-control" rows="2" formControlName="description" placeholder="Enter description"></textarea>
+      </div>
+      <div class="form-group mb-2">
+
+        <label>metaKeywords</label>
+        <textarea class="form-control" rows="2" formControlName="metaKeywords" placeholder="Enter metaKeywords"></textarea>
+      </div>
+      <div class="form-group mb-2">
+        <label>metaDescription</label>
+        <textarea class="form-control" rows="2" formControlName="metaDescription" placeholder="Enter metaDescription"></textarea>
+      </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Prices -->
+    <!-- ========================= -->
+    <div formGroupName="prices" class="mb-3">
+      <h6>Prices</h6>
+      <div [formArrayName]="lang">
+        <div *ngFor="let p of getPrices(lang).controls; let j = index" [formGroupName]="j" class="d-flex gap-2 mb-2">
+          <input class="form-control" formControlName="title" placeholder="Title"/>
+          <input type="number" class="form-control" formControlName="privtePrice" placeholder="Private"/>
+          <input type="number" class="form-control" formControlName="sharedPrice" placeholder="Shared"/>
+          <button type="button" class="btn btn-danger btn-sm" (click)="removePrice(lang, j)">Remove</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addPrice(lang)">Add Price</button>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Includes -->
+    <!-- ========================= -->
+    <div formGroupName="includes" class="mb-3">
+      <h6>Includes</h6>
+      <div [formArrayName]="lang">
+        <div *ngFor="let inc of getIncludes(lang).controls; let j = index" [formGroupName]="j" class="d-flex gap-2 mb-2">
+          <input class="form-control" formControlName="text" placeholder="Include item"/>
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeInclude(lang, j)">Remove</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addInclude(lang)">Add Include</button>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Not Includes -->
+    <!-- ========================= -->
+    <div formGroupName="notIncludes" class="mb-3">
+      <h6>Not Included</h6>
+      <div [formArrayName]="lang">
+        <div *ngFor="let ni of getNotIncludes(lang).controls; let j = index" [formGroupName]="j" class="d-flex gap-2 mb-2">
+          <input class="form-control" formControlName="text" placeholder="Not included item"/>
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeNotInclude(lang, j)">Remove</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addNotInclude(lang)">Add Not Included</button>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Highlights -->
+    <!-- ========================= -->
+    <div formGroupName="highlights" class="mb-3">
+      <h6>Highlights</h6>
+      <div [formArrayName]="lang">
+        <div *ngFor="let h of getHighlights(lang).controls; let j = index" [formGroupName]="j" class="d-flex gap-2 mb-2">
+          <input class="form-control" formControlName="text" placeholder="Highlight item"/>
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeHighlight(lang, j)">Remove</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm mt-1" (click)="addHighlight(lang)">Add Highlight</button>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-primary w-100 mt-3">Create Transfer</button>
+  </form>
+
+  <!-- Error Summary -->
+  <div *ngIf="formErrors.length" class="alert alert-danger mt-3">
+    <ul>
+      <li *ngFor="let e of formErrors">
+        {{ e.label }} <span *ngIf="e.lang">({{ e.lang }})</span> is required.
+      </li>
+    </ul>
+  </div>
+</div>

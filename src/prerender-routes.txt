@@ -1,0 +1,10 @@
+/categrytourDetail/cairo-tours-hurghada
+/categrytourDetail/luxor-tours-hurghada
+/categrytourDetail/safari-tours-hurghada
+/categrytourDetail/sea-tours-hurghada
+/categrytourDetail/diving
+/categrytourDetail/thing-to-do-hurghada
+/transferDetail/hurghada-airport
+/tourDetail/cairo-buy-bus
+/tourDetail/luxor-private-tour
+/tourDetail/hot-air-balloon-ride

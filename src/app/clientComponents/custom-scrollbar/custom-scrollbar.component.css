@@ -1,0 +1,46 @@
+.custom-scrollbar-container {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  
+    .content {
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 0 10px 0 0; /* إضافة مساحة لشريط التمرير المخصص */
+  
+      /* تخصيص شريط التمرير لمتصفحات WebKit (Chrome, Safari, Edge) */
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+  
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 10px;
+        margin: 10px 0;
+      }
+  
+      &::-webkit-scrollbar-thumb {
+        background: rgba(212, 175, 55, 0.3);
+        border-radius: 10px;
+        border: 1px solid rgba(212, 175, 55, 0.1);
+        transition: all 0.3s ease;
+        min-height: 40px;
+      }
+  
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgba(212, 175, 55, 0.5);
+        transform: scaleX(1.1);
+      }
+  
+      &::-webkit-scrollbar-thumb:active {
+        background: linear-gradient(45deg, #d4af37, #ffd700);
+        transform: scaleX(1.3);
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      }
+  
+      /* تخصيص شريط التمرير لـ Firefox */
+      scrollbar-width: thin;
+      scrollbar-color: rgba(212, 175, 55, 0.3) transparent;
+    }
+  }

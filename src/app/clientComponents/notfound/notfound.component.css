@@ -1,0 +1,862 @@
+/* =============================
+   إعدادات عامة
+============================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  direction: rtl;
+}
+
+.not-found-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #000010;
+  overflow: hidden;
+  color: #fff;
+  font-family: 'Tajawal', 'Arial', sans-serif;
+}
+
+/* =============================
+ الخلفية النجمية
+============================= */
+.stars, .stars2, .stars3 {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.stars::after, .stars2::after, .stars3::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 
+      50px 100px #fff, 200px 300px #fff, 400px 150px #fff,
+      600px 400px #fff, 800px 200px #fff, 1000px 500px #fff,
+      200px 600px #fff, 700px 700px #fff, 900px 800px #fff,
+      1200px 300px #fff, 1500px 450px #fff, 1800px 650px #fff;
+}
+
+.stars2::after { 
+  transform: scale(0.7); 
+  box-shadow: 
+      100px 150px #fff, 300px 350px #fff, 500px 200px #fff,
+      700px 450px #fff, 900px 250px #fff, 1100px 550px #fff,
+      300px 650px #fff, 800px 750px #fff, 1000px 850px #fff,
+      1300px 350px #fff, 1600px 500px #fff, 1900px 700px #fff;
+}
+
+.stars3::after { 
+  transform: scale(0.4); 
+  opacity: 0.5;
+}
+
+.stars { animation: starMove 120s linear infinite; }
+.stars2 { animation: starMove 180s linear infinite; }
+.stars3 { animation: starMove 240s linear infinite; }
+
+@keyframes starMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-500px, -500px); }
+}
+
+/* =============================
+ النظام الشمسي
+============================= */
+.solar-system {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* الشمس */
+.sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #ffde00 0%, #ff8c00 70%, #ff4500 100%);
+  border-radius: 50%;
+  box-shadow: 
+      0 0 40px #ffde00,
+      0 0 80px #ff8c00,
+      0 0 120px rgba(255, 69, 0, 0.7);
+  z-index: 2;
+  animation: sunPulse 4s infinite alternate;
+}
+
+.sun-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 222, 0, 0.2) 0%, rgba(255, 140, 0, 0.1) 40%, transparent 70%);
+  z-index: 1;
+}
+
+.sun-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: #ff4500;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #ff4500;
+}
+
+.solar-flare {
+  position: absolute;
+  background: radial-gradient(ellipse, rgba(255, 222, 0, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.flare1 {
+  width: 120px;
+  height: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(30deg);
+  animation: flarePulse 3s infinite alternate;
+}
+
+.flare2 {
+  width: 100px;
+  height: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(120deg);
+  animation: flarePulse 4s infinite alternate 0.5s;
+}
+
+.flare3 {
+  width: 90px;
+  height: 25px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(200deg);
+  animation: flarePulse 3.5s infinite alternate 1s;
+}
+
+@keyframes sunPulse {
+  0% { 
+      box-shadow: 
+          0 0 40px #ffde00,
+          0 0 80px #ff8c00,
+          0 0 120px rgba(255, 69, 0, 0.7);
+      transform: translate(-50%, -50%) scale(1);
+  }
+  100% { 
+      box-shadow: 
+          0 0 50px #ffde00,
+          0 0 100px #ff8c00,
+          0 0 150px rgba(255, 69, 0, 0.8);
+      transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes flarePulse {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.8; }
+}
+
+/* المدارات */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.mercury-orbit {
+  width: 150px;
+  height: 150px;
+  animation: orbitRotate 8s linear infinite;
+}
+
+.venus-orbit {
+  width: 220px;
+  height: 220px;
+  animation: orbitRotate 12s linear infinite;
+}
+
+.earth-orbit {
+  width: 300px;
+  height: 300px;
+  animation: orbitRotate 16s linear infinite;
+}
+
+.mars-orbit {
+  width: 380px;
+  height: 380px;
+  animation: orbitRotate 20s linear infinite;
+}
+
+.jupiter-orbit {
+  width: 500px;
+  height: 500px;
+  animation: orbitRotate 28s linear infinite;
+}
+
+.saturn-orbit {
+  width: 620px;
+  height: 620px;
+  animation: orbitRotate 34s linear infinite;
+}
+
+.uranus-orbit {
+  width: 740px;
+  height: 740px;
+  animation: orbitRotate 40s linear infinite;
+}
+
+.neptune-orbit {
+  width: 860px;
+  height: 860px;
+  animation: orbitRotate 46s linear infinite;
+}
+
+.pluto-orbit {
+  width: 1000px;
+  height: 1000px;
+  animation: orbitRotate 52s linear infinite;
+}
+
+@keyframes orbitRotate {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* الكواكب */
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-size: cover;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.mercury {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #a9a9a9 0%, #7a7a7a 100%);
+  top: -4px;
+}
+
+.venus {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ffcc99 0%, #cc9966 100%);
+  top: -6px;
+}
+
+.earth {
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #6b93d6 0%, #1e5bc6 100%);
+  top: -7px;
+}
+
+.mars {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, #ff6633 0%, #cc3300 100%);
+  top: -5px;
+}
+
+.jupiter {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #ff9966 0%, #cc7744 100%);
+  top: -15px;
+}
+
+.saturn {
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, #f4d03f 0%, #d4ac0d 100%);
+  top: -13px;
+}
+
+.uranus {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #4deeea 0%, #2e9e9b 100%);
+  top: -9px;
+}
+
+.neptune {
+  width: 17px;
+  height: 17px;
+  background: linear-gradient(135deg, #1e90ff 0%, #0d5fcc 100%);
+  top: -8.5px;
+}
+
+.pluto {
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #a0522d 0%, #663300 100%);
+  top: -3px;
+}
+
+/* تفاصيل الكواكب */
+.planet-detail {
+  position: absolute;
+  background: rgba(0,0,0,0.3);
+  border-radius: 50%;
+}
+
+.mercury .planet-detail:nth-child(1) {
+  width: 2px;
+  height: 2px;
+  top: 2px;
+  left: 2px;
+}
+
+.mercury .planet-detail:nth-child(2) {
+  width: 1px;
+  height: 1px;
+  top: 5px;
+  left: 5px;
+}
+
+.venus .planet-detail {
+  width: 3px;
+  height: 3px;
+  top: 4px;
+  left: 4px;
+}
+
+.mars .planet-detail:nth-child(1) {
+  width: 2px;
+  height: 2px;
+  top: 2px;
+  left: 2px;
+}
+
+.mars .planet-detail:nth-child(2) {
+  width: 1px;
+  height: 1px;
+  top: 6px;
+  left: 6px;
+}
+
+.uranus .planet-detail, .neptune .planet-detail, .pluto .planet-detail {
+  width: 2px;
+  height: 2px;
+  top: 4px;
+  left: 4px;
+}
+
+/* غيوم الأرض */
+.planet-clouds {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  animation: cloudRotate 20s linear infinite;
+}
+
+@keyframes cloudRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* القمر */
+.moon-orbit {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px dotted rgba(255,255,255,0.05);
+  border-radius: 50%;
+  animation: moonOrbit 5s linear infinite;
+}
+
+.moon {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ccc;
+  border-radius: 50%;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 3px rgba(255,255,255,0.5);
+}
+
+@keyframes moonOrbit {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* المشتري */
+.jupiter-stripe {
+  position: absolute;
+  height: 3px;
+  background: rgba(204, 119, 68, 0.7);
+  border-radius: 2px;
+  left: 5px;
+  right: 5px;
+}
+
+.jupiter-stripe:nth-child(1) { top: 7px; }
+.jupiter-stripe:nth-child(2) { top: 14px; }
+.jupiter-stripe:nth-child(3) { top: 21px; }
+
+.great-red-spot {
+  position: absolute;
+  width: 6px;
+  height: 4px;
+  background: rgba(204, 68, 68, 0.8);
+  border-radius: 50%;
+  top: 10px;
+  right: 5px;
+}
+
+/* حلقات زحل */
+.saturn-rings {
+  position: absolute;
+  width: 50px;
+  height: 10px;
+  background: radial-gradient(ellipse, rgba(244, 208, 63, 0.8) 0%, rgba(212, 172, 13, 0.4) 40%, transparent 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(75deg);
+  z-index: -1;
+}
+
+/* =============================
+ محتوى الخطأ
+============================= */
+.error-content {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 3;
+  padding: 0 15px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.error-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 90px;
+  margin-bottom: 10px;
+  color: #ed0000;
+  text-shadow: 0 0 15px rgba(77, 238, 234, 0.7);
+}
+
+.planet-container {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin: 0 15px;
+}
+
+.error-planet {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #6b93d6 0%, #c61e1ec1 100%);
+  border-radius: 50%;
+  box-shadow: 
+      inset -5px -5px 10px rgba(0,0,0,0.5),
+      0 0 20px rgba(27, 91, 198, 0.7);
+  animation: planetSpin 20s linear infinite;
+}
+
+.error-planet-ring {
+  position: absolute;
+  width: 120px;
+  height: 8px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(20deg);
+  z-index: 1;
+}
+
+.error-crater { 
+  position: absolute; 
+  width: 8px; 
+  height: 8px; 
+  background: rgba(0,0,0,0.3); 
+  border-radius: 50%; 
+}
+
+.error-crater:nth-child(2) { top: 15px; left: 15px; }
+.error-crater:nth-child(3) { top: 45px; left: 20px; }
+.error-crater:nth-child(4) { top: 30px; left: 50px; }
+
+.digit {
+  font-size: 100px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(77, 238, 234, 0.8);
+}
+
+@keyframes planetSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* العنوان */
+.error-title {
+  font-size: 32px;
+  margin: 10px 0;
+  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  color: #fff;
+  font-weight: 700;
+}
+
+.error-description {
+  font-size: 18px;
+  margin-bottom: 25px;
+  color: #ccc;
+  line-height: 1.5;
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* الأزرار */
+.button-group {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.button-group button {
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.btn-back {
+  background: linear-gradient(135deg, #ff6633 0%, #cc3300 100%);
+  color: #000;
+  box-shadow: 0 5px 15px rgba(77, 238, 234, 0.4);
+}
+
+.btn-return {
+  background: linear-gradient(135deg, #ff6633 0%, #cc3300 100%);
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(255, 102, 51, 0.4);
+}
+
+.button-group button:hover { 
+  transform: translateY(-5px) scale(1.05); 
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.btn-back:hover { 
+  background: linear-gradient(135deg, #dea550 0%, #db7b0d 100%);
+}
+
+.btn-return:hover { 
+  background: linear-gradient(135deg, #e65522 0%, #b32b00 100%);
+}
+
+/* معلومات الكواكب */
+.planet-info {
+  background: rgba(0, 20, 40, 0.7);
+  border-radius: 15px;
+  padding: 15px;
+  margin-top: 20px;
+  max-width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid rgba(77, 238, 234, 0.3);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.planet-info h3 {
+  color: #4deeea;
+  margin-bottom: 5px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.planet-info p {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* الحطام الفضائي العائم */
+.debris {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.debris-piece {
+  position: absolute;
+  background: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  animation: floatDebris 10s linear infinite;
+}
+
+.debris-piece:nth-child(1) {
+  width: 3px;
+  height: 3px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.debris-piece:nth-child(2) {
+  width: 2px;
+  height: 2px;
+  top: 40%;
+  left: 20%;
+  animation-delay: 1s;
+}
+
+.debris-piece:nth-child(3) {
+  width: 4px;
+  height: 4px;
+  top: 60%;
+  left: 15%;
+  animation-delay: 2s;
+}
+
+.debris-piece:nth-child(4) {
+  width: 2px;
+  height: 2px;
+  top: 30%;
+  left: 80%;
+  animation-delay: 3s;
+}
+
+.debris-piece:nth-child(5) {
+  width: 3px;
+  height: 3px;
+  top: 70%;
+  left: 85%;
+  animation-delay: 4s;
+}
+
+.debris-piece:nth-child(6) {
+  width: 2px;
+  height: 2px;
+  top: 50%;
+  left: 90%;
+  animation-delay: 5s;
+}
+
+@keyframes floatDebris {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(-100px, -100px) rotate(360deg); opacity: 0; }
+}
+
+/* المذنبات */
+.comet {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #4deeea;
+  top: 10%;
+  left: 90%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.comet::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, #4deeea 0%, transparent 100%);
+  top: 50%;
+  left: -30px;
+  transform: translateY(-50%);
+}
+
+.comet {
+  animation: cometMove 15s linear infinite;
+}
+
+.comet2 {
+  top: 80%;
+  left: 5%;
+  animation-delay: 5s;
+  animation-duration: 20s;
+}
+
+@keyframes cometMove {
+  0% { transform: translate(0, 0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translate(-100vw, 100vh); opacity: 0; }
+}
+
+/* =============================
+ التجاوب مع الأجهزة المحمولة
+============================= */
+@media (max-width: 1200px) {
+  .saturn-orbit, .uranus-orbit, .neptune-orbit, .pluto-orbit {
+      display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .solar-system {
+      transform: translate(-50%, -50%) scale(0.8);
+  }
+  
+  .error-number { 
+      font-size: 70px; 
+  }
+  
+  .digit {
+      font-size: 80px;
+  }
+  
+  .planet-container {
+      width: 50px;
+      height: 50px;
+      margin: 0 10px;
+  }
+  
+  .error-title { 
+      font-size: 24px; 
+  }
+  
+  .error-description { 
+      font-size: 16px; 
+  }
+  
+  .button-group button { 
+      padding: 10px 20px; 
+      font-size: 14px; 
+  }
+  
+  .jupiter-orbit, .saturn-orbit, .uranus-orbit, .neptune-orbit, .pluto-orbit {
+      display: none;
+  }
+  
+  .earth-orbit {
+      width: 250px;
+      height: 250px;
+  }
+  
+  .mars-orbit {
+      width: 320px;
+      height: 320px;
+  }
+  
+  .comet, .comet2 {
+      display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .solar-system {
+      transform: translate(-50%, -50%) scale(0.6);
+  }
+  
+  .error-number { 
+      font-size: 50px; 
+  }
+  
+  .digit {
+      font-size: 60px;
+  }
+  
+  .planet-container {
+      width: 40px;
+      height: 40px;
+      margin: 0 5px;
+  }
+  
+  .error-title { 
+      font-size: 20px; 
+  }
+  
+  .error-description { 
+      font-size: 14px; 
+  }
+  
+  .button-group { 
+      flex-direction: column; 
+      align-items: center;
+  }
+  
+  .button-group button { 
+      width: 80%; 
+      max-width: 250px;
+  }
+  
+  .mars-orbit {
+      width: 280px;
+      height: 280px;
+  }
+  
+  .venus-orbit {
+      width: 180px;
+      height: 180px;
+  }
+  
+  .mercury-orbit {
+      width: 120px;
+       height: 120px;
+  }
+}

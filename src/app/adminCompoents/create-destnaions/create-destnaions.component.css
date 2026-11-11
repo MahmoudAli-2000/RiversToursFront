@@ -1,0 +1,169 @@
+/* =========================================================
+      FORM WRAPPER
+========================================================= */
+.form-wrapper {
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 35px;
+  background: #ffffff;
+  border-radius: 22px;
+  border: 1px solid rgba(230,230,230,0.85);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.08);
+  transition: 0.25s ease;
+}
+
+.form-wrapper:hover {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+}
+
+/* Title */
+.form-wrapper h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+
+/* =========================================================
+      INPUTS
+========================================================= */
+.form-control {
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid #ced4da;
+  font-size: 15px;
+  transition: border-color .2s, box-shadow .2s;
+  background: #fafafa;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(13,110,253,0.18);
+}
+
+/* Valid / Invalid */
+.is-invalid {
+  border-color: #dc3545 !important;
+}
+
+.is-valid {
+  border-color: #198754 !important;
+}
+
+
+/* =========================================================
+      LABEL STYLE
+========================================================= */
+.form-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+
+/* =========================================================
+      IMAGE UPLOAD
+========================================================= */
+.image-upload-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.image-preview {
+  position: relative;
+}
+
+.image-preview img {
+  width: 115px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  transition: .25s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.image-preview img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.18);
+}
+
+/* Remove Image Button */
+.remove-image-btn {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+  background: #dc3545;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+  transition: .2s;
+}
+
+.remove-image-btn:hover {
+  background: #b02a37;
+}
+
+
+/* =========================================================
+      SMALL BUTTONS (array add/remove)
+========================================================= */
+.btn-sm {
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* add buttons */
+.btn-secondary.btn-sm {
+  background: #eef0f3;
+  color: #333;
+  border: 1px solid #d4d8dd;
+  transition: .2s;
+}
+
+.btn-secondary.btn-sm:hover {
+  background: #dce0e5;
+}
+
+
+/* =========================================================
+      FORM GRID (optional but recommended)
+========================================================= */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 22px 28px;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+
+/* =========================================================
+      SUBMIT BUTTON
+========================================================= */
+.submit-btn {
+  grid-column: span 2;
+  padding: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 12px;
+}

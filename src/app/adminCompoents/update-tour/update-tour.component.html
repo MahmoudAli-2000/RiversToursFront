@@ -1,0 +1,506 @@
+<div class="form-wrapper">
+  <form [formGroup]="tourForm" (ngSubmit)="onSubmit()" class="create-tour-form">
+
+    <h2 class="mb-4 text-center">Update Tour</h2>
+
+    <!-- ========================= -->
+    <!-- Reference Name -->
+    <!-- ========================= -->
+    <div class="form-group mb-3">
+      <label class="form-label">Reference Name <span class="text-danger">*</span></label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="referenceName"
+        placeholder="Enter reference name"
+        [ngClass]="{
+          'is-invalid': tourForm.get('referenceName')?.invalid && tourForm.get('referenceName')?.touched
+        }"
+      />
+      <div class="invalid-feedback" *ngIf="tourForm.get('referenceName')?.invalid && tourForm.get('referenceName')?.touched">
+        Reference name is required
+      </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Category & Destination -->
+    <!-- ========================= -->
+    <div class="row">
+
+      <!-- Category Dropdown -->
+      <div class="col-md-6 mb-3">
+        <label>Category <span class="text-danger">*</span></label>
+    
+        <select
+          class="form-select"
+          formControlName="fkCategoryId"
+          [ngClass]="{
+            'is-invalid': tourForm.get('fkCategoryId')?.invalid && tourForm.get('fkCategoryId')?.touched
+          }"
+        >
+          <option value="">-- Select Category --</option>
+          <option *ngFor="let cat of categories" [value]="cat.id">
+            {{ cat.name }}
+          </option>
+        </select>
+    
+        <div class="invalid-feedback"
+          *ngIf="tourForm.get('fkCategoryId')?.invalid && tourForm.get('fkCategoryId')?.touched">
+          Category is required
+        </div>
+      </div>
+    
+      <!-- Destination -->
+      <div class="col-md-6 mb-3">
+        <label>Destination <span class="text-danger">*</span></label>
+        <select
+          class="form-select"
+          formControlName="fkDestinationId"
+          [ngClass]="{
+            'is-invalid': tourForm.get('fkDestinationId')?.invalid && tourForm.get('fkDestinationId')?.touched
+          }"
+        >
+          <option value="">-- Select Destination --</option>
+          <option *ngFor="let destination of destinations" [value]="destination.id">
+            {{ destination.name }}
+          </option>
+        </select>
+        <div class="invalid-feedback"
+          *ngIf="tourForm.get('fkDestinationId')?.invalid && tourForm.get('fkDestinationId')?.touched">
+          Destination is required
+        </div>
+      </div>
+    
+    </div>
+    
+
+    <!-- ========================= -->
+    <!-- Duration & Prices -->
+    <!-- ========================= -->
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label>Duration <span class="text-danger">*</span></label>
+        <input 
+          type="number" 
+          class="form-control" 
+          formControlName="duration" 
+          [ngClass]="{
+            'is-invalid': tourForm.get('duration')?.invalid && tourForm.get('duration')?.touched
+          }"
+        />
+        <div class="invalid-feedback" *ngIf="tourForm.get('duration')?.invalid && tourForm.get('duration')?.touched">
+          Duration is required
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Price (USD) <span class="text-danger">*</span></label>
+        <input 
+          type="number" 
+          step="0.01"
+          class="form-control" 
+          formControlName="priceDollar" 
+          [ngClass]="{
+            'is-invalid': tourForm.get('priceDollar')?.invalid && tourForm.get('priceDollar')?.touched
+          }"
+        />
+        <div class="invalid-feedback" *ngIf="tourForm.get('priceDollar')?.invalid && tourForm.get('priceDollar')?.touched">
+          USD price is required
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Price (EUR) <span class="text-danger">*</span></label>
+        <input 
+          type="number" 
+          step="0.01"
+          class="form-control" 
+          formControlName="priceEuro" 
+          [ngClass]="{
+            'is-invalid': tourForm.get('priceEuro')?.invalid && tourForm.get('priceEuro')?.touched
+          }"
+        />
+        <div class="invalid-feedback" *ngIf="tourForm.get('priceEuro')?.invalid && tourForm.get('priceEuro')?.touched">
+          EUR price is required
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Locations -->
+    <!-- ========================= -->
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Start Location <span class="text-danger">*</span></label>
+        <input 
+          class="form-control" 
+          formControlName="startLocation" 
+          [ngClass]="{
+            'is-invalid': tourForm.get('startLocation')?.invalid && tourForm.get('startLocation')?.touched
+          }"
+        />
+        <div class="invalid-feedback" *ngIf="tourForm.get('startLocation')?.invalid && tourForm.get('startLocation')?.touched">
+          Start location is required
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label>End Location <span class="text-danger">*</span></label>
+        <input 
+          class="form-control" 
+          formControlName="endLocation" 
+          [ngClass]="{
+            'is-invalid': tourForm.get('endLocation')?.invalid && tourForm.get('endLocation')?.touched
+          }"
+        />
+        <div class="invalid-feedback" *ngIf="tourForm.get('endLocation')?.invalid && tourForm.get('endLocation')?.touched">
+          End location is required
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================= -->
+     <!-- Language Options & Video -->
+    <!-- ========================= -->
+    <div class="mb-3">
+      <label>Language Options <span class="text-danger">*</span></label>
+      <input 
+        class="form-control" 
+        formControlName="languageOptions" 
+        placeholder="English , Deutsch" 
+        [ngClass]="{
+          'is-invalid': tourForm.get('languageOptions')?.invalid && tourForm.get('languageOptions')?.touched
+        }"
+      />
+      <div class="invalid-feedback" *ngIf="tourForm.get('languageOptions')?.invalid && tourForm.get('languageOptions')?.touched">
+        Language options are required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Video Link</label>
+      <input class="form-control" formControlName="linkVideo" />
+    </div>
+
+    <!-- ========================= -->
+    <!-- Active -->
+    <!-- ========================= -->
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" formControlName="isActive" />
+      <label class="form-check-label">Active</label>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Main Image -->
+    <!-- ========================= -->
+    <div class="mb-4">
+      <label>Main Image</label>
+      <input type="file" class="form-control" #mainImageInput (change)="onMainImageSelected($event)" accept="image/*" />
+      
+      <div class="image-preview mt-2" *ngIf="mainImagePreview">
+        <img [src]="mainImagePreview" class="img-thumbnail" style="max-height: 200px;" />
+        <button type="button" class="btn btn-sm btn-danger mt-2" (click)="removeMainImage()">Remove New Image</button>
+      </div>
+      
+      <div *ngIf="existingMainImage && !mainImagePreview" class="mt-2">
+        <p class="text-muted">Current Image:</p>
+        <img [src]="existingMainImage" class="img-thumbnail" style="max-height: 200px;" />
+      </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Existing Gallery Images -->
+    <!-- ========================= -->
+    <div class="mb-4" *ngIf="existingImages.length > 0">
+      <h5>Existing Gallery Images</h5>
+      
+      <div *ngFor="let img of existingImages; let i = index" class="border p-3 mb-3 rounded">
+        <div class="mb-2">
+          <img [src]="img.imageUrl" class="img-thumbnail" style="max-height: 150px;" />
+        </div>
+        
+        <div class="mb-2">
+          <div class="form-check">
+
+            <button type="button" class="btn btn-sm btn-danger ms-3" (click)="removeExistingGalleryImage(img.id)">
+              Remove Image
+            </button>
+          </div>
+        </div>
+
+   
+      </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Language Tabs -->
+    <!-- ========================= -->
+    <ul class="nav nav-tabs mb-3">
+      <li class="nav-item" *ngFor="let lang of languages; let i = index">
+        <button
+          type="button"
+          class="nav-link"
+          [class.active]="i === 0"
+          data-bs-toggle="tab"
+          [attr.data-bs-target]="'#lang-' + lang"
+        >
+          {{ lang.toUpperCase() }}
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div
+        class="tab-pane fade"
+        *ngFor="let lang of languages; let i = index"
+        [class.show]="i === 0"
+        [class.active]="i === 0"
+        [attr.id]="'lang-' + lang"
+      >
+
+        <!-- Translations -->
+        <div [formGroup]="getTranslationGroup(lang)" class="mb-3">
+          <h6>Translations</h6>
+          <input 
+            class="form-control mb-2" 
+            formControlName="title" 
+            placeholder="Title" 
+            [ngClass]="{
+              'is-invalid': getTranslationGroup(lang).get('title')?.invalid && getTranslationGroup(lang).get('title')?.touched
+            }"
+          />
+          <div class="invalid-feedback mb-2" *ngIf="getTranslationGroup(lang).get('title')?.invalid && getTranslationGroup(lang).get('title')?.touched">
+            Title is required
+          </div>
+          
+          <textarea 
+            class="form-control" 
+            rows="3" 
+            formControlName="description" 
+            placeholder="Description"
+            [ngClass]="{
+              'is-invalid': getTranslationGroup(lang).get('description')?.invalid && getTranslationGroup(lang).get('description')?.touched
+            }"
+          ></textarea>
+          <div class="invalid-feedback" *ngIf="getTranslationGroup(lang).get('description')?.invalid && getTranslationGroup(lang).get('description')?.touched">
+            Description is required
+          </div>
+
+          <input 
+          class="form-control mb-2" 
+          formControlName="durationType" 
+          placeholder="Duration Type" 
+          [ngClass]="{
+            'is-invalid': getTranslationGroup(lang).get('durationType')?.invalid && getTranslationGroup(lang).get('durationType')?.touched
+          }"
+        />
+        <div class="invalid-feedback mb-2" *ngIf="getTranslationGroup(lang).get('durationType')?.invalid && getTranslationGroup(lang).get('durationType')?.touched">
+          Duration Type is required
+        </div>
+
+          <textarea 
+            class="form-control mt-2" 
+            rows="2" 
+            formControlName="metaDescription" 
+            placeholder="Meta Description"
+          ></textarea>
+
+          <textarea 
+            class="form-control mt-2" 
+            rows="2" 
+            formControlName="metaKeywords" 
+            placeholder="Meta Keywords"
+          ></textarea>
+        </div>
+
+        <!-- Includes -->
+        <div formGroupName="includes" class="mb-3">
+          <h6>Includes</h6>
+          <div [formArrayName]="lang">
+            <div *ngFor="let inc of getIncludes(lang).controls; let j = index" 
+                 [formGroupName]="j" 
+                 class="d-flex gap-2 mb-2 align-items-center">
+              <input 
+                class="form-control" 
+                formControlName="text" 
+                placeholder="Include" 
+                [ngClass]="{
+                  'is-invalid': inc.get('text')?.invalid && inc.get('text')?.touched
+                }" />
+              <button 
+                type="button" 
+                class="btn btn-danger btn-sm" 
+                (click)="removeInclude(lang, j)">
+                X
+              </button>
+            </div>
+          </div>
+          <button 
+            type="button" 
+            class="btn btn-secondary btn-sm" 
+            (click)="addInclude(lang)">
+            + Add Include
+          </button>
+        </div>
+
+        <!-- Not Includes -->
+        <div formGroupName="notIncludes" class="mb-3">
+          <h6>Not Included</h6>
+          <div [formArrayName]="lang">
+            <div *ngFor="let ni of getNotIncludes(lang).controls; let j = index" 
+                 [formGroupName]="j" 
+                 class="d-flex gap-2 mb-2 align-items-center">
+              <input 
+                class="form-control" 
+                formControlName="text" 
+                placeholder="Not Included" 
+                [ngClass]="{
+                  'is-invalid': ni.get('text')?.invalid && ni.get('text')?.touched
+                }" />
+              <button 
+                type="button" 
+                class="btn btn-danger btn-sm" 
+                (click)="removeNotInclude(lang, j)">
+                X
+              </button>
+            </div>
+          </div>
+          <button 
+            type="button" 
+            class="btn btn-secondary btn-sm" 
+            (click)="addNotInclude(lang)">
+            + Add Not Included
+          </button>
+        </div>
+
+        <!-- Highlights -->
+        <div formGroupName="highlights" class="mb-3">
+          <h6>Highlights</h6>
+          <div [formArrayName]="lang">
+            <div *ngFor="let h of getHighlights(lang).controls; let j = index" 
+                 [formGroupName]="j" 
+                 class="d-flex gap-2 mb-2 align-items-center">
+              <input 
+                class="form-control" 
+                formControlName="text" 
+                placeholder="Highlight" 
+                [ngClass]="{
+                  'is-invalid': h.get('text')?.invalid && h.get('text')?.touched
+                }" />
+              <button 
+                type="button" 
+                class="btn btn-danger btn-sm" 
+                (click)="removeHighlight(lang, j)">
+                X
+              </button>
+            </div>
+          </div>
+          <button 
+            type="button" 
+            class="btn btn-secondary btn-sm" 
+            (click)="addHighlight(lang)">
+            + Add Highlight
+          </button>
+        </div>
+
+        <div formGroupName="whyus" class="mb-3">
+          <h6>Why us</h6>
+          <div [formArrayName]="lang">
+            <div *ngFor="let h of getwhyus(lang).controls; let j = index" 
+                 [formGroupName]="j" 
+                 class="d-flex gap-2 mb-2 align-items-center">
+              <input 
+                class="form-control" 
+                formControlName="text" 
+                placeholder="why us" 
+                [ngClass]="{
+                  'is-invalid': h.get('text')?.invalid && h.get('text')?.touched
+                }" />
+              <button 
+                type="button" 
+                class="btn btn-danger btn-sm" 
+                (click)="removewhyus(lang, j)">
+                X
+              </button>
+            </div>
+          </div>
+          <button 
+            type="button" 
+            class="btn btn-secondary btn-sm" 
+            (click)="addwhyus(lang)">
+            + Add why us
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- New Gallery Images -->
+    <!-- ========================= -->
+    <div class="mb-4">
+      <h5>Add New Gallery Images</h5>
+
+      <div *ngFor="let img of imagesList; let i = index" class="border p-3 mb-3 rounded">
+        <div class="mb-2">
+          <label class="form-label">Select New Image</label>
+          <input type="file" class="form-control" (change)="onGalleryImageSelected($event, i)" accept="image/*" />
+        </div>
+
+        <div class="mb-2" *ngIf="img.preview">
+          <img [src]="img.preview" class="img-thumbnail" style="max-height: 150px;" />
+        </div>
+
+        <div class="mb-2">
+          <div class="form-check">
+            <input 
+              type="checkbox" 
+              class="form-check-input" 
+              [(ngModel)]="img.isActive" 
+              [ngModelOptions]="{standalone: true}" 
+              id="new-active-{{i}}" />
+            <label class="form-check-label" for="new-active-{{i}}">Active</label>
+          </div>
+        </div>
+
+        <!-- <h6 class="mt-3 mb-2">Image Translations</h6>
+        <div class="row" *ngFor="let t of img.translations">
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Title ({{t.lang.toUpperCase()}})</label>
+            <input class="form-control" [(ngModel)]="t.title" placeholder="Image Title" [ngModelOptions]="{standalone: true}" />
+          </div>
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Tour Name ({{t.lang.toUpperCase()}})</label>
+            <input class="form-control" [(ngModel)]="t.tourName" placeholder="Tour Name" [ngModelOptions]="{standalone: true}" />
+          </div>
+        </div> -->
+
+        <button type="button" class="btn btn-danger btn-sm mt-2" (click)="removeGalleryImage(i)">
+          Remove Image
+        </button>
+      </div>
+
+      <button type="button" class="btn btn-outline-primary" (click)="addGalleryImage()">
+        + Add New Gallery Image
+      </button>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Submit -->
+    <!-- ========================= -->
+    <button type="submit" class="btn btn-primary w-100 py-2" [disabled]="isSubmitting">
+      <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+      {{ isSubmitting ? 'Updating...' : 'Update Tour' }}
+    </button>
+
+  </form>
+
+  <!-- ========================= -->
+  <!-- Error Summary -->
+  <!-- ========================= -->
+  <div *ngIf="formErrors.length" class="alert alert-danger mt-3">
+    <h6 class="alert-heading">Please fix the following errors:</h6>
+    <ul class="mb-0">
+      <li *ngFor="let e of formErrors">
+        <strong>{{ e.label }}</strong> <span *ngIf="e.lang">({{ e.lang.toUpperCase() }})</span> is required
+      </li>
+    </ul>
+  </div>
+</div> 

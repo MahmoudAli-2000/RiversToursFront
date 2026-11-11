@@ -1,0 +1,131 @@
+<main class="home-detail-page">
+  <div class="detail-container">
+    <a class="detail-back" routerLink="/vacationhome">
+    </a>
+
+    @if (loading()) {
+      <div class="detail-state" role="status"><span class="detail-spinner"></span> {{ 'STAY.LOADING_DETAIL' | t }}</div>
+    } @else if (loadError() || !home()) {
+      <section class="detail-state detail-state--error" role="alert">
+        <h1>{{ 'STAY.UNAVAILABLE_TITLE' | t }}</h1>
+        <p>{{ 'STAY.UNAVAILABLE_DESCRIPTION' | t }}</p>
+        <a class="detail-button" routerLink="/vacationhome">{{ 'STAY.BROWSE_HOMES' | t }}</a>
+      </section>
+    } @else {
+      <header class="detail-heading">
+        <div>
+          <span class="detail-kicker">{{ home()?.propertyType || ('STAY.PROPERTY_FALLBACK' | t) }}</span>
+          <h1>{{ homeName }}</h1>
+          <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> {{ home()?.city }}@if (home()?.area) {, {{ home()?.area }}}@if (home()?.address) { · {{ home()?.address }}}</p>
+        </div>
+        <div class="detail-price">
+          <strong>${{ home()?.priceDollar | number:'1.0-0' }}</strong><span> {{ 'STAY.USD' | t }}</span>
+          <small>€{{ home()?.priceEuro | number:'1.0-0' }} {{ 'STAY.EUR' | t }}</small>
+        </div>
+      </header>
+
+      <div class="detail-layout">
+        <div class="detail-main">
+          <section class="detail-gallery" [attr.aria-label]="'STAY.PROPERTY_INFO' | t">
+            @if (galleryImages.length) {
+              <div class="detail-gallery__main">
+                <img [src]="galleryImages[selectedImageIndex()]" [alt]="('STAY.CURRENT_PHOTO' | t) + ' ' + (selectedImageIndex() + 1)" />
+                <span class="detail-gallery__count">{{ selectedImageIndex() + 1 }} / {{ galleryImages.length }}</span>
+              </div>
+              @if (galleryImages.length > 1) {
+                <div class="detail-gallery__thumbs" [attr.aria-label]="'STAY.CURRENT_PHOTO' | t">
+                  @for (image of galleryImages; track image; let index = $index) {
+                    <button type="button" [class.active]="selectedImageIndex() === index" (click)="selectImage(index)" [attr.aria-label]="('STAY.PHOTO_THUMBNAIL' | t) + ' ' + (index + 1)">
+                      <img [src]="image" [alt]="homeName + ' thumbnail ' + (index + 1)" loading="lazy" />
+                    </button>
+                  }
+                </div>
+              }
+            } @else {
+              <div class="detail-gallery__empty"><i class="fas fa-house" aria-hidden="true"></i><span>{{ 'STAY.PHOTOS_SOON' | t }}</span></div>
+            }
+          </section>
+
+          <section class="detail-description">
+            <span class="detail-kicker">{{ 'STAY.WELCOME' | t }}</span>
+            <h2>{{ 'STAY.ABOUT_TITLE' | t }} {{ home()?.city || 'Egypt' }}</h2>
+            <p>{{ homeDescription || ('STAY.ABOUT_FALLBACK' | t) }}</p>
+          </section>
+
+          <section class="detail-facts" [attr.aria-label]="'STAY.PROPERTY_INFO' | t">
+            <div><i class="fas fa-house" aria-hidden="true"></i><span><small>{{ 'STAY.PROPERTY_TYPE' | t }}</small><strong>{{ home()?.propertyType || ('STAY.PROPERTY_FALLBACK' | t) }}</strong></span></div>
+            <div><i class="fas fa-location-dot" aria-hidden="true"></i><span><small>{{ 'STAY.AREA' | t }}</small><strong>{{ home()?.area || home()?.city }}</strong></span></div>
+            @if (home()?.destinationName) {
+              <div><i class="fas fa-map" aria-hidden="true"></i><span><small>{{ 'STAY.DESTINATION' | t }}</small><strong>{{ home()?.destinationName }}</strong></span></div>
+            }
+          </section>
+
+          @if (mapEmbedUrl(); as mapUrl) {
+            <section class="detail-map" [attr.aria-label]="'STAY.LOCATION' | t">
+              <div class="detail-map__heading">
+                <span class="detail-kicker">{{ 'STAY.LOCATION' | t }}</span>
+                <h2>{{ home()?.city }}@if (home()?.area) {, {{ home()?.area }}}</h2>
+                @if (home()?.address) {
+                  <p>{{ home()?.address }}</p>
+                }
+              </div>
+              <div class="detail-map__frame">
+                <iframe
+                  [src]="mapUrl"
+                  [title]="('STAY.LOCATION' | t) + ' - ' + homeName"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              <a class="detail-map-link" [href]="googleMapsLink()" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-map-location-dot" aria-hidden="true"></i> {{ 'STAY.MAP_LINK' | t }}
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+            </section>
+          }
+        </div>
+
+        <aside class="booking-card" id="booking">
+          <div class="booking-card__heading">
+            <span class="detail-kicker">{{ 'STAY.PLAN_STAY' | t }}</span>
+            <h2>{{ 'STAY.AVAILABILITY_TITLE' | t }}</h2>
+            <p>{{ 'STAY.AVAILABILITY_DESCRIPTION' | t }}</p>
+          </div>
+          <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
+            <label>
+              {{ 'STAY.FULL_NAME' | t }}
+              <input type="text" formControlName="FullName" autocomplete="name" [placeholder]="'STAY.NAME_PLACEHOLDER' | t" />
+              @if (bookingForm.controls.FullName.touched && bookingForm.controls.FullName.invalid) {
+                <small class="field-error">{{ 'STAY.NAME_ERROR' | t }}</small>
+              }
+            </label>
+            <label>
+              {{ 'STAY.EMAIL' | t }}
+              <input type="email" formControlName="EmailAddress" autocomplete="email" [placeholder]="'STAY.EMAIL_PLACEHOLDER' | t" />
+              @if (bookingForm.controls.EmailAddress.touched && bookingForm.controls.EmailAddress.invalid) {
+                <small class="field-error">{{ 'STAY.EMAIL_ERROR' | t }}</small>
+              }
+            </label>
+            <div class="booking-dates">
+              <label>{{ 'STAY.CHECK_IN' | t }}<input type="date" formControlName="CheckInTime" /></label>
+              <label>{{ 'STAY.CHECK_OUT' | t }}<input type="date" formControlName="CheckOutTime" /></label>
+            </div>
+            <label>
+              {{ 'STAY.MESSAGE' | t }}
+              <textarea rows="4" formControlName="Message" [placeholder]="'STAY.MESSAGE_PLACEHOLDER' | t"></textarea>
+              @if (bookingForm.controls.Message.touched && bookingForm.controls.Message.invalid) {
+                <small class="field-error">{{ 'STAY.MESSAGE_ERROR' | t }}</small>
+              }
+            </label>
+            <button type="submit" class="detail-button" [disabled]="submitting()">
+              @if (submitting()) { {{ 'STAY.SENDING' | t }} } @else { {{ 'STAY.SEND_REQUEST' | t }} }
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </button>
+            <p class="booking-note"><i class="fas fa-lock" aria-hidden="true"></i> {{ 'STAY.PRIVACY_NOTE' | t }}</p>
+          </form>
+        </aside>
+      </div>
+    }
+  </div>
+</main>

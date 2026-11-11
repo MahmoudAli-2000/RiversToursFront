@@ -1,0 +1,141 @@
+<section class="dashboard-section container">
+    <h2 class="section-title">All emailS</h2>
+   
+      <div class="search-wrapper">
+        <input 
+          type="text" 
+          placeholder="Search email..."
+          [(ngModel)]="searchTerm" 
+          />
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      </div>
+    <div class="tour-list">
+  
+      <!-- Table Header -->
+      <div class="tour-row header">
+        <div class="tour-col id">ID</div>
+        <div class="tour-col title">Full Name</div>
+        <div class="tour-col title category">Email Address</div>
+        <div class="tour-col date">created At</div>
+        <div class="tour-col status">Booking Date</div>
+      </div>
+  
+      @for (email of AllemailList()|searchemail: searchTerm; track email.id) {
+      <!-- Loop through tours -->
+      <div class="tour-row">
+        
+        <!-- Tour ID -->
+        <div class="tour-col id">
+          <span># {{ email.id }}</span>
+        </div>
+  
+        <!-- Tour Title -->
+        <div class="tour-col title">
+          <h3>{{ email.fullName }}</h3>
+        </div>
+  
+     
+  
+        <!-- Tour Destination -->
+        <div class="tour-col title destination">
+          <h3>{{ email.emailAddress }}</h3>
+        </div>
+
+  
+        <!-- Created Date -->
+        <div class="tour-col date">
+          <i class="fa-regular fa-clock"></i>
+          <span>{{ email.createdAt | date:'mediumDate' }}</span>
+        </div>
+        
+        <div class="tour-col date">
+            <i class="fa-regular fa-clock"></i>
+            <span>{{ email.bookingDate | date:'mediumDate' }}</span>
+          </div>
+        <!-- Status -->
+     
+    
+        <!-- Actions -->
+        <div class="tour-col actions">
+            <button class="btn edit-btn" title="View" (click)="openPanel(email)">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+          <button class="btn delete-btn" title="Delete" (click)="removeEmail(email.id)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+  
+      </div>
+
+      <!-- SIDE PANEL -->
+      <div class="details-overlay" 
+      [class.active]="selectedEmail() !== null"
+      (click)="closePanel()">
+ </div>
+ 
+ <div class="details-panel"
+      [class.active]="selectedEmail() !== null">
+ 
+   <div class="panel-header">
+     <h3><i class="fa-solid fa-envelope-open-text"></i> Email Details</h3>
+     <button class="close-btn" (click)="closePanel()">
+       <i class="fa-solid fa-xmark"></i>
+     </button>
+   </div>
+ 
+   @if (selectedEmail()) {
+     <div class="panel-content">
+ 
+       <div class="details-grid">
+         <p><strong>Full Name:</strong> {{ selectedEmail()?.fullName }}</p>
+         <p><strong>Email:</strong> {{ selectedEmail()?.emailAddress }}</p>
+         <p><strong>Booking Date:</strong> {{ selectedEmail()?.bookingDate | date:'mediumDate' }}</p>
+         <p><strong>Created At:</strong> {{ selectedEmail()?.createdAt | date:'mediumDate' }}</p>
+         <p><strong>Adults:</strong> {{ selectedEmail()?.adultNumber }}</p>
+         <p><strong>Children:</strong> {{ selectedEmail()?.childernNumber }}</p>
+         <p><strong>Tour Name:</strong> {{ selectedEmail()?.fullTourName }}</p>
+         <p><strong>Hotel Name:</strong> {{ selectedEmail()?.hotelName }}</p>
+         <p><strong>Room nUmber:</strong> {{ selectedEmail()?.roomNumber }}</p>
+       </div>
+ 
+       <div class="message-box">
+         <strong>Message:</strong>
+         <p>{{ selectedEmail()?.message }}</p>
+       </div>
+ 
+     </div>
+   }
+ </div>
+ 
+
+        }
+    </div>
+    <div class="pagination-wrapper">
+      <!-- Prev -->
+      <button 
+          class="pagination-btn" 
+          [disabled]="pageIndex === 1"
+          (click)="changePage(pageIndex - 1)">
+          <i class="fa-solid fa-chevron-left"></i>
+      </button>
+    
+      <!-- Numbers -->
+      <button 
+          class="pagination-number"
+          *ngFor="let p of totalPages"
+          [class.active-page]="pageIndex === p"
+          (click)="changePage(p)">
+              {{ p }}
+      </button>
+    
+      <!-- Next -->
+      <button 
+          class="pagination-btn"
+          [disabled]="pageIndex === totalPages.length"
+          (click)="changePage(pageIndex + 1)">
+          <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+  </section>
+
+ 

@@ -1,0 +1,9 @@
+/* chat-widget.component.css */
+.chat-widget {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;   /* بدل right */
+    z-index: 10000;
+    pointer-events: none; /* نخلي التفاعل مع Tawk نفسه */
+  }
+  

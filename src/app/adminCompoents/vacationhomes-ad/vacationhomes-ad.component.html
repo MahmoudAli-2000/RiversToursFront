@@ -1,0 +1,68 @@
+<section class="dashboard-section container">
+  <h2 class="section-title">All Vacation Homes</h2>
+
+  <div class="add-tour-wrapper">
+    <button class="btn add-tour-btn" routerLink="/admin/vacationhomeCreate">
+      <i class="fa-solid fa-plus"></i>
+      Add New Vacation Home
+    </button>
+  </div>
+
+  <div class="search-wrapper">
+    <input type="search" placeholder="Search vacation home..." [(ngModel)]="searchTerm" />
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+  </div>
+
+  <div class="tour-list">
+    <div class="tour-row header">
+      <div class="tour-col id">ID</div>
+      <div class="tour-col title">Property</div>
+      <div class="tour-col title category">Location</div>
+      <div class="tour-col title destination">Price (USD)</div>
+      <div class="tour-col date">Created</div>
+      <div class="tour-col status">Status</div>
+      <div class="tour-col actions">Actions</div>
+    </div>
+
+    @if (loading()) {
+      <div class="tour-row"><div class="tour-col title">Loading vacation homes...</div></div>
+    } @else {
+      @for (home of filteredHomes; track home.id) {
+        <div class="tour-row">
+          <div class="tour-col id"><span># {{ home.id }}</span></div>
+          <div class="tour-col title"><h3>{{ home.name || home.referneceName }}</h3></div>
+          <div class="tour-col title category"><h3>{{ home.city }}@if (home.area) {, {{ home.area }}}</h3></div>
+          <div class="tour-col title destination"><h3>${{ home.priceDollar | number:'1.0-0' }}</h3></div>
+          <div class="tour-col date"><i class="fa-regular fa-clock"></i><span>{{ home.createdAt | date:'mediumDate' }}</span></div>
+          <div class="tour-col status">
+            <span class="tour-status" [class.active]="home.isActive" [class.inactive]="!home.isActive">
+              {{ home.isActive ? 'Active' : 'Inactive' }}
+            </span>
+          </div>
+          <div class="tour-col actions">
+            <button class="btn edit-btn" title="Edit" [routerLink]="['/admin/vacationhomeUpdate', home.id]">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button class="btn delete-btn" title="Delete" (click)="deleteHome(home)">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      } @empty {
+        <div class="tour-row"><div class="tour-col title">No vacation homes match your search.</div></div>
+      }
+    }
+  </div>
+
+  <div class="pagination-wrapper" *ngIf="totalPages.length">
+    <button class="pagination-btn" [disabled]="pageIndex === 1" (click)="changePage(pageIndex - 1)" aria-label="Previous page">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button class="pagination-number" *ngFor="let page of totalPages" [class.active-page]="pageIndex === page" (click)="changePage(page)">
+      {{ page }}
+    </button>
+    <button class="pagination-btn" [disabled]="pageIndex === totalPages.length" (click)="changePage(pageIndex + 1)" aria-label="Next page">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+</section>

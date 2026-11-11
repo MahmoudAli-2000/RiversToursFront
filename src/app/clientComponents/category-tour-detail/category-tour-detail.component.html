@@ -1,0 +1,97 @@
+<!-- ====== Enhanced Category Hero Section ====== -->
+<section class="category-hero-section-new">
+  <div class="hero-img-wrapper-new">
+    <img
+      [src]="DetailedCategoryTour()?.imageCover"
+      [alt]="DetailedCategoryTour()?.titles"
+      class="hero-img-new"
+    />
+  </div>
+
+  <div class="hero-info-new container">
+    <h1 class="hero-title-new">
+      {{ DetailedCategoryTour()?.titles }}
+    </h1>
+
+    <p class="hero-desc-new">
+      {{ DetailedCategoryTour()?.descriptions }}
+    </p>
+  </div>
+</section>
+
+
+
+
+<!-- ====== Enhanced Tours Listing Section ====== -->
+<section class="tours-section py-5">
+  <div class="container">
+
+    <div class="section-intro text-center mb-5 diamond-motion">
+      <span class="section-badge">
+        <i class="fa-solid fa-compass"></i>
+        {{ 'SECTION.DISCOVER_JOURNEY' | t }}      </span>
+    
+      <h2 class="main-section-title">
+         <span> {{ 'SECTION.EXPLORE_TOURS' | t }}</span>
+      </h2>
+    
+      <p class="section-desc">
+        {{ 'SECTION.DESC' | t }}
+      </p>
+    </div>
+    
+    
+
+    <div class="row g-4">
+
+      @for (tour of DetailedCategoryTour()?.tours; track tour.id) {
+        <div class="col-md-6 col-lg-4">
+          <div class="tour-card-advanced">
+
+            <!-- Image  -->
+            <div class="tour-image-wrapper">
+              <img [src]="tour.imageCover" loading="lazy" class="tour-img pointer" alt="Tour" [routerLink]="['/tourDetail', tour.slug]" />
+
+              <div class="floating-labels">
+                <span class="f-label duration">
+                  <i class="fas fa-clock" aria-hidden="true"></i>
+                  <span>{{ tour.duration }} h</span>
+                </span>
+                <div class="tour-prices" aria-label="Tour prices">
+                  <span class="f-label price"><span class="currency">$</span> {{ tour.priceDollar }}</span>
+                  <span class="f-label price"><span class="currency">€</span> {{ tour.priceEuro }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="tour-body p-3">
+              <h4 class="tour-title">{{ tour.titles }}</h4>
+
+              <p class="tour-desc">
+                {{ tour.descriptions }}
+              </p>
+
+              <div class="tour-meta">
+                <span><i class="fas fa-map-marker-alt"></i> {{ tour.startLocation }}</span>
+                <span><i class="fas fa-flag-checkered"></i> {{ tour.endLocation }}</span>
+              </div>
+
+              <div class="tour-tags">
+                <span class="tag"><i class="fas fa-language"></i> {{ tour.languageOptions }}</span>
+              </div>
+            </div>
+
+             <!-- Actions -->
+            <div class="tour-footer">
+              <button class="btn btn-details pointer" [routerLink]="['/tourDetail', tour.slug]"><i class="fas fa-eye"></i> Details</button>
+           <a href="https://wa.me/201111214147" target="_blank" rel="noopener noreferrer"><button class="btn btn-book"><i class="fas fa-check-circle"></i> Book</button></a>
+            </div>
+
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</section>

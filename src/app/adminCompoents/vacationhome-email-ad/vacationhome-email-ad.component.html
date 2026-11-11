@@ -1,0 +1,107 @@
+<section class="dashboard-section container">
+  <h2 class="section-title">Vacation Home Bookings</h2>
+
+  <div class="search-wrapper">
+    <input
+      type="text"
+      placeholder="Search by name or email..."
+      [(ngModel)]="searchTerm"
+    />
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+  </div>
+
+  <div class="tour-list">
+    <div class="tour-row header">
+      <div class="tour-col id">ID</div>
+      <div class="tour-col title">Full Name</div>
+      <div class="tour-col title category">Email Address</div>
+      <div class="tour-col date">Created At</div>
+      <div class="tour-col status">Stay Dates</div>
+      <div class="tour-col actions">Actions</div>
+    </div>
+
+    @for (email of emailList() | searchemail: searchTerm; track email.id) {
+      <div class="tour-row">
+        <div class="tour-col id"><span># {{ email.id }}</span></div>
+        <div class="tour-col title"><h3>{{ email.fullName }}</h3></div>
+        <div class="tour-col title destination"><h3>{{ email.emailAddress }}</h3></div>
+        <div class="tour-col date">
+          <i class="fa-regular fa-clock"></i>
+          <span>{{ email.createdAt | date:'mediumDate' }}</span>
+        </div>
+        <div class="tour-col date stay-dates">
+          <span>{{ email.checkInTime | date:'mediumDate' }} - {{ email.checkOutTime | date:'mediumDate' }}</span>
+        </div>
+        <div class="tour-col actions">
+          <button class="btn edit-btn" type="button" title="View" (click)="openEmail(email)">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <button class="btn delete-btn" type="button" title="Delete" (click)="removeEmail(email)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    } @empty {
+      <div class="tour-row empty-state">
+        <p>No vacation home booking emails found.</p>
+      </div>
+    }
+  </div>
+
+  <div class="pagination-wrapper">
+    <button class="pagination-btn" type="button" [disabled]="pageIndex === 1" (click)="changePage(pageIndex - 1)">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    @for (page of totalPages; track page) {
+      <button
+        class="pagination-number"
+        type="button"
+        [class.active-page]="pageIndex === page"
+        (click)="changePage(page)"
+      >
+        {{ page }}
+      </button>
+    }
+    <button
+      class="pagination-btn"
+      type="button"
+      [disabled]="pageIndex === totalPages.length || totalPages.length === 0"
+      (click)="changePage(pageIndex + 1)"
+    >
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+</section>
+
+<div
+  class="details-overlay"
+  [class.active]="selectedEmail() !== null"
+  (click)="selectedEmail.set(null)"
+></div>
+
+<aside class="details-panel" [class.active]="selectedEmail() !== null">
+  <div class="panel-header">
+    <h3><i class="fa-solid fa-envelope-open-text"></i> Booking Details</h3>
+    <button class="close-btn" type="button" aria-label="Close details" (click)="selectedEmail.set(null)">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  @if (selectedEmail(); as email) {
+    <div class="panel-content">
+      <div class="details-grid">
+        <p><strong>Full Name:</strong> {{ email.fullName }}</p>
+        <p><strong>Email:</strong> {{ email.emailAddress }}</p>
+        <p><strong>Vacation Home:</strong> {{ email.fullVacationHomes || ('#' + email.fK_VacationHomes) }}</p>
+        <p><strong>Created At:</strong> {{ email.createdAt | date:'medium' }}</p>
+        <p><strong>Check-in:</strong> {{ email.checkInTime | date:'mediumDate' }}</p>
+        <p><strong>Check-out:</strong> {{ email.checkOutTime | date:'mediumDate' }}</p>
+      </div>
+
+      <div class="message-box">
+        <strong>Message:</strong>
+        <p>{{ email.message }}</p>
+      </div>
+    </div>
+  }
+</aside>

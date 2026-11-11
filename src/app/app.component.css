@@ -1,0 +1,77 @@
+/* لو الصفحة دي مفعلة */
+body.nav-light .main-nav .nav-links a,
+body.nav-light .main-nav .logo,
+body.nav-light .main-nav .social-icons a {
+  color: #000 !important;
+}
+
+body.nav-light .main-nav .nav-links a:hover,
+body.nav-light .main-nav .social-icons a:hover {
+  color: #444 !important;
+}
+
+/* مع السحب يرجع للوضع الغامق */
+body.nav-light .main-nav.scrolled .nav-links a,
+body.nav-light .main-nav.scrolled .logo,
+body.nav-light .main-nav.scrolled .social-icons a {
+  color: #fff !important;
+}
+/* ====== NAV-LIGHT MODE (الصفحات اللي عايزاها الناف بار فاتح) ====== */
+
+/* اللينكات في الـ navbar */
+body.nav-light .main-nav .nav-links a {
+    color: #000 !important;
+  }
+  
+  body.nav-light .main-nav .nav-links a:hover {
+    color: #555 !important;
+  }
+  
+  /* الشعار */
+  body.nav-light .main-nav .logo {
+    color: #000 !important;
+  }
+  
+  body.nav-light .main-nav .logo img {
+    filter: brightness(0.1); /* يخلي اللوجو مناسب للخلفية الفاتحة */
+  }
+  
+  /* أيقونات السوشيال */
+  body.nav-light .main-nav .social-icons a {
+    color: #000 !important;
+  }
+  
+  /* عند الـ scroll يرجع كما كان */
+  body.nav-light .main-nav.scrolled .nav-links a,
+  body.nav-light .main-nav.scrolled .logo,
+  body.nav-light .main-nav.scrolled .social-icons a {
+    color: #fff !important;
+  }
+  
+  body.nav-light .main-nav.scrolled .dropdown-menu {
+    background: rgba(0,0,0,0.85) !important;
+  }
+  
+  /* ====== DROP-DOWN FIX ====== */
+  body.nav-light .dropdown-menu {
+    background: #ffffff !important;        /* خلي الباك جراوند أبيض */
+    border: 1px solid #ddd;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  }
+  
+  body.nav-light .dropdown-menu a {
+    color: #000 !important;                 /* خلي الخط أسود */
+    padding: 10px 18px;
+  }
+  
+  body.nav-light .dropdown-menu a:hover {
+    background: #f0f0f0 !important;          /* Hover فاتح */
+    color: #000 !important;                  /* يفضل يبقى ثابت */
+    padding-left: 25px;
+  }
+  
+  /* السهم أو الأيقونات لو موجوده */
+  body.nav-light .dropdown-menu i {
+    color: #000 !important;
+  }
+  

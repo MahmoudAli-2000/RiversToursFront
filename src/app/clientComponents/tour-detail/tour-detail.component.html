@@ -1,0 +1,435 @@
+<!-- Tour Header Section - الصورة فقط -->
+@if (DetailedTour()) {
+  <section class="category-hero-section-new">
+    <div class="hero-img-wrapper-new">
+      <img
+        [src]="DetailedTour()?.imageCover"
+        [alt]="DetailedTour()?.titles"
+        loading="lazy"
+        class="hero-img-new"
+      />
+    </div>
+    <div class="hero-container">
+      <ng-container *ngFor="let word of DetailedTour()?.titles?.split(' '); let wIndex = index">
+        <span class="word">
+          <ng-container *ngFor="let letter of word.split(''); let lIndex = index">
+            <span class="letter" [style.--i]="lIndex" [style.--w]="wIndex">{{ letter }}</span>
+          </ng-container>
+          <span class="space"> </span>
+        </span>
+      </ng-container>
+    </div>
+    
+    
+    
+    
+    
+    
+  </section>
+  }
+
+  @if (DetailedTour()) {
+  <div class="container main-content">
+    <div class="row">
+      <!-- Main Content - اليسار -->
+      <div class="col-lg-8">
+        <!-- Tour Description -->
+        <section class="tour-description-section mb-5">
+          <div class="info-card">
+            <h2 class="section-title">{{ 'TOUR.DESCRIPTION' | t }}</h2>
+            <p class="description-text"> {{ DetailedTour()?.descriptions }}</p>
+            
+            <div class="tour-info-grid">
+              <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                  <span class="info-label">{{ 'TOUR.DURATION' | t }}</span>
+                  <span class="info-value"> {{ DetailedTour()?.duration }} {{ DetailedTour()?.durationType }} </span>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <span class="info-label">{{ 'TOUR.START_LOCATION' | t }}</span>
+                  <span class="info-value"> {{ DetailedTour()?.startLocation }}</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-flag-checkered"></i>
+                <div>
+                  <span class="info-label">{{ 'TOUR.END_LOCATION' | t }}</span>
+                  <span class="info-value"> {{ DetailedTour()?.endLocation }}</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-language"></i>
+                <div>
+                  <span class="info-label">{{ 'TOUR.LANGUAGES' | t }}</span>
+                  <span class="info-value"> {{ DetailedTour()?.languageOptions }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+  
+        <!-- Image Carousel -->
+        @if (DetailedTour()?.tourImgs?.length) {
+          <section class="carousel-section mb-5">
+            <h2 class="section-title">{{ 'TOUR.GALLERY' | t }}</h2>
+          
+            <swiper-container
+            class="tourSwiper flipSwiper"
+            slides-per-view="1"
+            loop="true"
+            navigation="true"
+            pagination="true"
+            effect="flip"
+            grab-cursor="true"
+            autoplay-delay="3500"
+            autoplay-disable-on-interaction="false"
+            speed="1200"
+          
+            init="false"
+            flip-effect-slide-shadows="false"
+
+            >
+              @for (img of DetailedTour()!.tourImgs; track img.id) {
+                <swiper-slide>
+                  <img
+                    [src]="img.imageCarouselUrl"
+                    [alt]="img.titles"
+                    loading="lazy"
+                  />
+                </swiper-slide>
+              }
+            </swiper-container>
+          </section>
+          }
+          
+          
+        <!-- Tour Highlights -->
+        @if (DetailedTour()?.highlights && DetailedTour()!.highlights.length > 0) {
+        <section class="mb-5">
+          <h2 class="section-title">{{ 'TOUR.HIGHLIGHTS' | t }}</h2>
+          <div class="info-card">
+            @for (highlight of DetailedTour()?.highlights; track highlight.id) {
+            <div class="highlight-item">
+              <i class="fas fa-star"></i>
+              <div>
+                <strong>{{ splitHighlightText(highlight.text).title }}</strong>
+                <p>{{ splitHighlightText(highlight.text).description }}</p>
+              </div>
+            </div>
+            }
+          </div>
+        </section>
+        }
+        
+        <!-- What's Included -->
+        @if (DetailedTour()?.includedItems && DetailedTour()!.includedItems.length > 0) {
+        <section class="mb-5">
+          <h2 class="section-title">{{ 'TOUR.INCLUDED' | t }}</h2>
+          <div class="info-card">
+            @for (item of DetailedTour()?.includedItems; track item.id) {
+            <div class="included-item">
+              <i class="fas fa-check-circle"></i>
+              <div>
+                <strong>{{ splitItemText(item.text).title }}</strong>
+                <p>{{ splitItemText(item.text).description }}</p>
+              </div>
+            </div>
+            }
+          </div>
+        </section>
+        }
+
+        @if (DetailedTour()?.whyThisItems && DetailedTour()!.whyThisItems.length > 0) {
+          <section class="mb-5">
+            <h2 class="section-title">{{"why_this" | t}}</h2>
+            <div class="info-card">
+              @for (whyThisItems of DetailedTour()?.whyThisItems; track whyThisItems.id) {
+                <div class="highlight-item">
+                  <i class="fa-regular fa-face-grin-hearts"></i>                  <div>
+                    <strong>{{ splitHighlightText(whyThisItems.text).title }}</strong>
+                    <p>{{ splitHighlightText(whyThisItems.text).description }}</p>
+                  </div>
+                </div>
+              }
+            </div>
+          </section>
+          }
+        <!-- What's Not Included -->
+      @if (DetailedTour()?.notIncludedItems && DetailedTour()!.notIncludedItems.length > 0) {
+  <section class="not-included-section mb-5">
+    <h2 class="section-title">{{ 'TOUR.NOT_INCLUDED' | t }}</h2>
+    <div class="not-included-card">
+      @for (item of DetailedTour()?.notIncludedItems; track item.id) {
+        <div class="not-included-point">
+          <i class="fas fa-times-circle"></i>
+          <div>
+            <strong>{{ splitItemText(item.text).title }}</strong>
+            <p>{{ splitItemText(item.text).description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+}
+<section class="gold-info-section mb-5">
+  <h2 class="section-title">{{ 'INFO.KNEW_BEFORE_GO' | t }}</h2>
+
+  <ul class="info-list">
+    <li>
+      <i class="fas fa-info-circle"></i>
+      {{ 'INFO.LIST.HOTEL_TRANSFERS' | t }}
+    </li>
+
+    <li>
+      <i class="fas fa-passport"></i>
+      {{ 'INFO.LIST.PASSPORT_COPY' | t }}
+    </li>
+    
+    <li>
+      <i class="fas fa-shopping-bag"></i>
+      {{ 'INFO.LIST.SHOPPING_TIME' | t }}
+    </li>
+    
+
+    <li>
+      <i class="fas fa-child"></i>
+      {{ 'INFO.LIST.CHILDREN_SUPERVISION' | t }}
+    </li>
+  </ul>
+</section>
+
+
+<section class="gold-info-section mb-5">
+  <h2 class="section-title">{{ 'PAYMENT.TITLE' | t }}</h2>
+
+  <ul class="info-list">
+    <li>
+      <i class="fas fa-credit-card"></i>
+      {{ 'PAYMENT.LIST.RESERVE_PAY_LATER' | t }}
+    </li>
+
+    <li>
+      <i class="fas fa-coins"></i>
+      {{ 'PAYMENT.LIST.CURRENCY' | t }}
+    </li>
+
+    <li>
+      <i class="fas fa-tags"></i>
+      {{ 'PAYMENT.LIST.PRICES' | t }}
+    </li>
+
+    <li>
+      <i class="fas fa-award"></i>
+      {{ 'PAYMENT.LIST.QUALITY' | t }}
+    </li>
+  </ul>
+</section>
+
+<section class="lux-video-section mb-5">
+  <h2 class="lux-title">{{ 'TOUR.VIDEO_TITLE' | t }}</h2>
+
+  <div class="lux-video-box">
+    <iframe 
+      [src]="DetailedTour()?.linkVideo | safeUrl"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+
+      </div>
+      
+      <!-- Booking  Form - اليمين -->
+      <div class="col-lg-4">
+        <div class="booking-card">
+          <div class="booking-header lux-header">
+            <div class="booking-price lux-price" id="priceValue">
+              {{ selectedCurrency === 'USD' ? '$' : '€' }} {{ displayedPrice() | number:'1.0-2' }}
+            </div>
+            <div class="currency-selector" aria-label="Select price currency">
+              <button
+                type="button"
+                class="currency-button"
+                [class.active]="selectedCurrency === 'USD'"
+                [attr.aria-pressed]="selectedCurrency === 'USD'"
+                aria-label="Show price in US dollars"
+                (click)="selectCurrency('USD')">
+                <i class="fas fa-dollar-sign"></i>
+              </button>
+              <button
+                type="button"
+                class="currency-button"
+                [class.active]="selectedCurrency === 'EUR'"
+                [attr.aria-pressed]="selectedCurrency === 'EUR'"
+                aria-label="Show price in euros"
+                (click)="selectCurrency('EUR')">
+                <i class="fas fa-euro-sign"></i>
+              </button>
+            </div>
+            <span class="price-note">per person</span>
+          </div>
+
+          <form class="booking-form" [formGroup]="BookingForm" (ngSubmit)="FormSubmited()">
+  
+            <div class="form-group mb-3">
+              <label for="FullName" class="form-label">
+                <i class="fas fa-user"></i> Full Name
+              </label>
+              <input [ngClass]="{
+                      'is-invalid': BookingForm.get('FullName')?.invalid && (BookingForm.get('FullName')?.touched || BookingForm.get('FullName')?.dirty),
+                      'is-valid': BookingForm.get('FullName')?.valid && (BookingForm.get('FullName')?.touched || BookingForm.get('FullName')?.dirty)
+                  }" id="FullName" type="text" class="form-control" formControlName="FullName" >
+              @if(BookingForm.get('FullName')?.invalid && (BookingForm.get('FullName')?.touched||BookingForm.get('FullName')?.dirty)){
+                <div class="text-danger small mt-1">Full Name is required (min 3 chars).</div>
+              }
+            </div>
+          
+            <div class="form-group mb-3">
+              <label for="EmailAddress" class="form-label">
+                <i class="fas fa-envelope"></i> Email Address
+              </label>
+              <input [ngClass]="{
+                      'is-invalid': BookingForm.get('EmailAddress')?.invalid && (BookingForm.get('EmailAddress')?.touched || BookingForm.get('EmailAddress')?.dirty),
+                      'is-valid': BookingForm.get('EmailAddress')?.valid && (BookingForm.get('EmailAddress')?.touched || BookingForm.get('EmailAddress')?.dirty)
+                  }" id="EmailAddress" type="email" class="form-control" formControlName="EmailAddress">
+              @if(BookingForm.get('EmailAddress')?.invalid && (BookingForm.get('EmailAddress')?.touched||BookingForm.get('EmailAddress')?.dirty)){
+                <div class="text-danger small mt-1">Valid Email is required.</div>
+              }
+            </div>
+          
+            <div class="form-group mb-3">
+              <label for="Message" class="form-label">
+                <i class="fas fa-comment-alt"></i> Any comments !   
+              </label>
+              <input [ngClass]="{
+                      'is-invalid': BookingForm.get('Message')?.invalid && (BookingForm.get('Message')?.touched || BookingForm.get('Message')?.dirty),
+                      'is-valid': BookingForm.get('Message')?.valid && (BookingForm.get('Message')?.touched || BookingForm.get('Message')?.dirty)
+                  }" id="Message" type="text" class="form-control" formControlName="Message">
+              @if(BookingForm.get('Message')?.invalid && (BookingForm.get('Message')?.touched||BookingForm.get('Message')?.dirty)){
+                <div class="text-danger small mt-1">Details of Booking is required</div>
+              }
+            </div>
+
+
+            <div class="form-group mb-3 col-half">
+              <label class="form-label">
+                <i class="fas fa-user"></i> Hotel Name
+              </label>
+              <input 
+                [ngClass]="{
+                  'is-invalid': BookingForm.get('HotelName')?.invalid && (BookingForm.get('HotelName')?.touched || BookingForm.get('HotelName')?.dirty),
+                  'is-valid': BookingForm.get('HotelName')?.valid && (BookingForm.get('HotelName')?.touched || BookingForm.get('HotelName')?.dirty)
+                }"
+                type="text" 
+                class="form-control" 
+                formControlName="HotelName"
+              >
+            </div> 
+          
+            <div class="form-group mb-3 col-half">
+              <label class="form-label">
+                <i class="fas fa-child"></i> Room Number
+              </label>
+              <input 
+                [ngClass]="{
+                  'is-invalid': BookingForm.get('RoomNumber')?.invalid && (BookingForm.get('RoomNumber')?.touched || BookingForm.get('RoomNumber')?.dirty),
+                  'is-valid': BookingForm.get('RoomNumber')?.valid && (BookingForm.get('RoomNumber')?.touched || BookingForm.get('RoomNumber')?.dirty)
+                }"
+                type="number" 
+                class="form-control" 
+                formControlName="RoomNumber"
+              >
+      
+            </div>
+            
+            <div class="row two-cols">
+
+              <div class="form-group mb-3 col-half">
+                <label class="form-label">
+                  <i class="fas fa-user"></i> Adults (10+ Years):
+                </label>
+                <input 
+                  [ngClass]="{
+                    'is-invalid': BookingForm.get('AdultsNumber')?.invalid && (BookingForm.get('AdultsNumber')?.touched || BookingForm.get('AdultsNumber')?.dirty),
+                    'is-valid': BookingForm.get('AdultsNumber')?.valid && (BookingForm.get('AdultsNumber')?.touched || BookingForm.get('AdultsNumber')?.dirty)
+                  }"
+                  type="number" 
+                  class="form-control" 
+                  formControlName="AdultsNumber"
+                >
+                @if(BookingForm.get('AdultsNumber')?.invalid && (BookingForm.get('AdultsNumber')?.touched||BookingForm.get('AdultsNumber')?.dirty)){
+                  <div class="text-danger small mt-1">Adults Number is required</div>
+                }
+              </div>
+            
+              <div class="form-group mb-3 col-half">
+                <label class="form-label">
+                  <i class="fas fa-child"></i> Child (5-10 Years):
+                </label>
+                <input 
+                  [ngClass]="{
+                    'is-invalid': BookingForm.get('ChildernNumber')?.invalid && (BookingForm.get('ChildernNumber')?.touched || BookingForm.get('ChildernNumber')?.dirty),
+                    'is-valid': BookingForm.get('ChildernNumber')?.valid && (BookingForm.get('ChildernNumber')?.touched || BookingForm.get('ChildernNumber')?.dirty)
+                  }"
+                  type="number" 
+                  class="form-control" 
+                  formControlName="ChildernNumber"
+                >
+                @if(BookingForm.get('ChildernNumber')?.invalid && (BookingForm.get('ChildernNumber')?.touched||BookingForm.get('ChildernNumber')?.dirty)){
+                  <div class="text-danger small mt-1">Children Number is required</div>
+                }
+              </div>
+            
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="BookingDate" class="form-label">
+                <i class="fas fa-calendar-alt"></i> Date
+              </label>
+              <input [ngClass]="{
+                      'is-invalid': BookingForm.get('BookingDate')?.invalid && (BookingForm.get('BookingDate')?.touched || BookingForm.get('BookingDate')?.dirty),
+                      'is-valid': BookingForm.get('BookingDate')?.valid && (BookingForm.get('BookingDate')?.touched || BookingForm.get('BookingDate')?.dirty)
+                  }" id="BookingDate" type="date" class="form-control" formControlName="BookingDate">
+              @if(BookingForm.get('BookingDate')?.invalid && (BookingForm.get('BookingDate')?.touched||BookingForm.get('BookingDate')?.dirty)){
+                <div class="text-danger small mt-1">Date of Booking is required</div>
+              }
+            </div>
+
+            <button class="btn-book-form">
+              <span class="text">{{ 'BUTTON.BOOK_NOW' | t }}</span>
+              <span class="icons">
+                <i class="fa-solid fa-suitcase-rolling"></i>
+                <i class="fa-solid fa-umbrella-beach"></i>
+                <i class="fas fa-plane-departure"></i>
+              </span>
+            </button>
+            
+            
+            
+          
+            <div class="security-notice">
+              <i class="fas fa-shield-alt"></i>
+              <span>{{ 'RESERVATION.PROTECTED' | t }}</span>
+            </div>
+          </form>
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  } 
+  <!-- Loading State -->
+  @if (!DetailedTour()) {
+  <div class="container text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3">Loading tour details...</p>
+  </div>
+  }

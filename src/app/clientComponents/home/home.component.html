@@ -1,0 +1,508 @@
+<div id="heroCarousel" class="carousel slide carousel-fade home-page"  data-bs-ride="carousel" >
+    <!-- Indicators -->
+  
+    <section class="hero-section">
+
+      <!-- الفيديو -->
+      <video 
+        #heroVideo
+        class="hero-video" 
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        webkit-playsinline
+        
+        preload="auto"
+        poster="assets/images/imageposter1.png"
+        [class.video-hidden]="videoFallback"
+      >
+        <source src="assets/images/poster1.mp4" type="video/mp4">
+          <!-- <sour ce src="assets/videos/videoss.webm" type="video/webm"> -->
+      </video>
+
+      @if (videoFallback) {
+        <div class="hero-fallback"></div>
+      }
+    
+      <!-- طبقة غامقة بسيطة لتحسين وضوح النص -->
+      <div class="overlay"></div>
+    
+      <!-- محتوى الهيرو -->
+      <div class="hero-content">
+        <h1 class="brand-name"><span class="brand-name-text" #brandNameText>RiversTours</span></h1>
+         <p class="brand-subtitle" #subtitleText>{{ 'HeroDiscription' | t }} <i class="fa-regular fa-heart" aria-hidden="true"></i></p>
+      </div>
+  
+    
+    </section>
+    
+    
+  
+   
+  <!-- الأقسا م الجديدة تحت الـ Carousel -->
+  <section class="about-modern"> 
+    <div class="container">
+      <div class="about-wrapper">
+  
+        <!-- Image -->
+        <div class="about-image">
+          <img src="assets/images/toooot.jpg" alt="About Us">
+          <div class="image-overlay"></div>
+        </div>
+  
+        <!-- Content -->
+        <div class="about-content">
+          <span class="about-tag">{{ 'AboutUsTag' | t }}</span>
+          <h2>{{ 'AboutUsTitle' | t }}</h2>
+          <p>
+            {{ 'AboutUsDescription' | t }}
+          </p>
+        
+          <div class="about-features">
+            <div class="feature">
+              <i class="fas fa-globe" aria-hidden="true"></i>
+              <span>{{ 'FeatureWorldwideTours' | t }}</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-star" aria-hidden="true"></i>
+              <span>{{ 'FeatureBestServices' | t }}</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-headset" aria-hidden="true"></i>
+              <span>{{ 'FeatureSupport' | t }}</span>
+            </div>
+          </div>
+        
+          <a href="#" class="about-btn">{{ 'AboutUsButton' | t }}</a>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
+
+
+<!-- قسم الوجهات الشهيرة مع Swiper -->
+<section class="destinations-section py-5">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <h2 class="section-title">{{ 'PopularDestinationsTitle' | t }}</h2>
+      <p class="section-subtitle">
+        {{ 'PopularDestinationsSubtitle' | t }}
+      </p>
+    </div>
+
+    <!-- Swiper -->
+  <!-- استخدم #swiperContainer للرجوع إليه في الـ TS، وأضف cardsDirective -->
+  <swiper-container
+  #swiperContainer
+  cardsDirective
+  class="cards-swiper"
+  effect="cards"
+  grab-cursor="true"
+  rewind="true"
+  speed="1200"
+  autoplay-delay="3000"
+  autoplay-disable-on-interaction="false"
+  autoplay-pause-on-mouse-enter="false"
+  touch-ratio="1.2"
+  cards-effect-rotate="0"
+  cards-effect-per-slide-offset="18"
+  cards-effect-slide-shadows="false"
+  breakpoints='{
+    "0": { "width": 280, "height": 380 },
+    "576": { "width": 380, "height": 430 },
+    "768": { "width": 460, "height": 500 },
+    "992": { "width": 520, "height": 520 }
+  }'
+>
+<!-- قم بإزالة @if(isBrowser) تماماً -->
+@for (category of AllPopularHurghadaCat(); track category.id) {
+  <swiper-slide>
+    <a [routerLink]="['/categrytourDetail', category.slug]" class="card-slide">
+      <img
+        [src]="category.imageCover"
+        [alt]="category.titles"
+        loading="lazy"
+      />
+      <div class="content">
+        <h3>{{category.titles}}</h3>
+        <div class="location">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>{{ getCategoryLocation(category.slug) }}</span>
+        </div>
+      </div>
+    </a>
+  </swiper-slide>
+}
+</swiper-container>
+  </div>
+</section>
+
+<style>
+.destinations-section {
+  background: linear-gradient(135deg, #f5f9fc, #e8f2f9);
+  padding: 60px 20px;
+}
+
+/* Titles */
+.section-title { font-size: 2.4rem; font-weight: 800; color: #015ba3; }
+.section-subtitle { color: #777; }
+
+/* Swiper Container */
+.cards-swiper {
+  width: 100%;
+  max-width: 520px;
+  height: 520px;
+  margin: auto;
+}
+
+/* Slides */
+swiper-slide {
+  border-radius: 20px;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease;
+}
+
+/* Active Card */
+swiper-slide.swiper-slide-active {
+  transform: scale(1) translateZ(0);
+  z-index: 5;
+}
+
+/* Cards behind */
+swiper-slide:not(.swiper-slide-active) {
+  transform: scale(0.94) translateZ(0);
+  opacity: 0.85;
+}
+
+/* Card */
+.card-slide {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  transition: transform 0.8s ease;
+  backface-visibility: hidden; /* 👈 Smooth GPU rendering */
+}
+
+/* Image */
+.card-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+/* Hover effect */
+.card-slide:hover img {
+  transform: scale(1.12);
+}
+
+/* Content */
+.content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+}
+
+.content h3 { font-size: 1.7rem; font-weight: 700; }
+.location { display: flex; align-items: center; gap: 6px; font-size: 1rem; }
+.location i { color: #2ecc71; }
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+  .cards-swiper { max-width: 95%; height: 400px; }
+  .content h3 { font-size: 1.4rem; }
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-element-bundle.min.js"></script>
+<script>
+  const swiperEl = document.querySelector('swiper-container');
+
+  Object.assign(swiperEl, {
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    speed: 1200,
+    grabCursor: true,
+    touchRatio: 1.2
+  });
+
+  swiperEl.initialize();
+</script>
+
+  <!-- قسم الوجهات الشهيرة -->
+  <section class="destinations-section-new py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="destinations-title">{{ 'HurghadaToursTitle' | t }}</h2>
+        <p class="destinations-subtitle">{{ 'HurghadaToursSubtitle' | t }}</p>
+        
+      </div>
+  
+      <div class="row">
+        @for (tour of AllPopularToursList().slice(0,8); track tour.id){
+          <div class="col-12 col-sm-6 col-lg-3 mb-4">
+            <a [routerLink]="['/tourDetail', tour.slug]" class="destination-card-new">
+              <div class="destination-image-new">
+                <img [src]="tour.imageCover" [alt]="tour.titles" class="img-fluid">
+                <div class="destination-overlay-new">
+                  <h4>{{tour.titles}}</h4>
+                  <p>{{tour.descriptions.slice(0,50)}}...</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        }
+      </div>
+
+    </div>
+  </section>
+  
+
+  <section class="featured-tours-section">
+    <header class="featured-tours-header">
+      <span class="featured-tours-eyebrow">{{ 'FeaturedToursEyebrow' | t }}</span>
+      <h2>{{ 'FeaturedToursTitle' | t }}</h2>
+      <p>{{ 'FeaturedToursSubtitle' | t }}</p>
+    </header>
+
+    <div class="container">
+      <swiper-container
+        class="featured-tours-swiper"
+        loop="true"
+        autoplay="true"
+        autoplay-delay="6500"
+        autoplay-disable-on-interaction="false"
+        speed="900"
+        pagination="true"
+        navigation="true"
+        [attr.aria-label]="'FeaturedToursTitle' | t">
+
+        <swiper-slide>
+          <article class="featured-tour-card">
+            <div class="featured-tour-gallery" role="group" [attr.aria-label]="'NubianTourTitle' | t">
+              <img
+                class="featured-tour-image featured-tour-image-main"
+                src="../../../assets/images/nubian-village-aswan.jpg"
+                [alt]="'NubianTourTitle' | t"
+                loading="eager"
+                decoding="async">
+              <img
+                class="featured-tour-image featured-tour-image-inset"
+                src="../../../assets/images/felucca-aswan.jpg"
+                [alt]="'NubianTourTitle' | t"
+                loading="lazy"
+                decoding="async">
+              <div class="featured-tour-credits">
+                <a href="https://commons.wikimedia.org/wiki/File:Nubian_houses_in_the_bank_of_River_Nile_Aswan_,_Egypt.JPG" target="_blank" rel="noopener noreferrer">Belmahdy · CC BY-SA 4.0</a>
+                <a href="https://commons.wikimedia.org/wiki/File:Aswan,_Elephantine,_felucca,_Egypt,_Oct_2004.jpg" target="_blank" rel="noopener noreferrer">Blueshade · CC BY-SA 2.0</a>
+              </div>
+            </div>
+            <div class="featured-tour-copy">
+              <span class="featured-tour-label">01 / 02</span>
+              <h3>{{ 'NubianTourTitle' | t }}</h3>
+              <p class="featured-tour-location">
+                <i class="fas fa-location-dot" aria-hidden="true"></i>
+                {{ 'NubianTourLocation' | t }}
+              </p>
+              <p class="featured-tour-description">{{ 'NubianTourDescription' | t }}</p>
+              <a href="https://wa.me/201111214147" target="_blank" rel="noopener noreferrer" class="featured-tour-button">
+                {{ 'BookTourButton' | t }}
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+            </div>
+          </article>
+        </swiper-slide>
+
+        <swiper-slide>
+          <article class="featured-tour-card">
+            <div class="featured-tour-gallery" role="group" [attr.aria-label]="'AbuSimbelTourTitle' | t">
+              <img
+                class="featured-tour-image featured-tour-image-main"
+                src="../../../assets/images/abu-simbel-great-temple.jpg"
+                [alt]="'AbuSimbelTourTitle' | t"
+                loading="lazy"
+                decoding="async">
+              <img
+                class="featured-tour-image featured-tour-image-inset"
+                src="../../../assets/images/abu-simbel-nefertari-temple.jpg"
+                [alt]="'AbuSimbelTourTitle' | t"
+                loading="lazy"
+                decoding="async">
+              <div class="featured-tour-credits">
+                <a href="https://commons.wikimedia.org/wiki/File:Templo_de_Rams%C3%A9s_II,_Abu_Simbel,_Egipto,_2022-04-02,_DD_03.jpg" target="_blank" rel="noopener noreferrer">Poco a poco · CC BY-SA 4.0</a>
+                <a href="https://commons.wikimedia.org/wiki/File:Templo_de_Nefertari,_Abu_Simbel,_Egipto,_2022-04-02,_DD_128-130_HDR.jpg" target="_blank" rel="noopener noreferrer">Diego Delso · CC BY-SA 4.0</a>
+              </div>
+            </div>
+            <div class="featured-tour-copy">
+              <span class="featured-tour-label">02 / 02</span>
+              <h3>{{ 'AbuSimbelTourTitle' | t }}</h3>
+              <p class="featured-tour-location">
+                <i class="fas fa-location-dot" aria-hidden="true"></i>
+                {{ 'AbuSimbelTourLocation' | t }}
+              </p>
+              <p class="featured-tour-description">{{ 'AbuSimbelTourDescription' | t }}</p>
+              <a href="https://wa.me/201111214147" target="_blank" rel="noopener noreferrer" class="featured-tour-button">
+                {{ 'BookTourButton' | t }}
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+            </div>
+          </article>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </section>
+
+  
+    <section class="rivers-parallax" [attr.aria-label]="'RiversParallaxAriaLabel' | t">
+    <div class="rivers-parallax__content">
+      <span class="rivers-parallax__eyebrow">{{ 'RiversParallaxEyebrow' | t }}</span>
+      <h2>{{ 'RiversParallaxTitle' | t }}</h2>
+      <p>{{ 'RiversParallaxDescription' | t }}</p>
+      <div class="rivers-parallax__features">
+        <span><i class="fas fa-map-marked-alt" aria-hidden="true"></i>{{ 'RiversParallaxFeatureLocalExpertise' | t }}</span>
+        <span><i class="fas fa-route" aria-hidden="true"></i>{{ 'RiversParallaxFeatureTailoredTrips' | t }}</span>
+        <span><i class="fas fa-heart" aria-hidden="true"></i>{{ 'RiversParallaxFeatureGuestCare' | t }}</span>
+      </div>
+      <span class="rivers-parallax__signature">{{ 'RiversParallaxSignature' | t }}</span>
+    </div>
+  </section>
+
+<section class="wcu-section">
+  <div class="container">
+
+    <!-- ===== العنوان ===== -->
+    <header class="wcu-header">
+      <h2 class="wcu-title">{{ 'WhyChooseUsTitle' | t }}</h2>
+      <p class="wcu-subtitle">{{ 'WhyChooseUsSubtitle' | t }}</p>
+    </header>
+
+    <!-- ===== الكروت ===== -->
+    <div class="row g-4">
+
+      <div class="col-12 col-md-4">
+        <article class="wcu-card">
+          <div class="wcu-icon">
+            <i class="fas fa-monument"></i>
+          </div>
+          <h3 class="wcu-card-title">{{ 'Service1Title' | t }}</h3>
+          <p class="wcu-card-text">{{ 'Service1Description' | t }}</p>
+          <a href="/categrytourDetail/thing-to-do-hurghada" class="wcu-link">
+            <span class="wcu-link-text">{{ 'Service1Link' | t }}</span>
+            <i class="fas fa-arrow-left"></i>
+          </a>
+        </article>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <article class="wcu-card">
+          <div class="wcu-icon">
+            <i class="fas fa-umbrella-beach"></i>
+          </div>
+          <h3 class="wcu-card-title">{{ 'Service2Title' | t }}</h3>
+          <p class="wcu-card-text">{{ 'Service2Description' | t }}</p>
+          <a href="/categrytourDetail/thing-to-do-hurghada" class="wcu-link">
+            <span class="wcu-link-text">{{ 'Service2Link' | t }}</span>
+            <i class="fas fa-arrow-left"></i>
+          </a>
+        </article>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <article class="wcu-card">
+          <div class="wcu-icon">
+            <i class="fas fa-hiking"></i>
+          </div>
+          <h3 class="wcu-card-title">{{ 'Service3Title' | t }}</h3>
+          <p class="wcu-card-text">{{ 'Service3Description' | t }}</p>
+          <a href="/categrytourDetail/thing-to-do-hurghada" class="wcu-link">
+            <span class="wcu-link-text">{{ 'Service3Link' | t }}</span>
+            <i class="fas fa-arrow-left"></i>
+          </a>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+  
+<section class="tse-section">
+  <div class="container">
+    <div class="row align-items-center g-4 g-lg-5">
+
+      <!-- ===== الصورة ===== -->
+      <div class="col-lg-6">
+        <div class="tse-media">
+          <div class="tse-media-frame">
+            <!-- حط الصورة بتاعتك هنا بدل الرابط -->
+            <img class="tse-media-img" src="../../../assets/images/tut2.jpg" alt="RiversTours" loading="lazy" />
+            <span class="tse-media-shine"></span>
+          </div>
+
+          <span class="tse-chip tse-chip--one"><i class="fas fa-water" aria-hidden="true"></i></span>
+          <span class="tse-chip tse-chip--two"><i class="fas fa-smile-beam" aria-hidden="true"></i></span>
+          <span class="tse-media-dots"></span>
+        </div>
+      </div>
+
+      <!-- ===== المحتوى ===== -->
+      <div class="col-lg-6">
+        <div class="tse-content">
+
+          <span class="tse-badge">
+            <i class="fas fa-compass" aria-hidden="true"></i>
+            <strong>RiversTours Tour</strong>
+          </span>
+
+          <h2 class="tse-title">{{ 'TravelersSmilesTitle' | t }}</h2>
+
+          <p class="tse-desc">{{ 'TravelersSmilesDescription' | t }}</p>
+
+          <ul class="tse-features">
+            <li class="tse-feature">
+              <span class="tse-feature-icon"><i class="fas fa-star" aria-hidden="true"></i></span>
+              <span class="tse-feature-text">{{ 'TravelersSmilesFeature1' | t }}</span>
+            </li>
+            <li class="tse-feature">
+              <span class="tse-feature-icon"><i class="fas fa-water" aria-hidden="true"></i></span>
+              <span class="tse-feature-text">{{ 'TravelersSmilesFeature2' | t }}</span>
+            </li>
+            <li class="tse-feature">
+              <span class="tse-feature-icon"><i class="fas fa-smile-beam" aria-hidden="true"></i></span>
+              <span class="tse-feature-text">{{ 'TravelersSmilesFeature3' | t }}</span>
+            </li>
+            <li class="tse-feature">
+              <span class="tse-feature-icon"><i class="fas fa-globe-americas" aria-hidden="true"></i></span>
+              <span class="tse-feature-text">{{ 'TravelersSmilesFeature4' | t }}</span>
+            </li>
+          </ul>
+
+          <a href="/about" class="tse-btn">
+            <span class="tse-btn-text">{{ 'TravelersSmilesButton' | t }}</span>
+            <span class="tse-btn-arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</div>
+  

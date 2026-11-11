@@ -1,0 +1,87 @@
+<div class="tour-listt">
+    <h2 class="section-title">All Users</h2>
+<!-- Search Box -->
+
+  
+    <div class="tour-list">
+        
+    <div class="search-wrapper">
+        <input 
+          type="text" 
+          placeholder="Search transfer..."
+          />
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      </div>
+    <div class="tour-row header">
+      <div>ID</div>
+      <div>Full Name</div>
+      <div>Email Address</div>
+      <div>Status</div>
+      <!-- <div>Actions</div> -->
+    </div>
+
+    @for (user of AllUsersList(); track user.id) {
+    <div class="tour-row">
+  
+      <div class="tour-col id">
+        <span># {{ user.id }}</span>
+      </div>
+  
+      <div class="tour-col title">
+        <h3>{{ user.fullName }}</h3>
+      </div>
+  
+      <div class="tour-col destination">
+        <h3>{{ user.email }}</h3>
+      </div>
+  
+      <div class="tour-col status">
+        <span
+          class="tour-status"
+          [class.active]="user.isActive"
+          [class.inactive]="!user.isActive"
+        >
+          {{ user.isActive ? 'Active' : 'Inactive' }}
+        </span>
+      </div>
+  
+      <!-- <div class="tour-col actions">
+        <button class="btn edit-btn" title="Edit">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button class="btn delete-btn" title="Delete">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div> -->
+  
+    </div>
+    }
+</div>
+  </div>
+  <!-- Pagination -->
+<div class="pagination-wrapper">
+  <!-- Prev -->
+  <button 
+      class="pagination-btn" 
+      [disabled]="pageIndex === 1"
+      (click)="changePage(pageIndex - 1)">
+      <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <!-- Numbers -->
+  <button 
+      class="pagination-number"
+      *ngFor="let p of totalPages"
+      [class.active-page]="pageIndex === p"
+      (click)="changePage(p)">
+          {{ p }}
+  </button>
+
+  <!-- Next -->
+  <button 
+      class="pagination-btn"
+      [disabled]="pageIndex === totalPages.length"
+      (click)="changePage(pageIndex + 1)">
+      <i class="fa-solid fa-chevron-right"></i>
+  </button>
+</div>

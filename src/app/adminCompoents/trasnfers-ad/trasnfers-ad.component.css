@@ -1,0 +1,364 @@
+/* Transfers Section - Vibrant Theme */
+.tour-listt {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
+  min-height: calc(100vh - 140px);
+  border-radius: 20px;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Section Title */
+.section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: #1a2634;
+  position: relative;
+  display: inline-block;
+  background: #000000;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 70%;
+  height: 4px;
+  background: linear-gradient(90deg, #f50404, #f50404, #f50404);
+  border-radius: 3px;
+}
+
+/* Add Button Wrapper */
+.add-tour-wrapper {
+  margin-bottom: 1.8rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn.add-tour-btn {
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+  color: #1a2634;
+  border: none;
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.btn.add-tour-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+  background: linear-gradient(135deg, #ffd966, #ffc107);
+}
+
+.btn.add-tour-btn:active {
+  transform: translateY(0);
+}
+
+.btn.add-tour-btn i {
+  font-size: 1.1rem;
+  transition: transform 0.25s ease;
+}
+
+.btn.add-tour-btn:hover i {
+  transform: rotate(90deg);
+}
+
+/* Tour List Container */
+.tour-list {
+  background: white;
+  border-radius: 20px;
+  overflow-x: auto;
+  overflow-y: visible;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Table Header Row */
+.tour-row.header {
+  background: linear-gradient(135deg, #1a2634 0%, #0f1a24 100%);
+  color: white;
+  font-weight: 700;
+  border-bottom: 3px solid #ffc107;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tour-row.header div {
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.5rem;
+}
+
+.tour-row {
+  display: grid;
+  grid-template-columns: 100px 1.2fr 1fr 120px 140px;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  transition: all 0.25s ease;
+  border-bottom: 1px solid #e9ecef;
+  min-width: 700px;
+}
+
+.tour-row:last-child {
+  border-bottom: none;
+}
+
+.tour-row:not(.header):hover {
+  background: linear-gradient(90deg, #fff9e6, #ffffff);
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Column Styles */
+.tour-col {
+  padding: 0.5rem;
+  font-weight: 500;
+}
+
+/* ID Column - Vibrant Purple */
+.tour-col.id {
+  font-weight: 800;
+  background: linear-gradient(135deg, #c88e08, #c88e08);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+}
+
+/* Reference Name Column - Vibrant Blue */
+.tour-col.title h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.3px;
+}
+
+/* Destination Column - Vibrant Teal */
+.tour-col.destination h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Status Column */
+.tour-status {
+  display: inline-block;
+  padding: 0.45rem 1.2rem;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-align: center;
+  transition: all 0.25s ease;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.tour-status.active {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  border: none;
+  box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+}
+
+.tour-status.inactive {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  border: none;
+  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+}
+
+/* Actions Column */
+.tour-col.actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0.6rem;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn {
+  color: #f39c12;
+  background: rgba(243, 156, 18, 0.12);
+}
+
+.edit-btn:hover {
+  color: #f1c40f;
+  background: rgba(243, 156, 18, 0.25);
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+}
+
+.delete-btn {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.12);
+}
+
+.delete-btn:hover {
+  color: #c0392b;
+  background: rgba(231, 76, 60, 0.25);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.btn i {
+  font-size: 1.2rem;
+  transition: all 0.25s ease;
+}
+
+.edit-btn:hover i {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.delete-btn:hover i {
+  transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .tour-listt {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .tour-row {
+    grid-template-columns: 90px 1.2fr 1fr 110px 130px;
+    padding: 1rem 1.2rem;
+  }
+  
+  .tour-col.id {
+    font-size: 1rem;
+  }
+  
+  .tour-col.title h3,
+  .tour-col.destination h3 {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tour-listt {
+    padding: 1rem;
+    margin: 0.8rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn.add-tour-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .tour-list {
+    overflow-x: auto;
+  }
+  
+  .tour-row {
+    min-width: 650px;
+    padding: 0.9rem 1rem;
+  }
+  
+  .tour-col {
+    padding: 0.3rem;
+  }
+  
+  .tour-col.id {
+    font-size: 0.95rem;
+  }
+  
+  .tour-col.title h3,
+  .tour-col.destination h3 {
+    font-size: 0.9rem;
+  }
+  
+  .tour-status {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tour-listt {
+    padding: 0.8rem;
+    margin: 0.5rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .btn.add-tour-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  
+  .btn.add-tour-btn i {
+    font-size: 0.9rem;
+  }
+  
+  .tour-row {
+    min-width: 600px;
+    padding: 0.8rem;
+  }
+  
+  .tour-col.id {
+    font-size: 0.9rem;
+  }
+  
+  .tour-col.title h3,
+  .tour-col.destination h3 {
+    font-size: 0.85rem;
+  }
+  
+  .tour-status {
+    padding: 0.35rem 0.9rem;
+    font-size: 0.75rem;
+  }
+  
+  .btn i {
+    font-size: 1rem;
+  }
+}

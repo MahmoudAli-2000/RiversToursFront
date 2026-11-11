@@ -1,0 +1,42 @@
+<header class="admin-topnav">
+  <!-- Left -->
+  <div class="topnav-left">
+    <img src="../../../assets/images/adminimage.png" alt="Admin Logo" class="logo" />
+    <h2 class="brand">Hi : Admin</h2>
+  </div>
+
+  <!-- Center Navigation -->
+  <ul class="topnav-links">
+    <li class="nav-item "><a routerLink="/"routerLinkActive="active-link"><i class="fa-solid fa-house-circle-check"></i> Home</a></li>
+    <li class="nav-item "><a routerLink="tours"routerLinkActive="active-link"><i class="fas fa-suitcase-rolling"></i> Tours</a></li>
+    <li class="nav-item"><a routerLink="vacationhomes" routerLinkActive="active-link"><i class="fas fa-house"></i> Vacation Homes</a></li>
+    <li class="nav-item"><a routerLink="categorytour"routerLinkActive="active-link"><i class="fa-solid fa-layer-group"></i>Category Tours</a></li>
+    <li class="nav-item"><a routerLink="destnaions"routerLinkActive="active-link"><i class="fa-solid fa-earth-americas"></i>Destnaions</a></li>
+    <li class="nav-item"><a routerLink="transfers"routerLinkActive="active-link"><i class="fa-solid fa-plane-up"></i> Transfers</a></li>
+
+    <!-- <li class="nav-item dropdown">
+      <a class="dropdown-toggle">
+        <i class="fa-solid fa-tv"></i> Services
+      </a>
+    
+      <ul class="dropdown-menu">
+        <li><a routerLink="hotels" routerLinkActive="active-link">Hotels</a></li>
+        <li><a routerLink="transfers" routerLinkActive="active-link">Transfers</a></li>
+      </ul>
+    </li> -->
+    <li class="nav-item"><a routerLink="emails"routerLinkActive="active-link"><i class="fas fa-calendar-check"></i> Bookings</a></li>
+    <li class="nav-item"><a routerLink="vacationhome-emails" routerLinkActive="active-link"><i class="fas fa-house-circle-check"></i> Home Bookings</a></li>
+    <li class="nav-item"><a routerLink="users"routerLinkActive="active-link"><i class="fas fa-users"></i> Users</a></li>
+    
+  </ul>
+
+  <!-- Right Section -->
+  <div class="topnav-right">
+    <button class="Btn logout-btn" (click)="onLogout()">
+      <span class="sign">
+        <i class="fas fa-sign-out-alt"></i>
+      </span>
+      <span class="text">Logout</span>
+    </button>
+  </div>
+</header>

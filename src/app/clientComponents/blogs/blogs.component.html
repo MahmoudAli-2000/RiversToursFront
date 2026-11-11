@@ -1,0 +1,54 @@
+<!-- Hero Section -->
+<section class="blogs-hero">
+    <div class="hero-image-wrapper">
+      <img src="assets/images/img3.jpg" loading="lazy" alt="Travel Hero Image" />
+    </div>
+  
+    <div class="hero-content">
+      <h1>{{ 'BLOGS.TITLE' | t }}</h1>
+      <p>{{ 'BLOGS.SUBTITLE' | t }}</p>
+    </div>
+  </section>
+  <!-- Blogs List -->
+  <section class="blogs-container">
+  
+    <article class="blog-card" *ngFor="let blog of blogs">
+  
+      <!-- Image -->
+      <div class="blog-image">
+        <img
+          [src]="blog.image"
+          [alt]="blog.titleKey | t"
+          loading="lazy"
+        />
+      </div>
+  
+      <!-- Content -->
+      <div class="blog-content">
+  
+        <!-- Category -->
+        <span class="blog-category">
+          {{ blog.categoryKey | t }}
+        </span>
+  
+        <!-- Title -->
+        <h2>{{ blog.titleKey | t }}</h2>
+        <p>{{ blog.excerptKey | t }}</p>
+        
+  
+        <!-- Footer -->
+        <div class="blog-footer">
+          <span class="blog-date">{{ blog.date }}</span>
+  
+          <a  [routerLink]="['/', blog.slug]"  class="read-more">
+            {{ 'BLOGS.READ_MORE' | t }}
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+  
+      </div>
+  
+    </article>
+  
+  </section>
+  

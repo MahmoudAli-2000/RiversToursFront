@@ -1,0 +1,50 @@
+<section class="dashboard-section container">
+    <h2 class="section-title">All Destnations</h2>
+
+
+    <div class="tour-list">
+  
+      <!-- Table Header -->
+      <div class="tour-row header">
+        <div class="tour-col id">ID</div>
+        <div class="tour-col title">Name</div>
+        <div class="tour-col status">Status</div>
+        <!-- <div class="tour-col actions">Actions</div> -->
+      </div>
+  
+      @for (destnaion of allDestionList(); track destnaion.id) {
+      <div class="tour-row">
+  
+        <!-- ID -->
+        <div class="tour-col id">
+          <span># {{ destnaion.id }}</span>
+        </div>
+  
+        <!-- Title -->
+        <div class="tour-col title">
+          <h3>{{ destnaion.names }}</h3>
+        </div>
+  
+        <!-- Status -->
+        <div class="tour-col status">
+          <span class="tour-status" [class.active]="destnaion.isActive" [class.inactive]="!destnaion.isActive">
+            {{ destnaion.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </div>
+  
+        <!-- Actions
+        <div class="tour-col actions">
+          <button class="btn edit-btn" title="Edit" [routerLink]="['/admin/destnationUpdate',destnaion.id]">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+          <button class="btn delete-btn" title="Delete"  (click)="deleteDestination(destnaion.id)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+   -->
+      </div>
+      }
+    </div>
+  
+  </section>
+  

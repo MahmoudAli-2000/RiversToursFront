@@ -1,0 +1,90 @@
+<section class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+
+          <!-- Logo -->
+          <div class="text-center mb-4">
+            <img src="./assets/images/redseaRemove1.png" alt="Logo" class="mb-3" height="60">
+            <h3 class="fw-bold">Create Account</h3>
+          </div>
+
+          <!-- Form -->
+          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+            <!-- Full Name -->
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input [ngClass]="{
+                  'is-invalid': registrationForm.get('fullName')?.invalid && (registrationForm.get('fullName')?.touched || registrationForm.get('fullName')?.dirty),
+                  'is-valid': registrationForm.get('fullName')?.valid && (registrationForm.get('fullName')?.touched || registrationForm.get('fullName')?.dirty)
+              }" id="fullName" type="text" class="form-control" formControlName="fullName" placeholder="John Doe">
+              @if(registrationForm.get('fullName')?.invalid && (registrationForm.get('fullName')?.touched||registrationForm.get('fullName')?.dirty)){<div class="text-danger small mt-1"
+              >
+                   Full Name is required (min 3 chars).
+               </div>
+              }
+              
+            </div>
+
+            <!-- email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">email</label>
+              <input [ngClass]="{
+                  'is-invalid': registrationForm.get('email')?.invalid && (registrationForm.get('email')?.touched || registrationForm.get('email')?.dirty),
+                  'is-valid': registrationForm.get('email')?.valid && (registrationForm.get('email')?.touched || registrationForm.get('email')?.dirty)
+              }" id="email" type="email" class="form-control" formControlName="email" placeholder="example@email.com">
+              @if(registrationForm.get('email')?.invalid && (registrationForm.get('email')?.touched||registrationForm.get('email')?.dirty)){
+              <div class="text-danger small mt-1">
+                Valid email is required.
+              </div>
+          }
+            </div>
+
+            <!-- password -->
+            <div class="mb-3">
+              <label for="password" class="form-label">password</label>
+              <input [ngClass]="{
+                  'is-invalid': registrationForm.get('password')?.invalid && (registrationForm.get('password')?.touched || registrationForm.get('password')?.dirty),
+                  'is-valid': registrationForm.get('password')?.valid && (registrationForm.get('password')?.touched || registrationForm.get('password')?.dirty)
+              }" id="password" type="password" class="form-control" formControlName="password" placeholder="••••••">
+             @if(registrationForm.get('password')?.invalid && (registrationForm.get('password')?.touched ||registrationForm.get('password')?.dirty)){
+              <div class="text-danger small mt-1"
+                  >
+                password must be at least 6 characters
+                a minimum of 1 lower case letter [a-z]
+                a minimum of 1 upper case letter [A-Z]
+                a minimum of 1 numeric character [0-9]
+              </div>
+          }
+            </div>
+
+         
+
+            <!-- Submit -->
+            <div class="d-grid mb-3">
+              <button type="submit" class="btn btn-primary btn-lg" >
+                Register
+              </button>
+            </div>
+
+            @if(IsSccuess==true){
+              <div class="alert alert-success text-center">
+                Registration successful!.
+              </div>
+            }
+
+            <!-- Already have account -->
+            <div class="text-center">
+              <p class="mb-0">Already have an account?
+                <a routerLink="../login" class="text-primary text-decoration-none fw-semibold">Login</a>
+              </p>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
