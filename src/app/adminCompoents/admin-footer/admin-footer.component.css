@@ -5,9 +5,10 @@
 .admin-footer {
   width: 100%;
   margin-top: auto;
-  padding: 1.15rem clamp(1rem, 3vw, 2.5rem);
-  border-top: 1px solid #d5e7f2;
-  background: linear-gradient(110deg, #f3f9fd 0%, #eaf4fb 100%);
+  padding: 1.3rem clamp(1rem, 3vw, 2.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(110deg, #014b83 0%, #015ba3 58%, #0879b8 100%);
+  box-shadow: 0 -5px 22px rgba(2, 42, 72, 0.2);
 }
 
 .footer-content {
@@ -22,7 +23,7 @@
 
 .footer-left p {
   margin: 0;
-  color: #536a79;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.84rem;
 }
 
@@ -35,7 +36,7 @@
 
 .footer-links a {
   position: relative;
-  color: #365b73;
+  color: rgba(255, 255, 255, 0.88);
   font-size: 0.84rem;
   font-weight: 550;
   text-decoration: none;
@@ -49,7 +50,7 @@
   left: 0;
   height: 2px;
   border-radius: 2px;
-  background: #0879b8;
+  background: #fff;
   content: '';
   transform: scaleX(0);
   transform-origin: left;
@@ -57,7 +58,7 @@
 }
 
 .footer-links a:hover {
-  color: #015ba3;
+  color: #fff;
 }
 
 .footer-links a:hover::after {
@@ -66,17 +67,17 @@
 
 .footer-links a:focus-visible {
   border-radius: 2px;
-  outline: 2px solid #0879b8;
+  outline: 2px solid #fff;
   outline-offset: 3px;
 }
 
 .footer-right span {
   display: inline-block;
   padding: 0.35rem 0.75rem;
-  border: 1px solid #c7dfef;
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 30px;
-  background: #fff;
-  color: #015ba3;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
   font-size: 0.75rem;
   font-weight: 650;
   letter-spacing: 0.03em;
