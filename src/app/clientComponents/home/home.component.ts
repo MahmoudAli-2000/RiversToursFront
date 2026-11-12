@@ -47,7 +47,6 @@ export class HomeComponent extends ReloadableComponent implements OnDestroy, Aft
 
   @ViewChild('aboutSection', { static: false }) aboutSection?: ElementRef<HTMLElement>;
   @ViewChild('brandNameText', { static: false }) brandNameTextRef?: ElementRef<HTMLElement>;
-  @ViewChild('subtitleText', { static: false }) subtitleTextRef?: ElementRef<HTMLParagraphElement>;
   @ViewChild('swiperContainer', { static: false }) swiperContainer?: ElementRef<any>; // إضافة ViewChild للـ swiper
   
   constructor(ReloadService: ReloadService, @Inject(PLATFORM_ID) private platformId: object) {
@@ -197,9 +196,6 @@ export class HomeComponent extends ReloadableComponent implements OnDestroy, Aft
 
     this.initBrandNameAnimation();
 
-    // تهيئة الـ subtitle animation
-    this.initSubtitleAnimation();
-
     // إذا كانت البيانات محملة مسبقاً، قم بتهيئة الـ swiper
     if (this.AllPopularHurghadaCat().length > 0) {
       setTimeout(() => {
@@ -232,49 +228,6 @@ export class HomeComponent extends ReloadableComponent implements OnDestroy, Aft
       letter.appendChild(movingLetter);
       fragment.appendChild(letter);
     });
-
-    textNode.replaceWith(fragment);
-  }
-
-  private initSubtitleAnimation() {
-    if (!this.subtitleTextRef?.nativeElement || !this.isBrowser) return;
-
-    const element = this.subtitleTextRef.nativeElement;
-    const textNode = Array.from(element.childNodes).find(
-      (node): node is Text => node.nodeType === Node.TEXT_NODE
-    );
-    const text = textNode?.textContent?.trim();
-    if (!text || !textNode) return;
-
-    const characters: string[] = [];
-    for (const character of Array.from(text.normalize('NFC'))) {
-      if (/\p{M}/u.test(character) && characters.length > 0) {
-        characters[characters.length - 1] += character;
-      } else {
-        characters.push(character);
-      }
-    }
-
-    const fragment = element.ownerDocument.createDocumentFragment();
-    let letterIndex = 0;
-    for (const character of characters) {
-      if (/^\s$/u.test(character)) {
-        fragment.appendChild(element.ownerDocument.createTextNode(character));
-        continue;
-      }
-
-      const angle = letterIndex * 2.4;
-      const distance = 15 + (letterIndex % 4) * 6;
-      const letter = element.ownerDocument.createElement('span');
-      letter.className = 'letter';
-      letter.textContent = character;
-      letter.style.setProperty('--scatter-x', `${Math.cos(angle) * distance}px`);
-      letter.style.setProperty('--scatter-y', `${Math.sin(angle) * distance}px`);
-      letter.style.setProperty('--scatter-rotation', `${(letterIndex % 2 ? 1 : -1) * 35}deg`);
-      letter.style.animationDelay = `${letterIndex * 35}ms`;
-      fragment.appendChild(letter);
-      letterIndex++;
-    }
 
     textNode.replaceWith(fragment);
   }

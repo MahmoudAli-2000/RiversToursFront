@@ -3246,44 +3246,12 @@ aside.oc-panel {
   white-space: normal;
   text-wrap: balance;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8), 0 0 22px rgba(115, 199, 255, 0.48);
-  animation: homeSubtitleReveal 1s ease-out 0.35s both,
-    homeSubtitleFloat 3.2s ease-in-out 1.4s infinite;
-}
-
-.home-page .brand-subtitle .letter {
-  display: inline-block;
-  opacity: 0;
-  transform: translate3d(
-    var(--scatter-x),
-    var(--scatter-y),
-    0
-  ) rotate(var(--scatter-rotation)) scale(0.25);
-  animation: homeLetterAssemble 4.8s cubic-bezier(0.2, 0.75, 0.25, 1) infinite;
+  animation: homeSubtitleReveal 700ms ease-out 0.35s both;
 }
 
 .home-page .brand-subtitle .fa-heart {
   margin-inline-start: 0.25em;
   color: #8bd1ff;
-}
-
-@keyframes homeLetterAssemble {
-  0%, 10% {
-    opacity: 0;
-    transform: translate3d(
-      var(--scatter-x),
-      var(--scatter-y),
-      0
-    ) rotate(var(--scatter-rotation)) scale(0.25);
-  }
-  25%, 72% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotate(0) scale(1);
-  }
-  88%, 100% {
-    opacity: 0;
-    transform: translate3d(var(--scatter-x), var(--scatter-y), 0)
-      rotate(var(--scatter-rotation)) scale(0.3);
-  }
 }
 
 @keyframes homeHeroEntrance {
@@ -3330,11 +3298,6 @@ aside.oc-panel {
 @keyframes homeSubtitleReveal {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-@keyframes homeSubtitleFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
 }
 
 @media (max-width: 768px) {

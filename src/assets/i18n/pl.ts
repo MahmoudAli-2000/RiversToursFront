@@ -297,7 +297,7 @@ ABOUT_: {
     }
   }
 }
-,HeroDiscription: "Avontuur Begint Hier",
+,HeroDiscription: "Przygoda zaczyna się tutaj",
 
 WhyChooseUsTitle: "Waarom Voor Ons Kiezen",
 WhyChooseUsSubtitle: "Schitterende Redenen",

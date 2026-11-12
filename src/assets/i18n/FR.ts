@@ -297,7 +297,7 @@ ABOUT_: {
     }
   }
 }
-,HeroDiscription: "L'Aventure Commence Ici",
+,HeroDiscription: "L'aventure commence ici",
 
 WhyChooseUsTitle: "Pourquoi Nous Choisir",
 WhyChooseUsSubtitle: "Raisons Brillantes",

@@ -297,7 +297,7 @@ ABOUT_: {
     }
   }
 }
-,HeroDiscription: "Abenteuer beginnt hier",
+,HeroDiscription: "Das Abenteuer beginnt hier",
 
 WhyChooseUsTitle: "Warum uns wählen",
 WhyChooseUsSubtitle: "Brillante Gründe",
