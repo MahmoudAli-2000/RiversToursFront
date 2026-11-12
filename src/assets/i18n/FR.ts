@@ -72,6 +72,7 @@ export const FR = {
     START_LOCATION: 'Lieu de Départ',
     END_LOCATION: 'Lieu d\'Arrivée',
     LANGUAGES: 'Langues',
+    PER_PERSON: 'par personne',
     GALLERY: 'Galerie de la Visite',
     HIGHLIGHTS: 'Points Forts de la Visite',
     INCLUDED: "Ce Qui Est Inclus",

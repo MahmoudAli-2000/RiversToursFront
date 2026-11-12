@@ -72,6 +72,7 @@ export const PL = {
     START_LOCATION: 'Startlocatie',
     END_LOCATION: 'Eindlocatie',
     LANGUAGES: 'Talen',
+    PER_PERSON: 'za osobę',
     GALLERY: 'Rondleiding Galerij',
     HIGHLIGHTS: 'Hoogtepunten van de Rondleiding',
     INCLUDED: "Wat Is Inbegrepen",

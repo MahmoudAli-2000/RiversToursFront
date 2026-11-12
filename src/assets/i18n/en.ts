@@ -72,6 +72,7 @@ export const EN = {
       START_LOCATION: 'Start Location',
       END_LOCATION: 'End Location',
       LANGUAGES: 'Languages',
+      PER_PERSON: 'per person',
       GALLERY: 'Tour Gallery',
       HIGHLIGHTS: 'Tour Highlights',
       INCLUDED: "What's Included",

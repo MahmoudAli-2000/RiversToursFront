@@ -72,6 +72,7 @@ export const DE = {
     START_LOCATION: 'Startort',
     END_LOCATION: 'Endort',
     LANGUAGES: 'Sprachen',
+    PER_PERSON: 'pro Person',
     GALLERY: 'Tourgalerie',
     HIGHLIGHTS: 'Tourhöhepunkte',
     INCLUDED: "Was ist inbegriffen",
