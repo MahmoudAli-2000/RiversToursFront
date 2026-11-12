@@ -4,6 +4,7 @@ export interface ITour {
   imageCover: string
   isActive: boolean
   duration: number
+  durationType: string
   priceDollar: number
   priceEuro: number
   startLocation: string
