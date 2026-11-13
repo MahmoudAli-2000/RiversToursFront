@@ -34,8 +34,8 @@
             (mouseleave)="reopenDestinationDropdowns()">
           <a class="nav-link dropdown-toggle">{{ 'NAV.MARSA_ALAM' | t }}</a>
           <ul class="dropdown-menu" (click)="dismissDestinationDropdown()">
-            <li><a [routerLink]="['/categrytourDetail', 'cairo-tours-marsa-alam']">{{ 'NAV.CAIRO_TOURS_MARSA_ALAM' | t }}</a></li>
-            <li><a [routerLink]="['/categrytourDetail', 'luxor-tours-marsa-alam']">{{ 'NAV.LUXOR_TOURS_MARSA_ALAM' | t }}</a></li>
+            <!-- <li><a [routerLink]="['/categrytourDetail', 'cairo-tours-marsa-alam']">{{ 'NAV.CAIRO_TOURS_MARSA_ALAM' | t }}</a></li>
+            <li><a [routerLink]="['/categrytourDetail', 'luxor-tours-marsa-alam']">{{ 'NAV.LUXOR_TOURS_MARSA_ALAM' | t }}</a></li> -->
             <li><a [routerLink]="['/categrytourDetail', 'safari-tours-marsa-alam']">{{ 'NAV.SAFARI_TOURS_MARSA_ALAM' | t }}</a></li>
             <li><a [routerLink]="['/categrytourDetail', 'sea-tours-marsa-alam']">{{ 'NAV.SEA_TOURS_MARSA_ALAM' | t }}</a></li>
             <li><a [routerLink]="['/categrytourDetail', 'diving-tours-marsa-alam']">{{ 'NAV.DIVING_TOURS_MARSA_ALAM' | t }}</a></li>
@@ -228,12 +228,12 @@
       </button>
 
       <div id="oc-marsa-alam-menu" class="oc-sub" [class.is-open]="activeDropdown === 'marsa-alam'">
-        <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'cairo-tours-marsa-alam']" (click)="closeOffcanvas()">
+        <!-- <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'cairo-tours-marsa-alam']" (click)="closeOffcanvas()">
           {{ 'NAV.CAIRO_TOURS_MARSA_ALAM' | t }}
         </a>
         <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'luxor-tours-marsa-alam']" (click)="closeOffcanvas()">
           {{ 'NAV.LUXOR_TOURS_MARSA_ALAM' | t }}
-        </a>
+        </a> -->
         <a class="oc-sub-item" [routerLink]="['/categrytourDetail', 'safari-tours-marsa-alam']" (click)="closeOffcanvas()">
           {{ 'NAV.SAFARI_TOURS_MARSA_ALAM' | t }}
         </a>
