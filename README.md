@@ -98,6 +98,8 @@ Git & GitHub
 
 Netlify (Frontend Deployment)
 
+The frontend proxies `/api/*` requests through its own origin on Vercel and Netlify deployments. Keep the backend auth cookie host-only (do not set a fixed `Domain`) so Safari can use the HttpOnly cookie without relying on third-party cookies.
+
 Production HTTPS domain
 
 SMTP Email Integration
