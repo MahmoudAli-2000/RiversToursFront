@@ -29,11 +29,12 @@ export class TokComponent  implements AfterViewInit {
     (window as any).Tawk_LoadStart = new Date();
 
     const s1 = document.createElement('script');
+    const s0 = document.getElementsByTagName('script')[0];
     s1.async = true;
-    s1.src = 'https://embed.tawk.to/69488d04420bc819787eff99/1jd1mdmlf';
+    s1.src = 'https://embed.tawk.to/6af9c0031745c23c3ea0f1b5/1k7fpc3sm';
     s1.charset = 'UTF-8';
     s1.setAttribute('crossorigin', '*');
-    document.body.appendChild(s1);
+    s0.parentNode?.insertBefore(s1, s0);
 
     s1.onload = () => {
       const iframe = document.querySelector(
@@ -41,8 +42,8 @@ export class TokComponent  implements AfterViewInit {
       ) as HTMLElement | null;
 
       if (iframe) {
-        iframe.style.left = '20px';
-        iframe.style.right = 'auto';
+        iframe.style.right = '20px';
+        iframe.style.left = 'auto';
       }
     };
   }
