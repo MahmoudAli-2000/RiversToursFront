@@ -1,70 +1,99 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-    <!-- Main Page -->
-    <url>
-        <loc>https://www.riverstours.com/home</loc>
-    </url>
+  <!-- الصفحات الرئيسية -->
+  <url>
+    <loc>https://www.riverstours.com/home</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>1.0</priority>
+  </url>
 
-    <!-- Main Website Pages -->
-    <url>
-        <loc>https://www.riverstours.com/about</loc>
-    </url>
-    <url>
-        <loc>https://www.riverstours.com/reviews</loc>
-    </url>
-    <url>
-        <loc>https://www.riverstours.com/vacationhome</loc>
-    </url>
+  <!-- صفحات Categories -->
+  <url>
+    <loc>https://www.riverstours.com/categrytourDetail/cairo-tours-hurghada</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/categrytourDetail/luxor-tours-hurghada</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/categrytourDetail/safari-tours-hurghada</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/categrytourDetail/sea-tours-hurghada</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/categrytourDetail/diving</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/categrytourDetail/thing-to-do-hurghada</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.8</priority>
+  </url>
 
-    <!-- Transfers -->
-    <url>
-        <loc>https://www.riverstours.com/transfer</loc>
-    </url>
-    <url>
-        <loc>https://www.riverstours.com/transferDetail/hurghada-airport-transfer</loc>
-    </url>
+  <!-- صفحات Transfers -->
+  <url>
+    <loc>https://www.riverstours.com/transfer</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/transferDetail/hurghada-airport</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.9</priority>
+  </url>
 
-    <!-- Cairo Tours -->
-    <url>
-        <loc>https://www.riverstours.com/categrytourDetail/cairo-tours-hurghada</loc>
-    </url>
+  <!-- الصفحات الثابتة -->
+  <url>
+    <loc>https://www.riverstours.com/blogs</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/hurghadaBlog</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/luxorBlog</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/reviews</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/about</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.8</priority>
+  </url>
 
-    <!-- Hurghada Tours -->
-    <url>
-        <loc>https://www.riverstours.com/categrytourDetail/thing-to-do-hurghada</loc>
-    </url>
-    <url>
-        <loc>https://www.riverstours.com/categrytourDetail/diving-tours-hurgada</loc>
-    </url>
-    <url>
-        <loc>https://www.riverstours.com/categrytourDetail/sea-tours-hurghada</loc>
-    </url>
-    <url>
-        <loc>https://www.riverstours.com/categrytourDetail/luxor-tours-hurghada</loc>
-    </url>
-
-    <!-- Aswan Tours -->
-    <url>
-        <loc>https://www.riverstours.com/categrytourDetail/cultural-heritage-tours-aswan</loc>
-    </url>
-    <url>
-        <loc>https://www.riverstours.com/categrytourDetail/nile-cruises-aswan</loc>
-    </url>
-    <url>
-        <loc>https://www.riverstours.com/categrytourDetail/private-customized-packages-aswan</loc>
-    </url>
-
-    <!-- Marsa Alam Tours -->
-    <url>
-        <loc>https://www.riverstours.com/categrytourDetail/things-to-do-marsa-alam</loc>
-    </url>
-    <url>
-        <loc>https://www.riverstours.com/categrytourDetail/sea-tours-marsa-alam</loc>
-    </url>
-    <url>
-        <loc>https://www.riverstours.com/categrytourDetail/safari-tours-marsa-alam</loc>
-    </url>
+  <!-- صفحات Tours الديناميكية -->
+  <url>
+    <loc>https://www.riverstours.com/tourDetail/cairo-buy-bus</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/tourDetail/luxor-private-tour</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.riverstours.com/tourDetail/hot-air-balloon-ride</loc>
+    <lastmod>2026-01-03</lastmod>
+    <priority>0.9</priority>
+  </url>
 
 </urlset>
