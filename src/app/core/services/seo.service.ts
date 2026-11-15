@@ -13,7 +13,7 @@ export interface SeoMetadata {
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
-  private readonly siteUrl = 'https://www.toppickstravels.com';
+  private readonly siteUrl = 'https://www.riverstours.com';
   private readonly logoUrl = `${this.siteUrl}/assets/images/rriver.png`;
 
   constructor(
@@ -32,13 +32,13 @@ export class SeoService {
     this.meta.updateTag({ name: 'keywords', content: metadata.keywords });
     this.meta.updateTag({ name: 'robots', content: 'index, follow, max-image-preview:large' });
 
-    this.meta.updateTag({ property: 'og:site_name', content: 'Rivers Tours Travels' });
+    this.meta.updateTag({ property: 'og:site_name', content: 'RiversTours' });
     this.meta.updateTag({ property: 'og:title', content: metadata.title });
     this.meta.updateTag({ property: 'og:description', content: description });
     this.meta.updateTag({ property: 'og:type', content: metadata.type || 'website' });
     this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
     this.meta.updateTag({ property: 'og:image', content: imageUrl });
-    this.meta.updateTag({ property: 'og:image:alt', content: 'Rivers Tours Travels logo' });
+    this.meta.updateTag({ property: 'og:image:alt', content: 'RiversTours logo' });
 
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:title', content: metadata.title });
