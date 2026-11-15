@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://riverstours.runasp.net",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

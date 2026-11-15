@@ -553,6 +553,10 @@
   background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
 }
 
+.main-nav .social-icons a[data-name="email"]:hover {
+  background: #2b76b9;
+}
+
 @keyframes social-icon-hover {
   from {
     transform: translateY(-5px) scale(1.18) rotate(-8deg);
@@ -910,6 +914,10 @@
 
 .oc-social-btn:nth-child(3):hover {
   background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+}
+
+.oc-social-btn:nth-child(4):hover {
+  background: #2b76b9;
 }
 
 .oc-social-btn:active {
