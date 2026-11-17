@@ -33,8 +33,19 @@ export const EN = {
       CATEGORIES: 'Categories'
     },
     FOOTER: {
-      DESC: "Discover the wonders of Egypt with our curated tours and private excursions. Experience unforgettable Red Sea adventures, thrilling desert safaris, and immersive historical journeys through Cairo, Luxor, and beyond.",
-      QUICK_LINKS: 'Quick Links'
+      BRAND_TAGLINE: 'Your local gateway to Egypt',
+      DESC: 'Based in Hurghada, we connect you with Egypt through carefully selected tours, Red Sea adventures, desert safaris and private transfers led by trusted local guides.',
+      BASED_IN_HURGHADA: 'Based in Hurghada',
+      LOCAL_GUIDES: 'Trusted local guides',
+      TOURS_AND_TRANSFERS: 'Tours and private transfers',
+      LEARN_ABOUT_US: 'Learn more about us',
+      QUICK_LINKS: 'Quick Links',
+      EXPLORE_EGYPT: 'Explore Egypt',
+      ABOUT_US: 'About Us',
+      CONTACT_US: 'Contact Us',
+      LOCATION: 'Hurghada, Egypt',
+      WHATSAPP: 'Chat on WhatsApp',
+      COPYRIGHT: '© RiversTours. All rights reserved.'
     },
     SECTION: {
       DISCOVER_JOURNEY: 'Discover Your Next Journey',
@@ -186,6 +197,22 @@ export const EN = {
     },
     RESERVATION: {
       PROTECTED: 'Your reservation details are protected'
+    },
+    BOOKING: {
+      FULL_NAME: 'Full Name',
+      EMAIL_ADDRESS: 'Email Address',
+      COMMENTS: 'Any comments?',
+      HOTEL_NAME: 'Hotel Name',
+      ROOM_NUMBER: 'Room Number',
+      ADULTS: 'Adults (10+ Years):',
+      CHILDREN: 'Children (5-10 Years):',
+      DATE: 'Date',
+      FULL_NAME_REQUIRED: 'Full Name is required (min 3 chars).',
+      EMAIL_REQUIRED: 'Valid Email is required.',
+      COMMENTS_REQUIRED: 'Booking details are required.',
+      ADULTS_REQUIRED: 'Adults number is required.',
+      CHILDREN_REQUIRED: 'Children number is required.',
+      DATE_REQUIRED: 'Booking date is required.'
     },
     ABOUT: {
       TITLE: 'About Us',

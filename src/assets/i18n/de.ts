@@ -33,8 +33,19 @@ export const DE = {
     CATEGORIES: 'Kategorien'
   },
   FOOTER: {
-    DESC: "Entdecken Sie die Wunder Ägyptens mit unseren sorgfältig ausgewählten Touren und privaten Ausflügen. Erleben Sie unvergessliche Abenteuer am Roten Meer, aufregende Wüstensafaris und immersive historische Reisen durch Kairo, Luxor und darüber hinaus.",
-    QUICK_LINKS: 'Schnellzugriff'
+    BRAND_TAGLINE: 'Ihr lokaler Zugang zu Ägypten',
+    DESC: 'Von Hurghada aus bringen wir Ihnen Ägypten näher – mit sorgfältig ausgewählten Touren, Abenteuern am Roten Meer, Wüstensafaris und privaten Transfers mit vertrauenswürdigen lokalen Guides.',
+    BASED_IN_HURGHADA: 'Mit Sitz in Hurghada',
+    LOCAL_GUIDES: 'Vertrauenswürdige lokale Guides',
+    TOURS_AND_TRANSFERS: 'Touren und private Transfers',
+    LEARN_ABOUT_US: 'Mehr über uns erfahren',
+    QUICK_LINKS: 'Schnellzugriff',
+    EXPLORE_EGYPT: 'Ägypten entdecken',
+    ABOUT_US: 'Über uns',
+    CONTACT_US: 'Kontakt',
+    LOCATION: 'Hurghada, Ägypten',
+    WHATSAPP: 'Auf WhatsApp chatten',
+    COPYRIGHT: '© RiversTours. Alle Rechte vorbehalten.'
   },
   SECTION: {
     DISCOVER_JOURNEY: 'Entdecken Sie Ihre nächste Reise',
@@ -186,6 +197,22 @@ export const DE = {
   },
   RESERVATION: {
     PROTECTED: 'Ihre Reservierungsdaten sind geschützt'
+  },
+  BOOKING: {
+    FULL_NAME: 'Vollständiger Name',
+    EMAIL_ADDRESS: 'E-Mail-Adresse',
+    COMMENTS: 'Anmerkungen?',
+    HOTEL_NAME: 'Hotelname',
+    ROOM_NUMBER: 'Zimmernummer',
+    ADULTS: 'Erwachsene (ab 10 Jahren):',
+    CHILDREN: 'Kinder (5–10 Jahre):',
+    DATE: 'Datum',
+    FULL_NAME_REQUIRED: 'Der vollständige Name ist erforderlich (mind. 3 Zeichen).',
+    EMAIL_REQUIRED: 'Eine gültige E-Mail-Adresse ist erforderlich.',
+    COMMENTS_REQUIRED: 'Buchungsdetails sind erforderlich.',
+    ADULTS_REQUIRED: 'Die Anzahl der Erwachsenen ist erforderlich.',
+    CHILDREN_REQUIRED: 'Die Anzahl der Kinder ist erforderlich.',
+    DATE_REQUIRED: 'Das Buchungsdatum ist erforderlich.'
   },
   ABOUT: {
     TITLE: 'Über uns',

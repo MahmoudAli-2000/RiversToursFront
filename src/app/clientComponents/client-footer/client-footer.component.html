@@ -9,32 +9,53 @@
           <img src="../../../assets/images/rriver.png" alt="RiversTours logo" height="100">
           <span>RiversTours</span>
         </h6>
+        <p class="footer-tagline">{{ 'FOOTER.BRAND_TAGLINE' | t }}</p>
         <p class="footer-desc">
-          {{ 'FOOTER.DESC' | t }}        </p>
+          {{ 'FOOTER.DESC' | t }}
+        </p>
+        <ul class="footer-highlights">
+          <li><i class="fas fa-location-dot" aria-hidden="true"></i>{{ 'FOOTER.BASED_IN_HURGHADA' | t }}</li>
+          <li><i class="fas fa-users" aria-hidden="true"></i>{{ 'FOOTER.LOCAL_GUIDES' | t }}</li>
+          <li><i class="fas fa-route" aria-hidden="true"></i>{{ 'FOOTER.TOURS_AND_TRANSFERS' | t }}</li>
+        </ul>
+        <a class="footer-about-cta" routerLink="/about">
+          {{ 'FOOTER.LEARN_ABOUT_US' | t }} <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
       </div>
 
-      <!-- Quick Links -->
-      <div class="footer-col">
-        <h6 class="footer-title"> {{ 'FOOTER.QUICK_LINKS' | t }}</h6>
-        <a class="footer-link" routerLink="home">{{ 'NAV.HOME' | t }}</a>
-        <a class="footer-link" routerLink="product">{{ 'NAV.PRODUCTS' | t }}</a>
-        <a class="footer-link" routerLink="categories">{{ 'NAV.CATEGORIES' | t }}</a>
-      </div>
+      <nav class="footer-col" [attr.aria-label]="'FOOTER.QUICK_LINKS' | t">
+        <h6 class="footer-title"><i class="fas fa-link" aria-hidden="true"></i>{{ 'FOOTER.QUICK_LINKS' | t }}</h6>
+        <a class="footer-link" routerLink="/">{{ 'NAV.HOME' | t }}</a>
+        <a class="footer-link" routerLink="/categrytourDetail/thing-to-do-hurghada">{{ 'NAV.HURGHADA_TOURS' | t }}</a>
+        <a class="footer-link" routerLink="/transfer">{{ 'NAV.TRANSFERS' | t }}</a>
+        <a class="footer-link" routerLink="/vacationhome">{{ 'NAV.VACATION_HOME' | t }}</a>
+      </nav>
 
-      <!-- Customer Service -->
-      <div class="footer-col">
-        <h6 class="footer-title">About us</h6>
-        <a class="footer-link" href="#">Returns</a>
-        <a class="footer-link" href="#">Hurghada Tours</a>
-        <a class="footer-link" href="#">Privacy Policy</a>
-      </div>
+      <nav class="footer-col" [attr.aria-label]="'FOOTER.EXPLORE_EGYPT' | t">
+        <h6 class="footer-title"><i class="fas fa-compass" aria-hidden="true"></i>{{ 'FOOTER.EXPLORE_EGYPT' | t }}</h6>
+        <a class="footer-link" routerLink="/categrytourDetail/cairo-tours-hurghada">{{ 'NAV.CAIRO_TOURS' | t }}</a>
+        <a class="footer-link" routerLink="/categrytourDetail/luxor-tours-hurghada">{{ 'NAV.LUXOR_TOURS' | t }}</a>
+        <a class="footer-link" routerLink="/categrytourDetail/safari-tours-hurghada">{{ 'NAV.SAFARI_TOURS' | t }}</a>
+        <a class="footer-link" routerLink="/categrytourDetail/sea-tours-hurghada">{{ 'NAV.SEA_TOURS' | t }}</a>
+      </nav>
 
-      <!-- Contact -->
+      <nav class="footer-col" [attr.aria-label]="'FOOTER.ABOUT_US' | t">
+        <h6 class="footer-title"><i class="fas fa-circle-info" aria-hidden="true"></i>{{ 'FOOTER.ABOUT_US' | t }}</h6>
+        <a class="footer-link" routerLink="/about">{{ 'NAV.ABOUT' | t }}</a>
+        <a class="footer-link" routerLink="/blogs">{{ 'NAV.BLOGS' | t }}</a>
+        <a class="footer-link" routerLink="/reviews">{{ 'NAV.REVIEWS' | t }}</a>
+      </nav>
+
       <div class="footer-col">
-        <h6 class="footer-title">Contact</h6>
-        <p class="footer-contact"><i class="fas fa-location-dot" aria-hidden="true"></i> Hurghada, Egypt</p>
-        <a class="footer-contact" href="tel:+201111214147"><i class="fas fa-phone" aria-hidden="true"></i> 01111214147</a>
-        <a class="footer-contact" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=info%40riverstours.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope" aria-hidden="true"></i> info&#64;riverstours.com</a>
+        <h6 class="footer-title"><i class="fas fa-headset" aria-hidden="true"></i>{{ 'FOOTER.CONTACT_US' | t }}</h6>
+        <a class="footer-contact" href="https://maps.google.com/?q=Hurghada%2C+Egypt" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-location-dot" aria-hidden="true"></i> {{ 'FOOTER.LOCATION' | t }}
+        </a>
+        <a class="footer-contact" href="tel:+201111214147"><i class="fas fa-phone" aria-hidden="true"></i> +20 111 121 4147</a>
+        <a class="footer-contact" href="mailto:info@riverstours.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i> info&#64;riverstours.com</a>
+        <a class="footer-contact" href="https://wa.me/201111214147" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> {{ 'FOOTER.WHATSAPP' | t }}
+        </a>
 
         <div class="social-icons">
           <a href="https://www.facebook.com/share/1DJ8gwbPEo/?mibextid=wwXIfr" class="social-icon" data-name="facebook" aria-label="RiversTours on Facebook" target="_blank" rel="noopener noreferrer">
@@ -54,6 +75,6 @@
   </div>
 
   <div class="footer-bottom text-center">
-    © RiversTours. All rights reserved.
+    {{ 'FOOTER.COPYRIGHT' | t }}
   </div>
 </footer>

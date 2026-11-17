@@ -1,20 +1,20 @@
 export const PL = {
   NAV: {
-    HOME: 'Home',
-    TOURS: 'Rondleidingen',
-    TRANSFERS: 'Transfers',
+    HOME: 'Strona główna',
+    TOURS: 'Wycieczki',
+    TRANSFERS: 'Transfery',
     VACATION_HOME: 'Dom wakacyjny',
     MORE: 'Więcej',
-    BLOGS: 'Blogs',
-    REVIEWS: 'Beoordelingen',
-    ABOUT: 'Over Ons',
+    BLOGS: 'Blog',
+    REVIEWS: 'Opinie',
+    ABOUT: 'O nas',
 
 
-    HURGHADA_TOURS: 'Hurghada Rondleidingen',
-    CAIRO_TOURS: 'Caïro Rondleidingen',
-    LUXOR_TOURS: 'Luxor Rondleidingen',
-    SAFARI_TOURS: 'Safari Rondleidingen',
-    SEA_TOURS: 'Zee Rondleidingen',
+    HURGHADA_TOURS: 'Wycieczki po Hurghadzie',
+    CAIRO_TOURS: 'Wycieczki do Kairu',
+    LUXOR_TOURS: 'Wycieczki do Luksoru',
+    SAFARI_TOURS: 'Wycieczki safari',
+    SEA_TOURS: 'Wycieczki morskie',
     THINGS_TO_DO_HURGHADA: 'Activiteiten in Hurghada',
     MARSA_ALAM: 'Marsa Alam',
     SAFARI_TOURS_MARSA_ALAM: 'Safaritochten',
@@ -33,8 +33,19 @@ export const PL = {
     CATEGORIES: 'Categorieën'
   },
   FOOTER: {
-    DESC: "Ontdek de wonderen van Egypte met onze zorgvuldig samengestelde rondleidingen en privé-excursies. Ervaar onvergetelijke avonturen in de Rode Zee, spannende woestijnsafari's en meeslepende historische reizen door Caïro, Luxor en daarbuiten.",
-    QUICK_LINKS: 'Snelle Links'
+    BRAND_TAGLINE: 'Odkrywaj Egipt z lokalnymi ekspertami',
+    DESC: 'Z Hurghady pomagamy odkrywać Egipt dzięki starannie dobranym wycieczkom, przygodom nad Morzem Czerwonym, safari na pustyni i prywatnym transferom z zaufanymi lokalnymi przewodnikami.',
+    BASED_IN_HURGHADA: 'Siedziba w Hurghadzie',
+    LOCAL_GUIDES: 'Zaufani lokalni przewodnicy',
+    TOURS_AND_TRANSFERS: 'Wycieczki i prywatne transfery',
+    LEARN_ABOUT_US: 'Poznaj nas bliżej',
+    QUICK_LINKS: 'Szybkie linki',
+    EXPLORE_EGYPT: 'Odkryj Egipt',
+    ABOUT_US: 'O nas',
+    CONTACT_US: 'Kontakt',
+    LOCATION: 'Hurghada, Egipt',
+    WHATSAPP: 'Napisz na WhatsApp',
+    COPYRIGHT: '© RiversTours. Wszelkie prawa zastrzeżone.'
   },
   SECTION: {
     DISCOVER_JOURNEY: 'Ontdek Uw Volgende Reis',
@@ -186,6 +197,22 @@ export const PL = {
   },
   RESERVATION: {
     PROTECTED: 'Uw reserveringsgegevens zijn beschermd'
+  },
+  BOOKING: {
+    FULL_NAME: 'Imię i nazwisko',
+    EMAIL_ADDRESS: 'Adres e-mail',
+    COMMENTS: 'Uwagi?',
+    HOTEL_NAME: 'Nazwa hotelu',
+    ROOM_NUMBER: 'Numer pokoju',
+    ADULTS: 'Dorośli (10 lat i więcej):',
+    CHILDREN: 'Dzieci (5–10 lat):',
+    DATE: 'Data',
+    FULL_NAME_REQUIRED: 'Imię i nazwisko jest wymagane (minimum 3 znaki).',
+    EMAIL_REQUIRED: 'Wymagany jest prawidłowy adres e-mail.',
+    COMMENTS_REQUIRED: 'Szczegóły rezerwacji są wymagane.',
+    ADULTS_REQUIRED: 'Liczba dorosłych jest wymagana.',
+    CHILDREN_REQUIRED: 'Liczba dzieci jest wymagana.',
+    DATE_REQUIRED: 'Data rezerwacji jest wymagana.'
   },
   ABOUT: {
     TITLE: 'Over Ons',

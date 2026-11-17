@@ -33,8 +33,19 @@ export const FR = {
     CATEGORIES: 'Catégories'
   },
   FOOTER: {
-    DESC: "Découvrez les merveilles de l'Égypte avec nos visites soigneusement sélectionnées et nos excursions privées. Vivez des aventures inoubliables en mer Rouge, des safaris passionnants dans le désert et des voyages historiques immersifs au Caire, à Louxor et au-delà.",
-    QUICK_LINKS: 'Liens Rapides'
+    BRAND_TAGLINE: 'Votre porte d’entrée locale vers l’Égypte',
+    DESC: 'Depuis Hurghada, nous vous faisons découvrir l’Égypte grâce à des excursions choisies avec soin, des aventures en mer Rouge, des safaris dans le désert et des transferts privés avec des guides locaux de confiance.',
+    BASED_IN_HURGHADA: 'Basés à Hurghada',
+    LOCAL_GUIDES: 'Guides locaux de confiance',
+    TOURS_AND_TRANSFERS: 'Excursions et transferts privés',
+    LEARN_ABOUT_US: 'En savoir plus sur nous',
+    QUICK_LINKS: 'Liens rapides',
+    EXPLORE_EGYPT: 'Découvrir l’Égypte',
+    ABOUT_US: 'À propos',
+    CONTACT_US: 'Contact',
+    LOCATION: 'Hurghada, Égypte',
+    WHATSAPP: 'Discuter sur WhatsApp',
+    COPYRIGHT: '© RiversTours. Tous droits réservés.'
   },
   SECTION: {
     DISCOVER_JOURNEY: 'Découvrez Votre Prochain Voyage',
@@ -186,6 +197,22 @@ export const FR = {
   },
   RESERVATION: {
     PROTECTED: 'Les détails de votre réservation sont protégés'
+  },
+  BOOKING: {
+    FULL_NAME: 'Nom complet',
+    EMAIL_ADDRESS: 'Adresse e-mail',
+    COMMENTS: 'Commentaires ?',
+    HOTEL_NAME: 'Nom de l’hôtel',
+    ROOM_NUMBER: 'Numéro de chambre',
+    ADULTS: 'Adultes (10 ans et plus) :',
+    CHILDREN: 'Enfants (5 à 10 ans) :',
+    DATE: 'Date',
+    FULL_NAME_REQUIRED: 'Le nom complet est obligatoire (3 caractères minimum).',
+    EMAIL_REQUIRED: 'Une adresse e-mail valide est obligatoire.',
+    COMMENTS_REQUIRED: 'Les détails de la réservation sont obligatoires.',
+    ADULTS_REQUIRED: 'Le nombre d’adultes est obligatoire.',
+    CHILDREN_REQUIRED: 'Le nombre d’enfants est obligatoire.',
+    DATE_REQUIRED: 'La date de réservation est obligatoire.'
   },
   ABOUT: {
     TITLE: 'À Propos de Nous',

@@ -27,16 +27,15 @@
 }
 
 /* Layout */
-  .footer-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-  }
+.footer-row {
+  display: grid;
+  grid-template-columns: minmax(230px, 1.4fr) repeat(4, minmax(160px, 1fr));
+  gap: 30px;
+}
 
 /* Columns */
 .footer-col {
-  flex: 1 1 230px;
+  min-width: 0;
 }
 
 /* Logo */
@@ -64,12 +63,71 @@
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
+.footer-tagline {
+  margin: 0;
+  color: #b9ddf7;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.footer-highlights {
+  display: grid;
+  gap: 7px;
+  margin: 14px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.footer-highlights i {
+  width: 16px;
+  margin-top: 3px;
+  color: #b9ddf7;
+  text-align: center;
+}
+
+.footer-col .footer-about-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin-top: 2px;
+  padding: 8px 12px;
+  border: 1px solid rgba(185, 221, 247, 0.65);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: none;
+}
+
+.footer-col .footer-about-cta:hover {
+  transform: translateX(0);
+  background: rgba(255, 255, 255, 0.16);
+}
+
 /* Titles */
 .footer-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 18px;
   color: #b9ddf7;
   margin-bottom: 15px;
   font-weight: 600;
+}
+
+.footer-title i {
+  color: #fff;
+  font-size: 0.9em;
 }
 
 /* Links */
@@ -88,6 +146,11 @@
   color: #b9ddf7;
   transform: translateX(8px);
   text-shadow: 0 0 10px rgba(120, 180, 227, 0.5);
+}
+
+.footer-col a:focus-visible {
+  outline: 2px solid #b9ddf7;
+  outline-offset: 3px;
 }
 
 /* Social links stay inside the footer and do not float over page content. */
@@ -196,13 +259,35 @@
 }
 
 /* Responsive */
+@media (max-width: 1140px) and (min-width: 769px) {
+  .footer-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   .footer-row {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     text-align: center;
   }
 
   .footer-logo {
+    justify-content: center;
+  }
+
+  .footer-highlights {
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+  }
+
+  .footer-col .footer-about-cta {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .footer-title {
     justify-content: center;
   }
 

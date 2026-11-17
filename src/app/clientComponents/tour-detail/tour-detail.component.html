@@ -277,47 +277,47 @@
   
             <div class="form-group mb-3">
               <label for="FullName" class="form-label">
-                <i class="fas fa-user"></i> Full Name
+                <i class="fas fa-user"></i> {{ 'BOOKING.FULL_NAME' | t }}
               </label>
               <input [ngClass]="{
                       'is-invalid': BookingForm.get('FullName')?.invalid && (BookingForm.get('FullName')?.touched || BookingForm.get('FullName')?.dirty),
                       'is-valid': BookingForm.get('FullName')?.valid && (BookingForm.get('FullName')?.touched || BookingForm.get('FullName')?.dirty)
                   }" id="FullName" type="text" class="form-control" formControlName="FullName" >
               @if(BookingForm.get('FullName')?.invalid && (BookingForm.get('FullName')?.touched||BookingForm.get('FullName')?.dirty)){
-                <div class="text-danger small mt-1">Full Name is required (min 3 chars).</div>
+                <div class="text-danger small mt-1">{{ 'BOOKING.FULL_NAME_REQUIRED' | t }}</div>
               }
             </div>
           
             <div class="form-group mb-3">
               <label for="EmailAddress" class="form-label">
-                <i class="fas fa-envelope"></i> Email Address
+                <i class="fas fa-envelope"></i> {{ 'BOOKING.EMAIL_ADDRESS' | t }}
               </label>
               <input [ngClass]="{
                       'is-invalid': BookingForm.get('EmailAddress')?.invalid && (BookingForm.get('EmailAddress')?.touched || BookingForm.get('EmailAddress')?.dirty),
                       'is-valid': BookingForm.get('EmailAddress')?.valid && (BookingForm.get('EmailAddress')?.touched || BookingForm.get('EmailAddress')?.dirty)
                   }" id="EmailAddress" type="email" class="form-control" formControlName="EmailAddress">
               @if(BookingForm.get('EmailAddress')?.invalid && (BookingForm.get('EmailAddress')?.touched||BookingForm.get('EmailAddress')?.dirty)){
-                <div class="text-danger small mt-1">Valid Email is required.</div>
+                <div class="text-danger small mt-1">{{ 'BOOKING.EMAIL_REQUIRED' | t }}</div>
               }
             </div>
           
             <div class="form-group mb-3">
               <label for="Message" class="form-label">
-                <i class="fas fa-comment-alt"></i> Any comments !   
+                <i class="fas fa-comment-alt"></i> {{ 'BOOKING.COMMENTS' | t }}
               </label>
               <input [ngClass]="{
                       'is-invalid': BookingForm.get('Message')?.invalid && (BookingForm.get('Message')?.touched || BookingForm.get('Message')?.dirty),
                       'is-valid': BookingForm.get('Message')?.valid && (BookingForm.get('Message')?.touched || BookingForm.get('Message')?.dirty)
                   }" id="Message" type="text" class="form-control" formControlName="Message">
               @if(BookingForm.get('Message')?.invalid && (BookingForm.get('Message')?.touched||BookingForm.get('Message')?.dirty)){
-                <div class="text-danger small mt-1">Details of Booking is required</div>
+                <div class="text-danger small mt-1">{{ 'BOOKING.COMMENTS_REQUIRED' | t }}</div>
               }
             </div>
 
 
             <div class="form-group mb-3 col-half">
               <label class="form-label">
-                <i class="fas fa-user"></i> Hotel Name
+                <i class="fas fa-user"></i> {{ 'BOOKING.HOTEL_NAME' | t }}
               </label>
               <input 
                 [ngClass]="{
@@ -332,7 +332,7 @@
           
             <div class="form-group mb-3 col-half">
               <label class="form-label">
-                <i class="fas fa-child"></i> Room Number
+                <i class="fas fa-child"></i> {{ 'BOOKING.ROOM_NUMBER' | t }}
               </label>
               <input 
                 [ngClass]="{
@@ -350,7 +350,7 @@
 
               <div class="form-group mb-3 col-half">
                 <label class="form-label">
-                  <i class="fas fa-user"></i> Adults (10+ Years):
+                  <i class="fas fa-user"></i> {{ 'BOOKING.ADULTS' | t }}
                 </label>
                 <input 
                   [ngClass]="{
@@ -362,13 +362,13 @@
                   formControlName="AdultsNumber"
                 >
                 @if(BookingForm.get('AdultsNumber')?.invalid && (BookingForm.get('AdultsNumber')?.touched||BookingForm.get('AdultsNumber')?.dirty)){
-                  <div class="text-danger small mt-1">Adults Number is required</div>
+                  <div class="text-danger small mt-1">{{ 'BOOKING.ADULTS_REQUIRED' | t }}</div>
                 }
               </div>
             
               <div class="form-group mb-3 col-half">
                 <label class="form-label">
-                  <i class="fas fa-child"></i> Child (5-10 Years):
+                  <i class="fas fa-child"></i> {{ 'BOOKING.CHILDREN' | t }}
                 </label>
                 <input 
                   [ngClass]="{
@@ -380,7 +380,7 @@
                   formControlName="ChildernNumber"
                 >
                 @if(BookingForm.get('ChildernNumber')?.invalid && (BookingForm.get('ChildernNumber')?.touched||BookingForm.get('ChildernNumber')?.dirty)){
-                  <div class="text-danger small mt-1">Children Number is required</div>
+                  <div class="text-danger small mt-1">{{ 'BOOKING.CHILDREN_REQUIRED' | t }}</div>
                 }
               </div>
             
@@ -388,14 +388,14 @@
 
             <div class="form-group mb-3">
               <label for="BookingDate" class="form-label">
-                <i class="fas fa-calendar-alt"></i> Date
+                <i class="fas fa-calendar-alt"></i> {{ 'BOOKING.DATE' | t }}
               </label>
               <input [ngClass]="{
                       'is-invalid': BookingForm.get('BookingDate')?.invalid && (BookingForm.get('BookingDate')?.touched || BookingForm.get('BookingDate')?.dirty),
                       'is-valid': BookingForm.get('BookingDate')?.valid && (BookingForm.get('BookingDate')?.touched || BookingForm.get('BookingDate')?.dirty)
                   }" id="BookingDate" type="date" class="form-control" formControlName="BookingDate">
               @if(BookingForm.get('BookingDate')?.invalid && (BookingForm.get('BookingDate')?.touched||BookingForm.get('BookingDate')?.dirty)){
-                <div class="text-danger small mt-1">Date of Booking is required</div>
+                <div class="text-danger small mt-1">{{ 'BOOKING.DATE_REQUIRED' | t }}</div>
               }
             </div>
 
