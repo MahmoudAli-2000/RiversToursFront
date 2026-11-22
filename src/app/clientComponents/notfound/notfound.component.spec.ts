@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router } from '@angular/router';
 
 import { NotfoundComponent } from './notfound.component';
 
@@ -8,7 +9,8 @@ describe('NotfoundComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotfoundComponent]
+      imports: [NotfoundComponent],
+      providers: [provideRouter([{ path: 'home', component: NotfoundComponent }])]
     })
     .compileComponents();
     
@@ -19,5 +21,14 @@ describe('NotfoundComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should navigate home when the back button is clicked', async () => {
+    const router = TestBed.inject(Router);
+
+    fixture.nativeElement.querySelector('.btn-back').click();
+    await fixture.whenStable();
+
+    expect(router.url).toBe('/home');
   });
 });

@@ -42,6 +42,8 @@ export class SwiperCardsDirective implements AfterViewInit, OnDestroy {
       grabCursor: true,
       loop: true,
       speed: 1200,
+      preventClicks: false,
+      preventClicksPropagation: false,
       autoplay: {
         delay: 3000,
         disableOnInteraction: false, // مهم: يستمر بعد التفاعل

@@ -148,6 +148,8 @@ export class HomeComponent extends ReloadableComponent implements OnDestroy, Aft
       grabCursor: true,
       loop: true,
       speed: 1200,
+      preventClicks: false,
+      preventClicksPropagation: false,
       autoplay: {
         delay: 3000,
         disableOnInteraction: false,
